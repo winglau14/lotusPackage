@@ -1,0 +1,22 @@
+{
+  "name": "lotusdateformat",
+  "version": "1.0.5",
+  "description": "dateformat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/winglau14/dateFormat.git"
+  },
+  "keywords": [
+    "dateformat"
+  ],
+  "author": "winglau14",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/winglau14/dateFormat/issues"
+  },
+  "homepage": "https://github.com/winglau14/dateFormat#readme"
+}

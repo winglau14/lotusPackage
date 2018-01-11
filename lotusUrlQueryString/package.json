@@ -1,0 +1,17 @@
+{
+  "name": "lotus-url-query-string",
+  "version": "1.0.0",
+  "description": "获取url中参数值(query string)",
+  "main": "index.js",
+  "author": "winglau14",
+  "license": "MIT",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "urlQueryString",
+    "url",
+    "urlsplit",
+    "queryString"
+  ]
+}
