@@ -15,8 +15,10 @@ const lotusUrlQueryString = ()=>{
             return obj;
         }else{
             //一个参数
+            let obj = {};
             const c = b.split('=');
-            return c[1];
+            obj[c[0]] = c[1];
+            return obj;
         }
     }
 };
