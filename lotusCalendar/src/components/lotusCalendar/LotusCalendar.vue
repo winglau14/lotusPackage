@@ -37,7 +37,6 @@
     @import '../../style/lotusComponents/lotusCalendar.less';
 </style>
 <script>
-
     export default {
         name: 'lotus-calendar',
         props: ['calendarData'],

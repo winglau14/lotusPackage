@@ -1,6 +1,6 @@
 {
   "name": "lotus-calendar",
-  "version": "1.0.3",
+  "version": "1.0.9",
   "description": "vue版本calendar日期组件",
   "author": "winglau14 <397069329@qq.com>",
   "main": "dist/lotus-calendar.js",
@@ -22,7 +22,6 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "lotus-calendar": "^1.0.1",
     "vue": "^2.5.2"
   },
   "devDependencies": {
@@ -38,7 +37,7 @@
     "chalk": "^2.0.1",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.28.0",
-    "extract-text-webpack-plugin": "^3.0.0",
+    "extract-text-webpack-plugin": "^2.0.0",
     "file-loader": "^1.1.4",
     "friendly-errors-webpack-plugin": "^1.6.1",
     "html-webpack-plugin": "^2.30.1",

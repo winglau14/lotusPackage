@@ -11,17 +11,13 @@ var webpackConfig = {
     entry: {
         app: './src/index.js'
     },
-    output: {
-        path: config.build.assetsRoot,
-        //filename: '[name].js',
+    /*output: {
+        path: config.bundle.assetsRoot,
+        filename: '[name].js',
         publicPath: process.env.NODE_ENV === 'production'
             ? config.build.assetsPublicPath
-            : config.dev.assetsPublicPath,
-        filename:'lotus-calendar.js',  //打包生成文件的名字
-        library:'LotusCalendar',   //reqire引入的名字
-        libraryTarget:'umd',
-        umdNamedDefine:true
-    },
+            : config.dev.assetsPublicPath
+    },*/
     resolve: {
         extensions: ['.js', '.vue', '.json'],
         alias: {
