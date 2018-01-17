@@ -1,6 +1,6 @@
 {
   "name": "lotus-calendar",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "vue版本calendar日期组件",
   "author": "winglau14 <397069329@qq.com>",
   "main": "dist/lotus-calendar.js",
@@ -8,7 +8,7 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/winglau14/lotusPackage.git"
-  }，
+  },
   "keywords": [
     "vue-calendar",
     "calendar",
