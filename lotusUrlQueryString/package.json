@@ -1,6 +1,6 @@
 {
   "name": "lotus-url-query-string",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "获取url中参数值(query string)",
   "main": "index.js",
   "author": "winglau14",
