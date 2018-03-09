@@ -1,0 +1,31 @@
+.lotus-no-data {
+  width: 100%;
+  font-size: 0.37333333rem;
+  padding-top: 0.26666667rem;
+  padding-bottom: 0.26666667rem;
+  color: #999;
+  text-align: center;
+}
+.lotus-no-data span {
+  position: relative;
+}
+.lotus-no-data span:before {
+  content: '';
+  position: absolute;
+  left: -0.8rem;
+  top: 50%;
+  width: 0.8rem;
+  height: 0.8rem;
+  height: 1px;
+  background: #e5e5e5;
+}
+.lotus-no-data span:after {
+  content: '';
+  position: absolute;
+  right: -0.74666667rem;
+  top: 50%;
+  width: 0.8rem;
+  height: 0.8rem;
+  height: 1px;
+  background: #e5e5e5;
+}

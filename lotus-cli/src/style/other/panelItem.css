@@ -1,0 +1,33 @@
+.panel-item {
+  padding-left: 0.4rem;
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  line-height: 1.2rem;
+  font-size: 0.42666667rem;
+  color: #333;
+}
+.panel img {
+  margin-right: 0.37333333rem;
+  display: block;
+  width: 0.72rem;
+}
+.panel-act {
+  position: relative;
+}
+.panel-act:before {
+  content: '';
+  position: absolute;
+  left: 0.46666667rem;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  background: #e5e5e5;
+}
+.my-business-panel a:last-child .panel-item:before {
+  display: none;
+}
+.personal-panel a:last-child .panel-item:before {
+  display: none;
+}

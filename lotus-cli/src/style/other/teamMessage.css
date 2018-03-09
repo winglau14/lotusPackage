@@ -1,0 +1,25 @@
+.team-message {
+  background: #fff;
+  padding-top: 2rem;
+  text-align: center;
+  padding-bottom: 0.66666667rem;
+}
+.team-message-img {
+  width: 6.66666667rem;
+  margin-bottom: 0.8rem;
+}
+.team-message-member {
+  font-size: 0.42666667rem;
+  color: #656565;
+}
+.team-message-btn {
+  padding-top: 0.26666667rem;
+}
+.team-message-btn span {
+  padding: 0.24rem 0.64rem;
+  line-height: 0.98666667rem;
+  color: #fff;
+  background: #1aad19;
+  font-size: 0.45333333rem;
+  border-radius: 0.13333333rem;
+}

@@ -1,0 +1,38 @@
+@import (reference) "../config";
+
+@register: load-more-model;
+.@{register} {
+  .flex();
+  .flex-hvc();
+  .paddingTop(30);
+  .fontSize(32);
+  span{
+    .paddingLeft(10);
+  }
+  img{
+    .widthSingle(60);
+    .heightSingle(60);
+    animation: loadMore 1s steps(12, end) infinite;
+  }
+
+  @-webkit-keyframes loadMore {
+    0% {
+      transform: rotate3d(0, 0, 1, 0deg);
+    }
+
+    100% {
+      transform: rotate3d(0, 0, 1, 360deg);
+    }
+  }
+
+  @keyframes loadMore {
+    0% {
+      transform: rotate3d(0, 0, 1, 0deg);
+    }
+
+    100% {
+      transform: rotate3d(0, 0, 1, 360deg);
+    }
+  }
+
+}

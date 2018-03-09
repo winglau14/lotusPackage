@@ -1,0 +1,35 @@
+@import (reference) "../../style/config";
+
+@register: lotus-slider-wrap;
+.@{register} {
+  position: relative;
+  overflow: hidden;
+  &-list{
+    li{
+      float: left;
+    }
+    img{
+      pointer-events: none;
+    }
+  }
+  &-dot{
+    position: absolute;
+    left: 50%;
+    bottom: 20px;
+    z-index: 2;
+    line-height: 0;
+    font-size: 0;
+    text-align: center;
+    span{
+      width: 8px;
+      height: 8px;
+      border: 1px solid #fff;
+      border-radius: 50% 50%;
+      display: inline-block;
+      margin-right: 8px;
+    }
+    span.active{
+      background: #fff;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+@import (reference) "../config";
+
+@team-message: team-message;
+.@{team-message} {
+  background: #fff;
+  &{
+    .paddingTop(150);
+    text-align: center;
+    .paddingBottom(50);
+  }
+  &-img{
+    .widthSingle(500);
+    .marginBottom(60)
+  }
+  &-member {
+    .fontSize(32);
+    color:#656565;
+  }
+  &-btn{
+    .paddingTop(20);
+    span{
+      .padding2(18,48);
+      .lineHeight(74);
+      color:#fff;
+      background: #1aad19;
+      .fontSize(34);
+      .borderRadius(10);
+    }
+  }
+}

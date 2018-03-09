@@ -1,0 +1,32 @@
+@import (reference) "../config";
+
+@register: lotus-no-data;
+.@{register} {
+  width: 100%;
+  .fontSize(28);
+  .paddingTop(20);
+  .paddingBottom(20);
+  color:#999;
+  text-align: center;
+    span{
+      position: relative;
+      &:before{
+        content: '';
+        position: absolute;
+        .left(-60);
+        top:50%;
+        .width(60);
+        height:1px;
+        background: #e5e5e5;
+      }
+      &:after{
+        content: '';
+        position: absolute;
+        .right(-56);
+        top:50%;
+        .width(60);
+        height:1px;
+        background: #e5e5e5;
+      }
+    }
+}

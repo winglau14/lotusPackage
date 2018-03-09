@@ -1,0 +1,33 @@
+.load-more-model {
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 0.4rem;
+  font-size: 0.42666667rem;
+}
+.load-more-model span {
+  padding-left: 0.13333333rem;
+}
+.load-more-model img {
+  width: 0.8rem;
+  height: 0.8rem;
+  animation: loadMore 1s steps(12, end) infinite;
+}
+@-webkit-keyframes loadMore {
+  0% {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+  100% {
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}
+@keyframes loadMore {
+  0% {
+    transform: rotate3d(0, 0, 1, 0deg);
+  }
+  100% {
+    transform: rotate3d(0, 0, 1, 360deg);
+  }
+}

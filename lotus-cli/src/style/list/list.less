@@ -1,0 +1,280 @@
+@import (reference) "../config";
+@register: yjl-list;
+.@{register} {
+  .paddingBottom(30);
+  &-top {
+    .heightSingle(153);
+    background: url("/static/yyj-top-bg.jpg") no-repeat;
+    background-size: 100% 100%;
+
+  }
+  &-calendar {
+    background: #fff;
+    .marginLeft(30);
+    .marginRight(30);
+    .marginTop(36);
+    .marginBottom(20);
+    .borderRadius(10);
+    .flex();
+    .flex-hvc();
+    justify-content: space-between;
+    .box-sizing();
+    .padding2(20, 20);
+    .fontSize(28);
+    color: #333;
+    span {
+      color: #999;
+      .paddingLeft(20);
+      .paddingRight(20);
+    }
+    &-left {
+      .flex();
+      .flex-hvc();
+      justify-content: space-between;
+    }
+    &-right {
+      color: #0f88eb;
+      .paddingLeft(36);
+      .paddingTop(4);
+      .fontSize(28);
+      position: relative;
+      &:before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 50%;
+        background: url("/static/yyl-icon01.png") no-repeat;
+        background-size: 100% 100%;
+        .width(30);
+        transform: translate(0, -50%);
+      }
+    }
+    &-st, &-et {
+      background: #eff0f5;
+      text-align: center;
+      .widthSingle(200);
+      .borderRadius(6);
+      position: relative;
+      .box-sizing();
+      .paddingRight(10);
+      .paddingTop(14);
+      .paddingBottom(14);
+      line-height: normal;
+      &:after {
+        content: "";
+        position: absolute;
+        .right(10);
+        top: 50%;
+        transform: translate(0, -50%);
+        width: 0;
+        height: 0;
+        .borderLeftWidth(8);
+        border-left-style: solid;
+        border-left-color: transparent;
+        border-right-style: solid;
+        border-right-color: transparent;
+        .borderRight(8);
+        .borderTop(16);
+        border-top-style: solid;
+        border-top-color: #555;
+      }
+    }
+  }
+  &-wrap {
+    .marginLeft(30);
+    .marginRight(30);
+    .borderRadius(10);
+    .box-sizing();
+    &-type1 {
+      background: #fff;
+      .paddingTop(16);
+      .paddingLeft(30);
+      .paddingRight(30);
+      .borderRadiusBl(10);
+      .borderRadiusBr(10);
+      .paddingBottom(30);
+    }
+    &-tab {
+      .padding4(30, 30, 0, 30);
+      background: #fff;
+      .flex();
+      .flex-hvc();
+      justify-content: space-between;
+      .fontSize(30);
+      text-align: center;
+      .borderRadiusTl(10);
+      .borderRadiusTr(10);
+      &-item {
+        width: 25%;
+        .paddingBottom(20);
+        display: block;
+        position: relative;
+        &:after {
+          content: "";
+          position: absolute;
+          left: 50%;
+          bottom: 0;
+          .widthSingle(110);
+          .heightSingle(3);
+          background: #fff;
+          transform: translateX(-50%);
+        }
+      }
+      &-act {
+        color: #ffae3e;
+        &:after {
+          background: #ffae3e;
+        }
+
+      }
+    }
+    &-nav, &-total, &-item {
+      .flex();
+      .flex-hvc();
+      justify-content: space-between;
+      background: #fff9f0;
+      .fontSize(30);
+      .lineHeight(88);
+      text-align: center;
+      span {
+        .sectionWidth(210, 630);
+      }
+    }
+    &-region {
+      .sectionWidth(210, 630);
+    }
+    &-total {
+      .paddingTop(15);
+      background: #fff;
+      color: #ffae3e;
+      .lineHeight(68);
+    }
+    &-item {
+      .paddingTop(4);
+      background: #fff;
+      .lineHeight(68);
+    }
+    &-product {
+      background: #fff;
+      .fontSize(30);
+      .lineHeight(68);
+      .paddingLeft(60);
+      .paddingTop(30);
+      .paddingBottom(30);
+      .paddingRight(30);
+      .borderRadiusBl(10);
+      .borderRadiusBr(10);
+    }
+    &-pitem {
+      .marginTop(20);
+      background: #fff;
+      .borderRadius(10);
+      .padding4(30, 60, 30, 30);
+      .fontSize(30);
+      .lineHeight(68);
+    }
+    &-pname {
+      position: relative;
+      .paddingLeft(14);
+      .flex();
+      .flex-hc();
+      &:before {
+        content: "";
+        background: #ffae3e;
+        .widthSingle(4);
+        .heightSingle(24);
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+      span{
+        .maxWidth(520)
+      }
+      i {
+        display: block;
+        background: url("/static/yyl-icon02.png") no-repeat;
+        background-size: 100% 100%;
+        .widthSingle(31);
+        .heightSingle(36);
+        .marginLeft(30);
+      }
+    }
+    &-flex {
+      .flex();
+      .flex-hc();
+      justify-content: space-between;
+    }
+    &-address {
+      border: 1px solid #999;
+      .fontSize(22);
+      .borderRadius(4);
+      .padding2(6, 4);
+    }
+  }
+  &-mask {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, .5);
+    .flex();
+    .flex-hvc();
+    &-product {
+      position: relative;
+      background: #fff;
+      .marginLeft(50);
+      .marginRight(50);
+      .borderRadius(10);
+      .padding2(100, 30);
+      .fontSize(32);
+      color: #333;
+      .lineHeight(68);
+      &:before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        .top(-40);
+        transform: translateX(-50%);
+        .widthSingle(100);
+        .heightSingle(100);
+        background: #fff;
+        .borderRadiusTl(50);
+        .borderRadiusTr(50);
+      }
+      &:after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        .top(-30);
+        transform: translateX(-50%);
+        .widthSingle(86);
+        .heightSingle(86);
+        background: rgba(252, 185, 181, .5);
+        border-radius: 50% 50%;
+
+      }
+    }
+    &-icon {
+      position: absolute;
+      left: 50%;
+      .top(-16);
+      z-index: 2;
+      transform: translateX(-50%);
+      .widthSingle(57);
+      .heightSingle(56);
+    }
+  }
+  &-no-data{
+    position: absolute;
+    background: #fff;
+    .left(30);
+    .right(30);
+    .borderRadiusBl(10);
+    .borderRadiusBr(10);
+    .marginBottom(30);
+  }
+}
+
+

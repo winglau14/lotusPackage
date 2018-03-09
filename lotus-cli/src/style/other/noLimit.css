@@ -1,0 +1,19 @@
+.no-limit {
+  text-align: center;
+  font-size: 0.4rem;
+}
+.no-limit-wrap {
+  background: #fff;
+  margin-top: 2.8rem;
+  margin-left: 0.66666667rem;
+  margin-right: 0.66666667rem;
+  padding: 0.8rem 0.4rem;
+  border-radius: 0.13333333rem;
+}
+.no-limit-code {
+  padding-top: 0.4rem;
+  padding-bottom: 0.66666667rem;
+  width: 4.58666667rem;
+  margin-left: auto;
+  margin-right: auto;
+}

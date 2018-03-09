@@ -1,0 +1,30 @@
+.lotus-slider-wrap {
+  position: relative;
+  overflow: hidden;
+}
+.lotus-slider-wrap-list li {
+  float: left;
+}
+.lotus-slider-wrap-list img {
+  pointer-events: none;
+}
+.lotus-slider-wrap-dot {
+  position: absolute;
+  left: 50%;
+  bottom: 20px;
+  z-index: 2;
+  line-height: 0;
+  font-size: 0;
+  text-align: center;
+}
+.lotus-slider-wrap-dot span {
+  width: 8px;
+  height: 8px;
+  border: 1px solid #fff;
+  border-radius: 50% 50%;
+  display: inline-block;
+  margin-right: 8px;
+}
+.lotus-slider-wrap-dot span.active {
+  background: #fff;
+}

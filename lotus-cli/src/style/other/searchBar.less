@@ -1,0 +1,60 @@
+@import (reference) "../config";
+
+@register: search-bar;
+.@{register} {
+  .padding2(15, 20);
+  position: relative;
+  .vux-x-icon-ios-search {
+    fill: #b3b3b3;
+    .widthSingle(50);
+    .heightSingle(50);
+    position: absolute;
+  }
+  &-input {
+    width: 100%;
+    background: #fff;
+    border: 1px solid #dadbdf;
+    .borderRadius(8);
+    .heightSingle(64);
+    .lineHeight(40);
+    .paddingTop(15);
+    .paddingBottom(12);
+    .fontSize(30);
+    .paddingLeft(60);
+    .box-sizing();
+  }
+  &-model {
+    position: relative;
+    .sectionWidth(620, 710);
+    .flex();
+    .flex-hvc();
+  }
+  &-wrap {
+    .flex();
+    .flex-hvc();
+    position: relative;
+    .vux-x-icon-ios-search {
+      .top(6);
+      .left(10);
+      z-index: 3;
+    }
+    .vux-x-icon-ios-close {
+      position: absolute;
+      .right(20);
+      .top(13);
+      .widthSingle(40);
+      .heightSingle(40);
+      fill: #b2b2b2;
+    }
+  }
+  &-cancel {
+    text-align: center;
+    .sectionWidth(80, 710);
+    .fontSize(32);
+    color: #1aad19;
+  }
+  input::-webkit-search-cancel-button{
+    -webkit-appearance: none;
+    appearance:none;
+  }
+}

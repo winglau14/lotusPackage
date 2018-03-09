@@ -1,0 +1,52 @@
+@import (reference) "../config";
+
+@register: panel;
+@bus:my-business-panel;
+@per:personal-panel;
+.@{register} {
+  &-item {
+    .paddingLeft(30);
+    .flex();
+    .flex-hc();
+    .lineHeight(90);
+    .fontSize(32);
+    color: #333;
+  }
+  img {
+    .marginRight(28);
+    display: block;
+    .widthSingle(54);
+  }
+  &-act {
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      .left(35);
+      bottom: 0;
+      right: 0;
+      height: 1px;
+      background: #e5e5e5;
+    }
+  }
+    &-act:last-child{
+    }
+}
+.@{bus}{
+  a:last-child{
+    .panel-item{
+      &:before{
+        display: none;
+      }
+    }
+  }
+}
+.@{per}{
+  a:last-child{
+    .panel-item{
+      &:before{
+        display: none;
+      }
+    }
+  }
+}

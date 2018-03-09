@@ -1,0 +1,65 @@
+.search-bar {
+  padding: 0.2rem 0.26666667rem;
+  position: relative;
+}
+.search-bar .vux-x-icon-ios-search {
+  fill: #b3b3b3;
+  width: 0.66666667rem;
+  height: 0.66666667rem;
+  position: absolute;
+}
+.search-bar-input {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #dadbdf;
+  border-radius: 0.10666667rem;
+  height: 0.85333333rem;
+  line-height: 0.53333333rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.16rem;
+  font-size: 0.4rem;
+  padding-left: 0.8rem;
+  box-sizing: border-box;
+}
+.search-bar-model {
+  position: relative;
+  width: 87.32394366%;
+  margin: 0 auto;
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search-bar-wrap {
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.search-bar-wrap .vux-x-icon-ios-search {
+  top: 0.08rem;
+  left: 0.13333333rem;
+  z-index: 3;
+}
+.search-bar-wrap .vux-x-icon-ios-close {
+  position: absolute;
+  right: 0.26666667rem;
+  top: 0.17333333rem;
+  width: 0.53333333rem;
+  height: 0.53333333rem;
+  fill: #b2b2b2;
+}
+.search-bar-cancel {
+  text-align: center;
+  width: 11.26760563%;
+  margin: 0 auto;
+  font-size: 0.42666667rem;
+  color: #1aad19;
+}
+.search-bar input::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+}
