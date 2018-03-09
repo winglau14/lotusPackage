@@ -1,2 +1,0 @@
-/*! hey,lotus-cli */
-webpackJsonp([1],{144:function(e,l,n){"use strict";Object.defineProperty(l,"__esModule",{value:!0});var u=n(8),t=u(null,null,!1,null,null,null);t.options.__file="src\\components\\Test.vue",l.default=t.exports}});
