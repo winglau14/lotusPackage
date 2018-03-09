@@ -1,13 +1,13 @@
-//日历组件
-import lotusCalendarVue from './components/lotusCalendar/LotusCalendar.vue'
+//滑动轮播、无缝轮播组件
+import lotusCarouselVue from './components/lotusCarousel/LotusCarousel.vue'
 
 //组件注入到Vue
-const lotusCalendar = {
+const lotusCarousel = {
     install(Vue){
         if (typeof window !== 'undefined' && window.Vue) {
             Vue = window.Vue;
         }
-        Vue.component('lotus-calendar',lotusCalendarVue);
+        Vue.component('lotus-carousel',lotusCarouselVue);
     }
 };
-export default lotusCalendar;
+export default lotusCarousel;
