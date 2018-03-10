@@ -6,13 +6,52 @@
 
 ### npm install lotus-calendar --save or yarn add lotus-calendar
 ### 插件的方式引入使用
-1.main.js <br/>
-import lotusCalendar from 'lotus-calendar' <br/>
-import 'lotus-calendar/dist/lotus-calendar.min' <br/>
-Vue.use(lotusCalendar) <br/>
-2.vue页面内引用具体调用方法 <br/>
-请查看src/App.vue <br/>
-3.演示 <br/>
+1.main.js 
+```
+import lotusCalendar from 'lotus-calendar'
+import 'lotus-calendar/dist/lotus-calendar.min'
+Vue.use(lotusCalendar) 
+```
+2.vue页面内引用日历控件：<br/>
+```
+<lotus-calendar @returnDate="choseDate" :calendarData="calendarData"></lotus-calendar>
+```
+3.触发日历控件例子：<br/>
+```
+<p>
+   <span >日期控件：</span>
+   <span @click="bindDateChange('starTime')" v-text="starTime+'至'"></span>
+   <span @click="bindDateChange('endTime')" v-text="endTime"></span>
+</p>
+```
+4.参数说明：<br/>
+（1）参数定义
+```
+data () {
+            return {
+                starTime: '',
+                endTime: '',
+                calendarData:{
+                    isShow:false
+                },
+            }
+        }
+```
+5.方法定义与调用：<br/>
+```
+methods: {
+            //获取选中时间
+            choseDate(data,type){
+                this[type] = data;
+            },
+            //触发显示日历控件
+            bindDateChange(type){
+                 this.calendarData.isShow = true;
+                 this.calendarData.type = type;
+            },
+        }
+```
+6.演示 <br/>
 ![lotus-calendar](https://raw.githubusercontent.com/winglau14/lotusPackage/master/lotusCalendar/1.gif)
 
 
