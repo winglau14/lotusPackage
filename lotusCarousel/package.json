@@ -1,6 +1,6 @@
 {
   "name": "lotus-carousel",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "vue版本滑动轮播/无缝轮播组件",
   "author": "winglau14 <397069329@qq.com>",
   "main": "dist/lotus-carousel.js",
