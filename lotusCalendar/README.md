@@ -7,11 +7,11 @@
 ### npm install lotus-calendar --save or yarn add lotus-calendar
 ### 插件的方式引入使用
 1.main.js 
-```
+<pre>
 import lotusCalendar from 'lotus-calendar'
 import 'lotus-calendar/dist/lotus-calendar.min'
 Vue.use(lotusCalendar) 
-```
+</pre>
 2.vue页面内引用日历控件：<br/>
 ```
 <lotus-calendar @returnDate="choseDate" :calendarData="calendarData"></lotus-calendar>
@@ -26,7 +26,7 @@ Vue.use(lotusCalendar)
 ```
 4.参数说明：<br/>
 （1）参数定义
-```
+<pre>
 data () {
             return {
                 starTime: '',
@@ -36,9 +36,9 @@ data () {
                 },
             }
         }
-```
+</pre>
 5.方法定义与调用：<br/>
-```
+<pre>
 methods: {
             //获取选中时间
             choseDate(data,type){
@@ -50,7 +50,7 @@ methods: {
                  this.calendarData.type = type;
             },
         }
-```
+</pre>
 6.演示 <br/>
 ![lotus-calendar](https://raw.githubusercontent.com/winglau14/lotusPackage/master/lotusCalendar/1.gif)
 
