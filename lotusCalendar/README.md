@@ -12,5 +12,7 @@ import 'lotus-calendar/dist/lotus-calendar.min' <br/>
 Vue.use(lotusCalendar) <br/>
 2.vue页面内引用具体调用方法 <br/>
 请查看src/App.vue
+3.演示
+![lotus-calendar](https://raw.githubusercontent.com/winglau14/lotusPackage/master/lotusCalendar/1.gif)
 
 
