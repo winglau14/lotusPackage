@@ -7,50 +7,55 @@
 ### npm install lotus-calendar --save or yarn add lotus-calendar
 ### 插件的方式引入使用
 1.main.js 
-<pre>
-import lotusCalendar from 'lotus-calendar'
-import 'lotus-calendar/dist/lotus-calendar.min'
-Vue.use(lotusCalendar) 
-</pre>
+```$xslt
+    import lotusCalendar from 'lotus-calendar'
+    import 'lotus-calendar/dist/lotus-calendar.min'
+    Vue.use(lotusCalendar) 
+```
+
 2.vue页面内引用日历控件：<br/>
 ```
-<lotus-calendar @returnDate="choseDate" :calendarData="calendarData"></lotus-calendar>
+    <lotus-calendar @returnDate="choseDate" :calendarData="calendarData"></lotus-calendar>
 ```
+
 3.触发日历控件例子：<br/>
 ```
-<p>
-   <span >日期控件：</span>
-   <span @click="bindDateChange('starTime')" v-text="starTime+'至'"></span>
-   <span @click="bindDateChange('endTime')" v-text="endTime"></span>
-</p>
+    <p>
+       <span >日期控件：</span>
+       <span @click="bindDateChange('starTime')" v-text="starTime+'至'"></span>
+       <span @click="bindDateChange('endTime')" v-text="endTime"></span>
+    </p>
 ```
+
 4.参数说明：<br/>
 （1）参数定义
-<pre>
-data () {
-            return {
-                starTime: '',
-                endTime: '',
-                calendarData:{
-                    isShow:false
-                },
-            }
+```$xslt
+    data () {
+        return {
+            starTime: '',
+            endTime: '',
+            calendarData:{
+                isShow:false
+            },
         }
-</pre>
+    }
+```
+
 5.方法定义与调用：<br/>
-<pre>
-methods: {
-            //获取选中时间
-            choseDate(data,type){
-                this[type] = data;
-            },
-            //触发显示日历控件
-            bindDateChange(type){
-                 this.calendarData.isShow = true;
-                 this.calendarData.type = type;
-            },
+```$xslt
+    methods: {
+        //获取选中时间
+        choseDate(data,type){
+            this[type] = data;
+        },
+        //触发显示日历控件
+        bindDateChange(type){
+             this.calendarData.isShow = true;
+             this.calendarData.type = type;
         }
-</pre>
+    }
+```
+
 6.演示 <br/>
 ![lotus-calendar](https://raw.githubusercontent.com/winglau14/lotusPackage/master/lotusCalendar/1.gif)
 

@@ -1,6 +1,6 @@
 {
   "name": "lotus-calendar",
-  "version": "1.1.7",
+  "version": "1.1.8",
   "description": "vue版本calendar日期组件",
   "author": "winglau14 <397069329@qq.com>",
   "main": "dist/lotus-calendar.js",
