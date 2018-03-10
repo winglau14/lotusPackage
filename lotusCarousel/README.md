@@ -11,7 +11,8 @@ import lotusCarousel from 'lotus-carousel' <br/>
 import 'lotus-carousel/dist/lotus-carousel.min' <br/>
 Vue.use(lotusCarousel) <br/>
 2.页面使用 <br/>
-'<lotus-carousel :imageList="imageList" :_isAuto="false" :_autoTime="2000"></lotus-carousel>'<br/>
+`<lotus-carousel :imageList="imageList" :_isAuto="false" :_autoTime="2000"></lotus-carousel>`
+<br/>
 3.参数说明 <br/>
 (1)imageList:图片列表类型为数组;此参数必须 <br/>
 (2)如：imageList:['1.jpg','2.jpg'] <br/>
