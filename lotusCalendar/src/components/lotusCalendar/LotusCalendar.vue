@@ -181,6 +181,8 @@
                         return this.aMonth[month];
                     }
                 } else {
+                    //不是闰年重置2月天数为28
+                    this.aMonth[1] = 28;
                     return this.aMonth[month];
                 }
             },
