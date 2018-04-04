@@ -14,7 +14,7 @@
 ```
 2.页面使用
 ```$xslt
-     <LotusPicker :lotusPickerData="items" @change="change" :title="title" :flag="flag"></LotusPicker>
+     <lotus-picker :lotusPickerData="items" @change="change" :title="title" :flag="flag"></lotus-picker>
 ```
 
 3.参数说明 <br/>
