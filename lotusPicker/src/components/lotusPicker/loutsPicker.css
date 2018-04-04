@@ -1,0 +1,74 @@
+.lotus-picker {
+  background: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+.lotus-picker-main {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5.6rem;
+  background: #fbf9fe;
+}
+.lotus-picker-top {
+  line-height: 1.33333333rem;
+  font-size: 0.4rem;
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding-left: 0.26666667rem;
+  padding-right: 0.26666667rem;
+  border-bottom: 1px solid #dbdbdb;
+}
+.lotus-picker-top-cancel,
+.lotus-picker-top-confirm {
+  color: #38f;
+}
+.lotus-picker-flex {
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  text-align: center;
+  font-size: 0.42666667rem;
+  line-height: 1.41333333rem;
+  height: 4.26666667rem;
+  overflow: hidden;
+}
+.lotus-picker-flex-item {
+  flex: 1;
+}
+.lotus-picker-flex-item1 {
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lotus-picker-center {
+  width: 100%;
+  height: 1.41333333rem;
+  border-bottom: 1px solid #dbdbdb;
+  position: absolute;
+  left: 0;
+  top: 1.37333333rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
+.lotus-picker-bottom {
+  width: 100%;
+  height: 1.41333333rem;
+  border-top: 1px solid #dbdbdb;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.5);
+  pointer-events: none;
+}
