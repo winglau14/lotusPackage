@@ -2594,12 +2594,6 @@ loose-envify@^1.0.0:
   dependencies:
     js-tokens "^3.0.0"
 
-lotus-calendar@^1.0.1:
-  version "1.0.1"
-  resolved "http://registry.npm.taobao.org/lotus-calendar/download/lotus-calendar-1.0.1.tgz#a9aa14ccf342b1f14bab908d29b98f1a7bfea083"
-  dependencies:
-    vue "^2.5.2"
-
 lower-case@^1.1.1:
   version "1.1.4"
   resolved "http://registry.npm.taobao.org/lower-case/download/lower-case-1.1.4.tgz#9a2cabd1b9e8e0ae993a4bf7d5875c39c42e8eac"
