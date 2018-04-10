@@ -68,13 +68,13 @@
 
                 //获取滑动的值
                 /*const curItem = await this.getCurNum(b, itemVal, index).then((response) => {
-                    return response;
-                });*/
+                 return response;
+                 });*/
 
                 //滑动到第一个，下拉判断
                 if (this.initY >= dom.offsetTop && this.my - this.sy > 0) {
                     const c = this.itemClientH;
-                    document.querySelector(`#lotus-picker-flex-item${index}`).style.cssText = `transform:translate3d(0px,${c}px,0px);height:${this.itemClientH * itemVal.values.length}px;transition:all 500ms cubic-bezier(0.1, 0.57, 0.1, 1)`;
+                    document.querySelector(`#lotus-picker-flex-item${index}`).style.cssText = `-webkit-transform:translate3d(0px,${c}px,0px);height:${this.itemClientH * itemVal.values.length}px;transition:all 500ms cubic-bezier(0.1, 0.57, 0.1, 1);transform:translate3d(0px,${c}px,0px);height:${this.itemClientH * itemVal.values.length}px;transition:all 500ms cubic-bezier(0.1, 0.57, 0.1, 1)`;
                 } else if (Math.abs(parseInt(y[1])) >= dom.scrollHeight - 2 * this.itemClientH && this.my - this.sy < 0) {
                     //滑动到最后一个，上拉判断
                     const c = dom.scrollHeight - 2 * this.itemClientH;
@@ -100,9 +100,9 @@
             //设置transform的值
             setTransformVal(obj, yVal, pHeight, time, type){
                 if (type) {
-                    document.querySelector(obj).style.cssText = `transform:translate3d(0px,${yVal}px,0px);height:${pHeight}px;transition:all ${time || 500}ms cubic-bezier(0.1, 0.57, 0.1, 1);`;
+                    document.querySelector(obj).style.cssText = `-webkit-transform:translate3d(0px,${yVal}px,0px);height:${pHeight}px;transition:all ${time || 500}ms cubic-bezier(0.1, 0.57, 0.1, 1);transform:translate3d(0px,${yVal}px,0px);height:${pHeight}px;transition:all ${time || 500}ms cubic-bezier(0.1, 0.57, 0.1, 1);`;
                 } else {
-                    document.querySelector(obj).style.cssText = `transform:translate3d(0px,${yVal}px,0px);height:${pHeight}px;transition:none;`;
+                    document.querySelector(obj).style.cssText = `-webkit-transform:translate3d(0px,${yVal}px,0px);height:${pHeight}px;transition:none;transform:translate3d(0px,${yVal}px,0px);height:${pHeight}px;transition:none;`;
                 }
             },
             //设置初始picker显示值
@@ -157,7 +157,7 @@
                     this.itemClientH = document.querySelector(".lotus-picker-flex-item p").clientHeight;
                     this.initY = this.itemClientH;
                     this._props.lotusPickerData.map((item, index) => {
-                        document.querySelector(`#lotus-picker-flex-item${index}`).style.cssText = `transform:translate3d(0px,${this.itemClientH}px,0px);height:${this.itemClientH * item.values.length}px;`;
+                        document.querySelector(`#lotus-picker-flex-item${index}`).style.cssText = `-webkit-transform:translate3d(0px,${this.itemClientH}px,0px);height:${this.itemClientH * item.values.length}px;transform:translate3d(0px,${this.itemClientH}px,0px);height:${this.itemClientH * item.values.length}px;`;
                         if (item.index > 0) {
                             this.setPickerShow(index, item.index, this._props.lotusPickerData[index]);
                         }
