@@ -55,7 +55,7 @@
                 e.preventDefault();
                 this.my = e.touches[0].pageY;
                 const y = (this.my - this.sy);
-                this.setTransformVal(`#lotus-picker-flex-item${index}`, (y + this.initY), this.itemClientH * itemVal.values.length, 400, 1);
+                this.setTransformVal(`#lotus-picker-flex-item${index}`, (y + this.initY), this.itemClientH * itemVal.values.length, 1,400);
 
             },
             //滑动结束
@@ -67,9 +67,9 @@
                 let b = Math.floor(t);
 
                 //获取滑动的值
-                /*const curItem = await this.getCurNum(b, itemVal, index).then((response) => {
-                 return response;
-                 });*/
+                const curItem = await this.getCurNum(b, itemVal, index).then((response) => {
+                    return response;
+                });
 
                 //滑动到第一个，下拉判断
                 if (this.initY >= dom.offsetTop && this.my - this.sy > 0) {
@@ -78,12 +78,22 @@
                 } else if (Math.abs(parseInt(y[1])) >= dom.scrollHeight - 2 * this.itemClientH && this.my - this.sy < 0) {
                     //滑动到最后一个，上拉判断
                     const c = dom.scrollHeight - 2 * this.itemClientH;
-                    this.setTransformVal(`#lotus-picker-flex-item${index}`, (-c), this.itemClientH * itemVal.values.length, 500, 1);
+                    this.setTransformVal(`#lotus-picker-flex-item${index}`, (-c), this.itemClientH * itemVal.values.length,1, 500);
                 } else {
                     //计算滑动item的transform：translateY的值
                     const c = (b + 1) * this.itemClientH - this.itemClientH;
-                    this.setTransformVal(`#lotus-picker-flex-item${index}`, (c), this.itemClientH * itemVal.values.length, 500, 1);
+                    this.setTransformVal(`#lotus-picker-flex-item${index}`, (c), this.itemClientH * itemVal.values.length,1,500);
                 }
+                //最大值限制
+                if (itemVal.maxVal && curItem.val >= itemVal.maxVal) {
+                    itemVal.values.map((item, itemIndex) => {
+                        if (item === itemVal.maxVal) {
+                            this.setPickerShow(index, itemIndex, itemVal);
+                            return false;
+                        }
+                    });
+                }
+
                 //返回最后选择的值
                 /*this.result.push(curItem);
                  this.$emit("change", this.result);*/
@@ -98,7 +108,7 @@
                 return p.split(",");
             },
             //设置transform的值
-            setTransformVal(obj, yVal, pHeight, time, type){
+            setTransformVal(obj, yVal, pHeight, type, time){
                 if (type) {
                     document.querySelector(obj).style.cssText = `-webkit-transform:translate3d(0px,${yVal}px,0px);height:${pHeight}px;transition:all ${time || 500}ms cubic-bezier(0.1, 0.57, 0.1, 1);transform:translate3d(0px,${yVal}px,0px);height:${pHeight}px;transition:all ${time || 500}ms cubic-bezier(0.1, 0.57, 0.1, 1);`;
                 } else {
@@ -106,10 +116,15 @@
                 }
             },
             //设置初始picker显示值
-            setPickerShow(domIndex, index, itemVal){
+            setPickerShow(domIndex, index, itemVal, type){
                 index === 0 ? index = 0 : index = -index;
                 const c = index * this.itemClientH + this.itemClientH;
-                this.setTransformVal(`#lotus-picker-flex-item${domIndex}`, c, this.itemClientH * itemVal.values.length);
+                if (type) {
+                    this.setTransformVal(`#lotus-picker-flex-item${domIndex}`, c, this.itemClientH * itemVal.values.length, type);
+                } else {
+                    this.setTransformVal(`#lotus-picker-flex-item${domIndex}`, c, this.itemClientH * itemVal.values.length);
+                }
+
             },
             //获取索引值
             getCurNum(b, itemVal, index){
@@ -134,6 +149,10 @@
                         obj.index = cIndex;
                         obj.type = itemVal.type;
                         obj.val = itemVal.values[cIndex];
+                        if (itemVal.maxVal) {
+                            obj.maxVal = itemVal.maxVal;
+                        }
+
                         //console.log(`当前索引:${cIndex},当前值:${itemVal[cIndex]}`);
                         this.result.map((rItem, rIndex) => {
                             if (itemVal.type === rItem.type) {
@@ -148,6 +167,7 @@
             //关闭picker弹层
             close(){
                 this._props.flag.isShow = false;
+                this.$emit('cancel',this._props.flag.isShow);
                 //this.affirmResult();
             },
             //设置picker初始值
