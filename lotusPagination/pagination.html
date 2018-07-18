@@ -10,7 +10,7 @@
 </head>
 
 <body>
-<div class="lotus-pagination">
+<div class="lotus-pagination" id="lotus-pagination">
     <div class="lotus-pagination-list" id="lotus-pagination-list">
         <a id="lotus-pagination-list-prev" href="javascript:void(0);">< 上一页</a>
         <div class="lotus-pagination-list-item" id="lotus-pagination-list-item"></div>
@@ -23,9 +23,18 @@
 </body>
 <script src="./lotusPagination.js"></script>
 <script type="text/javascript">
-    lotusPagination.init(test);
-    function test(){
-        alert('分页参考来源狗东,汪汪汪！');
+    lotusPagination.init({
+        index: 0,//翻页索引值
+        totalNum: 100,//总数量
+        showPageSize: 10,//一页显示多少个
+        maxShowNum: 7,//分页最大显示数量
+        callback:function(response){
+            console.log(response);
+            test(response);
+        }
+    });
+    function test(obj){
+        alert(obj);
     }
 </script>
 </html>
