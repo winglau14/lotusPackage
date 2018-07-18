@@ -1,0 +1,73 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+.lotus-pagination {
+  padding-top: 200px;
+}
+.lotus-pagination-list {
+  line-height: 0;
+  font-size: 0;
+  text-align: center;
+}
+.lotus-pagination-list a {
+  text-decoration: none;
+  border: 1px solid #ddd;
+  color: #33a9fa;
+  margin-right: 6px;
+}
+.lotus-pagination-list span.active {
+  background-color: #33a9fa;
+  color: #fff;
+  border: 1px solid #33a9fa;
+  margin-right: 6px;
+}
+.lotus-pagination-list a:hover {
+  background-color: #eee;
+  color: #33a9fa;
+}
+.lotus-pagination-list-item {
+  display: inline-block;
+  line-height: normal;
+  font-size: 14px;
+  vertical-align: middle;
+}
+.lotus-pagination-list a,
+.lotus-pagination-list span,
+.lotus-pagination-list i {
+  display: inline-block;
+  line-height: normal;
+  font-size: 14px;
+  vertical-align: middle;
+  padding: 6px 10px;
+}
+.lotus-pagination-list i {
+  color: #dbdbdb;
+  padding-left: 6px;
+  padding-right: 12px;
+  font-style: normal;
+}
+span.lotus-pagination-list-go {
+  color: #666;
+  padding-left: 0;
+  padding-right: 0;
+}
+span.lotus-pagination-list-go input {
+  width: 34px;
+  padding: 6px 4px;
+  border: 1px solid #ddd;
+  text-align: center;
+  color: #666;
+  outline: none;
+}
+span.lotus-pagination-list-total {
+  color: #666;
+}
+.lotus-pagination-list-ensure {
+  border: 1px solid #ddd;
+  text-align: center;
+  background-color: #f7f7f7;
+  cursor: pointer;
+  color: #666;
+  margin-left: 14px;
+}

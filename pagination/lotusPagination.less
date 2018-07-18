@@ -1,0 +1,73 @@
+@register: lotus-pagination;
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.@{register} {
+  padding-top: 200px;
+  &-list {
+    line-height: 0;
+    font-size: 0;
+    text-align: center;
+    a {
+      text-decoration: none;
+      border: 1px solid #ddd;
+      color: #33a9fa;
+      margin-right: 6px;
+    }
+    span.active {
+      background-color: #33a9fa;
+      color: #fff;
+      border: 1px solid #33a9fa;
+      margin-right: 6px;
+    }
+    a:hover {
+      background-color: #eee;
+      color: #33a9fa;
+    }
+    &-item {
+      display: inline-block;
+      line-height: normal;
+      font-size: 14px;
+      vertical-align: middle;
+    }
+    a, span, i {
+      display: inline-block;
+      line-height: normal;
+      font-size: 14px;
+      vertical-align: middle;
+      padding: 6px 10px;
+    }
+    i {
+      color: #dbdbdb;
+      padding-left: 6px;
+      padding-right: 12px;
+      font-style: normal;
+    }
+    span&-go {
+      color: #666;
+      padding-left: 0;
+      padding-right: 0;
+      input {
+        width: 34px;
+        padding: 6px 4px;
+        border: 1px solid #ddd;
+        text-align: center;
+        color: #666;
+        outline: none;
+      }
+    }
+    span&-total {
+      color: #666;
+    }
+    &-ensure {
+      border: 1px solid #ddd;
+      text-align: center;
+      background-color: #f7f7f7;
+      cursor: pointer;
+      color: #666;
+      margin-left: 14px;
+    }
+  }
+}
