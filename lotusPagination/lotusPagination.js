@@ -164,6 +164,10 @@ var lotusPagination = {
             };
             //输入框判断
             curNum.onkeyup = function () {
+                var reg = /^[1-9]$|^[1-9]\d{1,}$/g;
+                if(!reg.test(this.value)){
+                    this.value = 1;
+                }
                 if (this.value > totalPage) {
                     this.value = totalPage;
                 }
