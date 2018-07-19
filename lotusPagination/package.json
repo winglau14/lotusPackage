@@ -1,0 +1,18 @@
+{
+  "name": "lotusPagination",
+  "version": "1.0.0",
+  "description": "pc端分页组件",
+  "main": "lotusPagination.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "lotusPagination",
+    "pagination",
+    "pcPagination",
+    "pc-pagination",
+    "lotus-pagination"
+  ],
+  "author": "winglau14",
+  "license": "ISC"
+}
