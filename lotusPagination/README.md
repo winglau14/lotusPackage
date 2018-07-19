@@ -40,8 +40,9 @@ lotusPagination.init({
  * maxShowNum:7 //分页页码展示最大数量默认是7，可修改，建议设置的值>=5
  * callback 回调函数 返回当前点击index
 ```
-<br/>
+
 3.演示 
-![lotusPicker](https://raw.githubusercontent.com/winglau14/lotusPackage/master/lotusPagination/1.gif)
+
+![lotusPagination](https://raw.githubusercontent.com/winglau14/lotusPackage/master/lotusPagination/1.gif)
 
 
