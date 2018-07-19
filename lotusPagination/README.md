@@ -1,7 +1,7 @@
 # lotus-pagination
 
 > pc端分页组件<br/>
-<br/>
+
 1.how to use <br/>
 ```$xslt
 <div class="lotus-pagination" id="lotus-pagination">
