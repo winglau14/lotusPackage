@@ -14,8 +14,32 @@
    </div>
 </div>
 <script type="text/javascript" src="/lotusPagination.js"></script>
+<script type="text/javascript">
+lotusPagination.init({
+        index: 0,//翻页索引值
+        totalNum: 100,//总数量
+        showPageSize: 10,//一页显示多少个
+        maxShowNum: 7,//分页最大显示数量
+        callback:function(response){
+            console.log('选择第'+(response+1)+'页');
+            test(response);
+        }
+    });
+    //回调函数
+    function test(obj){
+
+    }
+</script>	
 ```
-2.演示 <br/>
+2.参数介绍 <br/>
+```$xslt
+ * index:0 //翻页索引值，可修改
+ * totalNum: 40 //总数量，可修改
+ * showPageSize: 3 //每一页显示多少个，可修改
+ * maxShowNum:7 //分页页码展示最大数量默认是7，可修改，建议设置的值>=5
+ * callback 回调函数 返回当前点击index
+```
+3.演示 <br/>
 ![lotusPicker](https://raw.githubusercontent.com/winglau14/lotusPackage/master/lotusPagination/1.gif)
 
 
