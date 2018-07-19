@@ -41,7 +41,7 @@ lotusPagination.init({
  * callback 回调函数 返回当前点击index
 ```
 <br/>
-3.演示 <br/>
+3.演示 
 ![lotusPicker](https://raw.githubusercontent.com/winglau14/lotusPackage/master/lotusPagination/1.gif)
 
 
