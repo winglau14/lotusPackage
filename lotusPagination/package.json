@@ -1,10 +1,15 @@
 {
   "name": "lotus-pagination",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "pc端分页组件",
   "main": "lotusPagination.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "private": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/winglau14/lotusPackage.git"
   },
   "keywords": [
     "lotusPagination",
