@@ -202,7 +202,7 @@
                     index === 0 ? obj.style.display = 'none' : obj.style.display = 'inline-block';
                 } else {
                     //下一页按钮切换
-                    pageLength - (options.index + 1) > 2 ? obj.style.display = 'inline-block' : obj.style.display = 'none';
+                    pageLength - (options.index + 1) > 0 ? obj.style.display = 'inline-block' : obj.style.display = 'none';
                 }
             }
         }
