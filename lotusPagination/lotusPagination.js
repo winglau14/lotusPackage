@@ -27,6 +27,7 @@
                 options = this.config;
             }
             var parentDom = document.getElementById('lotus-pagination');
+            var showPageTotalNum = document.getElementById('lotus-pagination-total-num');
             var dom = document.getElementById('lotus-pagination-list-item');
             var prev = document.getElementById('lotus-pagination-list-prev');
             var next = document.getElementById('lotus-pagination-list-next');
@@ -38,6 +39,8 @@
             if(totalPage>0){
                 parentDom.style.display = 'block';
             }
+            //前台页面共有多少条数据显示
+            showPageTotalNum.innerText = options.totalNum;
             showTotalNum.innerText = '共' + totalPage + '页';
             curNum.value = options.index + 1;
             console.log(totalPage);

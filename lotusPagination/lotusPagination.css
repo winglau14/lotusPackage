@@ -3,12 +3,22 @@
   margin: 0;
 }
 .lotus-pagination {
-  padding-top: 50px;
+  padding: 50px 20px 20px;
+  display: none;
+  overflow: hidden;
+}
+.lotus-pagination-total {
+  font-size: 14px;
+  line-height: 34px;
+  float: left;
+}
+.lotus-pagination-total span {
+  color: #33a9fa;
 }
 .lotus-pagination-list {
   line-height: 0;
   font-size: 0;
-  text-align: center;
+  float: right;
 }
 .lotus-pagination-list a {
   text-decoration: none;

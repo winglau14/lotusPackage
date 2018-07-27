@@ -5,13 +5,21 @@
 }
 
 .@{register} {
+  padding:50px 20px 20px;
   display: none;
-  padding-top: 50px;
-  padding-bottom: 30px;
+  overflow: hidden;
+  &-total{
+    font-size: 14px;
+    line-height: 34px;
+    float: left;
+    span{
+      color:#33a9fa;
+    }
+  }
   &-list {
     line-height: 0;
     font-size: 0;
-    text-align: center;
+    float: right;
     a {
       text-decoration: none;
       border: 1px solid #ddd;
