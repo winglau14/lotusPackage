@@ -1,0 +1,45 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>html2string</title>
+</head>
+<body>
+<div class="qrcodeCon">
+    <div id="qrcode">
+        <div class="qrcode-item qrcode-item-1">
+            <div class="qrcode-img"></div>
+            <div class="qrcode-text">
+                <p><b>百度</b></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<textarea style="width:400px;height: 400px;margin-left: auto;margin-right: auto;" name="" id="init-data" cols="30" rows="10"></textarea>
+转换成拼接字符串<textarea style="width:400px;height: 400px;margin-left: auto;margin-right: auto;" name="" id="change-data" cols="30" rows="10"></textarea>
+<p><input id="str-type" placeholder="请输入要拼接字符串类型str" type="text"></p>
+<p><input id="str-type2" placeholder="请输入要拼接字符串类型'" value="" type="text"></p>
+<p>
+    <button id="btn">转换</button>
+</p>
+</body>
+<script>
+    var btn = document.querySelector('#btn');
+    btn.onclick = function () {
+        var initData = document.querySelector('#init-data').value;
+        var strType = document.querySelector('#str-type').value;
+        var strType2 = document.querySelector('#str-type2').value;
+        var tempArr = initData.split('>');
+        console.log(tempArr);
+        var str = '';
+        for (var i = 0; i <= tempArr.length - 1; i++) {
+            if (i != tempArr.length - 1) {
+                str += strType + '+=' + strType2 + tempArr[i].replace(/\n/g, '') + '>' + strType2 + ';';
+            }
+        }
+        document.querySelector('#change-data').value = 'var ' + strType + '="";' + str.replace(/\s{1,}\s/g, '');
+    };
+</script>
+</html>
