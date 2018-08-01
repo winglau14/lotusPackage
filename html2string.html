@@ -5,18 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>html2string</title>
 </head>
+<style>
+*{margin:0;padding:0;}
+input{
+line-height:34px;
+height:34px;
+border:1px solid #ddd;
+padding-left:10px;
+width:200px;
+}
+p{
+padding-top:14px;
+}
+button{
+cursor:pointer;
+width:80px;
+height:30px;
+}
+</style>
 <body>
-<div class="qrcodeCon">
-    <div id="qrcode">
-        <div class="qrcode-item qrcode-item-1">
-            <div class="qrcode-img"></div>
-            <div class="qrcode-text">
-                <p><b>百度</b></p>
-            </div>
-        </div>
-    </div>
-</div>
-
+<div style="width:950px;margin-left:auto;margin-right:auto;margin-top:50px;">
 <textarea style="width:400px;height: 400px;margin-left: auto;margin-right: auto;" name="" id="init-data" cols="30" rows="10"></textarea>
 转换成拼接字符串<textarea style="width:400px;height: 400px;margin-left: auto;margin-right: auto;" name="" id="change-data" cols="30" rows="10"></textarea>
 <p><input id="str-type" placeholder="请输入要拼接字符串类型str" type="text"></p>
@@ -24,6 +32,7 @@
 <p>
     <button id="btn">转换</button>
 </p>
+</div>
 </body>
 <script>
     var btn = document.querySelector('#btn');
