@@ -38,7 +38,9 @@
             var totalPage = Math.ceil(options.totalNum / options.showPageSize);
             if(totalPage>0){
                 parentDom.style.display = 'block';
-            }
+            }else{
+				parentDom.style.display = 'none';
+			}
             //前台页面共有多少条数据显示
             showPageTotalNum.innerText = options.totalNum;
             showTotalNum.innerText = '共' + totalPage + '页';
