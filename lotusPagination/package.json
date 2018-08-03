@@ -1,6 +1,6 @@
 {
   "name": "lotus-pagination",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "pc端分页组件",
   "main": "lotusPagination.js",
   "scripts": {
