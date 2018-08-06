@@ -113,6 +113,8 @@
                 //只有一页隐藏下一页按钮
                 if (dom.childNodes.length === 1) {
                     next.style.display = 'none';
+                }else{
+                    next.style.display = 'inline-block';
                 }
                 //页码数据重组公共函数
                 var pageCommonFn = function () {
