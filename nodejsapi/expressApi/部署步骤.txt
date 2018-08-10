@@ -1,0 +1,6 @@
+1.安装nodejs
+2.安装iisnodejs插件包 https://github.com/tjanczuk/iisnode/wiki/iisnode-releases
+3.安装IIS URL Rewrite　　http://www.iis.net/downloads/microsoft/url-rewrite
+
+安装步骤参考
+https://www.jb51.net/article/58422.htm
