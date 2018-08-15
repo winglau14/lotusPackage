@@ -13,34 +13,48 @@
             totalNum:20,
             showPageSize:2,
             maxShowNum:7,
+            parentDom:'lotus-pagination',
+            leftPageTotal:'lotus-pagination-total-num',
+            domItemList:'lotus-pagination-list-item',
+            prevBtn:'lotus-pagination-list-prev',
+            nextBtn:'lotus-pagination-list-next',
+            enSureBtn:'lotus-pagination-list-ensure',
+            curNum:'lotus-pagination-list-cur',
+            rightPageTotal:'lotus-pagination-list-total',
             callback:function (errors) {
             }
         },
         init: function (options) {
             //参数判断与合并
-            if(!options){
+            /*if(!options){
                 options = this.config;
             }else{
                 for(var key in options){
                     this.config[key] = options[key];
                 }
+                console.log(this.config);
                 options = this.config;
-            }
-            var parentDom = document.getElementById('lotus-pagination');
-            var showPageTotalNum = document.getElementById('lotus-pagination-total-num');
-            var dom = document.getElementById('lotus-pagination-list-item');
-            var prev = document.getElementById('lotus-pagination-list-prev');
-            var next = document.getElementById('lotus-pagination-list-next');
-            var enSureBtn = document.getElementById('lotus-pagination-list-ensure');
-            var showTotalNum = document.getElementById('lotus-pagination-list-total');
-            var curNum = document.getElementById('lotus-pagination-list-cur');
+
+            }*/
+           // console.log(lotusPagination.config);
+            var parentDom = document.getElementById(options.parentDom);
+            var showPageTotalNum = document.getElementById(options.leftPageTotal);
+            var dom = document.getElementById(options.domItemList);
+            var prev = document.getElementById(options.prevBtn);
+            var next = document.getElementById(options.nextBtn);
+            var enSureBtn = document.getElementById(options.enSureBtn);
+            var showTotalNum = document.getElementById(options.rightPageTotal);
+            var curNum = document.getElementById(options.curNum);
             //计算翻页的页数
             var totalPage = Math.ceil(options.totalNum / options.showPageSize);
+            showPageTotalNum.parentNode.style.display = 'none';
+            console.log(showPageTotalNum.parentNode);
             if(totalPage>0){
                 parentDom.style.display = 'block';
             }else{
 				parentDom.style.display = 'none';
 			}
+			console.log(lotusPagination);
             //前台页面共有多少条数据显示
             showPageTotalNum.innerText = options.totalNum;
             showTotalNum.innerText = '共' + totalPage + '页';
@@ -109,7 +123,7 @@
                 }
                 //console.log(tempItemArr, removeItem, lotusPagination.index);
                 //上一页按钮显示状态
-                prevOrNextChange('lotus-pagination-list-prev', options.index, 'prev');
+                prevOrNextChange(options.prevBtn, options.index, 'prev');
                 //只有一页隐藏下一页按钮
                 if (dom.childNodes.length === 1) {
                     next.style.display = 'none';
@@ -133,10 +147,10 @@
                     }
                     //点击到最后一页隐藏下一页
                     if (options.index === tarDom.length) {
-                        prevOrNextChange('lotus-pagination-list-next', options.index, 'next', totalPage);
+                        prevOrNextChange(options.nextBtn, options.index, 'next', totalPage);
                     } else {
                         //点击其他显示下一页
-                        prevOrNextChange('lotus-pagination-list-next', options.index, 'next', totalPage);
+                        prevOrNextChange(options.nextBtn, options.index, 'next', totalPage);
                     }
                 };
                 //给item绑定click事件
