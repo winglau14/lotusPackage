@@ -1,3 +1,4 @@
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -25,30 +26,78 @@ height:30px;
 </style>
 <body>
 <div style="width:950px;margin-left:auto;margin-right:auto;margin-top:50px;">
+<p style="padding-bottom:10px;float:left;width:544px;">贴入要转换的HTML代码：</p>
+<p style="padding-bottom:10px;float:left;width:406px;">转换结果：</p>
 <textarea style="width:400px;height: 400px;margin-left: auto;margin-right: auto;vertical-align:middle;display:inline-block;" name="" id="init-data" cols="30" rows="10"></textarea>
 <span style="vertical-align:middle;display:inline-block;">转换成拼接字符串></span><textarea style="width:400px;height: 400px;margin-left: auto;margin-right: auto;vertical-align:middle;display:inline-block;" name="" id="change-data" cols="30" rows="10"></textarea>
 <p><input id="str-type" placeholder="请输入要拼接字符串类型str" type="text"></p>
-<p><input id="str-type2" placeholder="请输入要拼接字符串类型'" value="" type="text"></p>
 <p>
-    <button id="btn">转换</button>
+    <button style="background:#FF6100;color:#fff;border:0;margin-right:30px;" id="btn">单引号转换</button>
+    <button style="background:#FF6100;color:#fff;border:0;" id="btn2">双引号转换</button>
 </p>
 </div>
 </body>
 <script>
     var btn = document.querySelector('#btn');
+    var btn2 = document.querySelector('#btn2');
     btn.onclick = function () {
-        var initData = document.querySelector('#init-data').value;
-        var strType = document.querySelector('#str-type').value;
-        var strType2 = document.querySelector('#str-type2').value;
-        var tempArr = initData.split('>');
+        changeFn("'");
+    };
+    btn2.onclick = function () {
+        changeFn("\"");
+    };
+    function changeFn(strType2){
+    	var initData = document.querySelector('#init-data').value;
+        var strType = document.querySelector('#str-type').value?document.querySelector('#str-type').value:'str';
+        if(!initData.replace(/^\s{1,}$/g,'')){
+        	alert('请贴入要转换的HTML代码，嗷呜！！！');
+        	return false;
+        }
+        //html注释代码正则匹配
+        var reg1 = /<!-*.{1,}->\n?/g;
+        var tempArr = [];
+        var tempArr2 = initData.replace(reg1,'').split('\n');
+        //过滤掉空字符
+        for(var i = 0;i<=tempArr2.length-1;i++){
+        	if(tempArr2[i].replace(/\s{1,}\s/g, '')){
+				tempArr.push(tempArr2[i]);
+        	}
+        }
+
         console.log(tempArr);
+       
         var str = '';
         for (var i = 0; i <= tempArr.length - 1; i++) {
-            if (i != tempArr.length - 1) {
-                str += strType + '+=' + strType2 + tempArr[i].replace(/\n/g, '') + '>' + strType2 + ';';
+        	//单引号双引号转义
+        	if(tempArr[i].indexOf(strType2)){
+            		//双引号转义
+            		if(strType2 === '"'){
+						tempArr[i] = tempArr[i].replace(/\"/g,'\\'+strType2);
+            		}
+					//单引号转义
+            		if(strType2 === '\''){
+						tempArr[i] = tempArr[i].replace(/\'/g,'\\'+strType2);
+            		}
+					
+            	}
+            if(i===0){
+            	if(i!=tempArr.length - 1){
+            		str+=strType + '+='+strType2+tempArr[i]+ strType2 +'+'+'\n';
+            	}else{
+            		str+=strType + '+='+strType2+tempArr[i]+ strType2;
+            	}
+
+            }else{
+            	if(i!=tempArr.length - 1){
+            		str+=strType2 +tempArr[i]+strType2 +'+'+'\n';
+            	}else{
+            		str+=strType2 +tempArr[i]+strType2;
+            	}
             }
         }
+        console.log(str);
+        str+=';';
         document.querySelector('#change-data').value = 'var ' + strType + '="";' + str.replace(/\s{1,}\s/g, '');
-    };
+    }
 </script>
 </html>

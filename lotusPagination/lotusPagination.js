@@ -47,8 +47,10 @@
             var curNum = document.getElementById(options.curNum);
             //计算翻页的页数
             var totalPage = Math.ceil(options.totalNum / options.showPageSize);
-            showPageTotalNum.parentNode.style.display = 'none';
-            console.log(showPageTotalNum.parentNode);
+            //是否隐藏左侧共有多少记录模块
+            if(options.hideLeftPageTotal){
+                showPageTotalNum.parentNode.style.display = 'none';
+            }
             if(totalPage>0){
                 parentDom.style.display = 'block';
             }else{
@@ -116,12 +118,10 @@
                             newStr += '<i>...</i>';
                         }
                     }
-                    //console.log(newStr,totalPage - (lotusPagination.index + 1));
                     dom.innerHTML = newStr;
                 } else {
                     dom.innerHTML = str;
                 }
-                //console.log(tempItemArr, removeItem, lotusPagination.index);
                 //上一页按钮显示状态
                 prevOrNextChange(options.prevBtn, options.index, 'prev');
                 //只有一页隐藏下一页按钮
@@ -173,7 +173,6 @@
                 prev.onclick = function () {
                     options.index -= 1;
                     curNum.value = options.index + 1;
-                    //console.log(lotusPagination.index);
                     //页码数据重组
                     pageCommonFn();
                     //回调函数
