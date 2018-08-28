@@ -39,24 +39,21 @@
         outline: none;
         resize: none;
     }
-
-    ::selection {
-        color: #fff;
-        background: #ff6100;
-    }
 </style>
 <body>
 <div style="width:950px;margin-left:auto;margin-right:auto;margin-top:60px;">
     <h3 style="text-align: center;">HTML代码转换为JavaScript字符串</h3>
-    <p style="padding-bottom:10px;">贴入要转换的HTML代码：</p>
-    <textarea onmouseover="this.focus();this.select();" style="width:100%;height: 160px;margin-left: auto;margin-right: auto;vertical-align:middle;display:block;" name="" id="init-data" cols="30" rows="10">&lt;p class="p1"&gt;请在输入框内贴入你需要转换的HTML代码&lt;/p&gt;
+    <p style="padding-bottom:10px;">贴入要转换的HTML代码，支持过滤HTML代码中注释代码：</p>
+    <textarea onmouseover="this.focus();this.select();" style="width:100%;height: 160px;margin-left: auto;margin-right: auto;vertical-align:middle;display:block;" name="" id="init-data" cols="30" rows="10">&lt;!--注释说明--&gt;
+&lt;p class="p1"&gt;请在输入框内贴入你需要转换的HTML代码&lt;/p&gt;
 &lt;p class='p2'&gt;HTML转换工具，可以将HTML代码转换为JavaScript字符串&lt;/p&gt;
 &lt;p&gt;直接将你所要用程序输出的大串HTML代码贴到输入框中，即可一键生成&lt;/p&gt;
-&lt;p&gt;如果您觉得好用，别忘了推荐给朋友！&lt;/p&gt;</textarea>
+&lt;p&gt;如果您觉得好用，别忘了推荐给朋友！&lt;/p&gt;
+&lt;!--注释说明END--&gt;</textarea>
     <p><input id="str-type" placeholder="请输入要拼接字符串类型str" value="" type="text"></p>
     <p>
-        <button style="background:#FF6100;color:#fff;border:0;margin-right:30px;" id="btn">单引号转换</button>
-        <button style="background:#FF6100;color:#fff;border:0;" id="btn2">双引号转换</button>
+        <button style="background:#33a9fa;color:#fff;border:0;margin-right:30px;" id="btn">单引号转换</button>
+        <button style="background:#33a9fa;color:#fff;border:0;" id="btn2">双引号转换</button>
     </p>
     <p style="padding:10px 0;">转换结果：</p>
     <textarea onmouseover="this.focus();this.select();" style="width:100%;height: 160px;margin-left: auto;margin-right: auto;vertical-align:middle;display:block;" name="" id="change-data" cols="30" rows="10"></textarea>
