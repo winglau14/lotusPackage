@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>rgb转16进制颜色码</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        color: #333;
+    }
+
+    h3 {
+        font-size: 18px;
+        padding-bottom: 20px;
+    }
+
+    .rgb-to-16 {
+        border: 1px solid #d9d9d9;
+        background: #fbfbfb;
+        padding: 30px;
+        width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 100px;
+    }
+
+    input {
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 80px;
+        height: 34px;
+        line-height: 34px;
+        border: 1px solid #d9d9d9;
+        outline: 0;
+        font-size: 18px;
+        text-align: center;
+    }
+
+    button {
+        width: 100px;
+        height: 34px;
+        color: #fff;
+        background: #33a9fa;
+        border: 0;
+        cursor: pointer;
+        margin-top: 20px;
+        outline: 0;
+        display: inline-block;
+        vertical-align: middle;
+    }
+
+    .color-show {
+        width: 100px;
+        height: 34px;
+    }
+
+    .color-change {
+        font-size: 0;
+        line-height: 0;
+    }
+
+    .color-change span {
+        margin-top: 20px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-left: 20px;
+    }
+    .color-result{
+        padding-top:20px;
+        font-size: 18px;
+    }
+</style>
+<body>
+<div class="rgb-to-16">
+    <h3>RGB颜色值转换成十六进制颜色码：</h3>
+    <p>
+        <input class="rle" value="51" maxlength="3" type="text">
+        <input class="rle" value="169" maxlength="3" type="text">
+        <input class="rle" value="250" maxlength="3" type="text">
+    </p>
+    <p class="color-change">
+        <button onclick="showRGB()">转换</button>
+        <span id="color1" class="color-show">&nbsp;</span>
+    </p>
+    <p class="color-result" id="color-result"></p>
+</div>
+<div class="rgb-to-16">
+    <h3>十六进制颜色码转换成RGB颜色值：</h3>
+    <p>
+        <input class="rle2" value="#33a9fa" maxlength="7" type="text">
+    </p>
+    <p class="color-change">
+        <button onclick="showRGB2()">转换</button>
+        <span id="color2" class="color-show">&nbsp;</span>
+    </p>
+    <p class="color-result" id="color-result2"></p>
+</div>
+</body>
+<script>
+    //RGB颜色值转换成十六进制颜色码
+    function showRGB() {
+        hexcode = "#";
+        for (x = 0; x < 3; x++) {
+            var n = document.querySelectorAll(".rle")[x].value;
+            if (n === "") n = "0";
+            if (parseInt(n) !== n*1)return alert("请输入数字！");
+            if (n > 255)return alert("数字在0-255之间！");
+            var c = "0123456789ABCDEF", b = "", a = n % 16;
+            b = c.substr(a, 1);
+            a = (n - a) / 16;
+            hexcode += c.substr(a, 1) + b
+        }
+        document.getElementById("color1").style.background = hexcode;
+        document.querySelector('#color-result').innerText = hexcode.toLowerCase();
+    }
+    //十六进制颜色码转换成RGB颜色值
+    function showRGB2() {
+        var a = document.querySelector('.rle2').value;
+        if (a.substr(0, 1) === "#") a = a.substring(1);
+        if (a.length !== 6)return alert("请输入正确的十六进制颜色码！");
+        document.getElementById("color2").style.background = "#" + a;
+        a = a.toLowerCase();
+        var b = [];
+        for (x = 0; x < 3; x++) {
+            b[0] = a.substr(x * 2, 2);
+            b[3] = "0123456789abcdef";
+            b[1] = b[0].substr(0, 1);
+            b[2] = b[0].substr(1, 1);
+            b[20 + x] = b[3].indexOf(b[1]) * 16 + b[3].indexOf(b[2]);
+        }
+        document.querySelector('#color-result2').innerText = b[20] + "," + b[21] + "," + b[22];
+    }
+</script>
+</html>
