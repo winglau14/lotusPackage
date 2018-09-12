@@ -1,0 +1,89 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>对象生成</title>
+</head>
+<style>
+*{margin:0;padding:0;}
+input{
+line-height:34px;
+height:34px;
+border:1px solid #ddd;
+padding-left:10px;
+width:200px;
+}
+p{
+padding-top:14px;
+}
+button{
+cursor:pointer;
+width:80px;
+height:30px;
+}
+</style>
+<body>
+<div style="width:950px;margin-left:auto;margin-right:auto;margin-top:50px;">
+<p style="padding-bottom:10px;float:left;width:544px;">贴入要转换的字符：</p>
+<p style="padding-bottom:10px;float:left;width:406px;">转换结果：</p>
+<textarea onmouseover="this.focus();this.select();" style="width:400px;height: 400px;margin-left: auto;margin-right: auto;vertical-align:middle;display:inline-block;" name="" id="init-data" cols="30" rows="10">SupplierCode
+AdminId
+CatalogDetailCode
+SalePriceType
+GoodsUnit
+SalePrice
+PriceList
+PriceList/MinCount
+PriceList/MaxCount
+PriceList/SalePrice
+PurchaseQty
+IsCheckStock
+IsAllowAddPrice
+SupplierGoodsCode
+ProduceDate
+ValidDate
+GoodsData
+Stock
+Commision
+Commision/Type
+Commision/Name
+Commision/Rate</textarea>
+<span style="vertical-align:middle;display:inline-block;">转换成对象></span><textarea onmouseover="this.focus();this.select();" style="width:400px;height: 400px;margin-left: auto;margin-right: auto;vertical-align:middle;display:inline-block;" name="" id="change-data" cols="30" rows="10"></textarea>
+<p>
+    <button style="background:#FF6100;color:#fff;border:0;margin-right:30px;" id="btn">单引号转换</button>
+    <button style="background:#FF6100;color:#fff;border:0;" id="btn2">双引号转换</button>
+</p>
+</div>
+</body>
+<script>
+    var btn = document.querySelector('#btn');
+    var btn2 = document.querySelector('#btn2');
+    btn.onclick = function () {
+        changeFn("'");
+    };
+    btn2.onclick = function () {
+        changeFn("\"");
+    };
+    function changeFn(strType2){
+    	var initData = document.querySelector('#init-data').value;
+        if(!initData.replace(/^\s{1,}$/g,'')){
+        	alert('请贴入要转换的HTML代码，嗷呜！！！');
+        	return false;
+        }
+        var newData = initData.split("\n");
+        var str = "{\n";
+        for(var i = 0;i<=newData.length-1;i++){
+            if(i<newData.length-1){
+                str+=" "+newData[i]+":"+strType2+strType2+",\n";
+            }else{
+                str+=" "+newData[i]+":"+strType2+strType2;
+            }
+            
+        }
+        str += "\n}";
+        document.querySelector("#change-data").value = str;
+       
+    }
+</script>
+</html>
