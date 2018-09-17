@@ -1,0 +1,11 @@
+{  
+  "name": "html2jsString",  
+  "manifest_version":2,
+  "version": "1.0.0",  
+  "description": "HTML to JavaScript String Convertor",
+  "browser_action": {  
+    "default_icon": "images/icon.png" ,
+    "default_title": "html2jsString",
+    "default_popup": "popup.html"
+  }  
+} 
