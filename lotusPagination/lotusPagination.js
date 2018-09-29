@@ -8,7 +8,7 @@
 
 ;(function(window, document, undefined) {
     var lotusPagination = {
-        config:{
+        /*config:{
             index:0,
             totalNum:20,
             showPageSize:2,
@@ -23,7 +23,7 @@
             rightPageTotal:'lotus-pagination-list-total',
             callback:function (errors) {
             }
-        },
+        },*/
         init: function (options) {
             //参数判断与合并
             /*if(!options){
@@ -87,7 +87,7 @@
                     if (removeItem > 0) {
                         var obj = {
                             val: i,
-                            flag: i === options.index ? true : false
+                            flag: i === options.index
                         };
                         tempItemArr.push(obj);
                     }
