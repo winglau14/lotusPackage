@@ -84,7 +84,7 @@ let WebpackConfig = {
                     use: 'css-loader'
                 })*/
             },
-            {
+            /*{
                 test: require.resolve('jquery'),
                 use: [{
                     loader: 'expose-loader',
@@ -93,13 +93,13 @@ let WebpackConfig = {
                     loader: 'expose-loader',
                     options: 'jquery'
                 }]
-            },
+            },*/
             {
                 test: /\.(png|jpe?g|gif|svg)$/i,
                 loaders:'url-loader',
                 options: {
                     limit: 20*1024,
-                    name: './static/images/[name].[ext]?[hash]'
+                    name: '/static/images/[name].[ext]?[hash]'
                 }
             },
             {
@@ -136,16 +136,16 @@ let WebpackConfig = {
             disable:false,
             publicPath:'/dist'
         })*/
-        /*new webpack.ProvidePlugin({
+        new webpack.ProvidePlugin({
             //加载jq
             '$': 'jquery',
             'jQuery':"jquery",
             'window.$':"jquery"
-        }),*/
+        }),
         // 将公共模块提取，生成名为`vendors`的chunk
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendors',
-            filename:'/static/js/vendors.js',
+            filename:'./static/js/vendors.js',
             chunks: chunks,
             minChunks: 2||chunks.length // 提取所有entry共同依赖的模块
         }),
