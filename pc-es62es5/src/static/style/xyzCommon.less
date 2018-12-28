@@ -1,0 +1,488 @@
+//浏览器样式重置
+* {
+  margin: 0;
+  padding: 0;
+}
+
+em, i {
+  font-style: normal;
+}
+
+li {
+  list-style: none;
+}
+
+img {
+  border: 0;
+  vertical-align: middle;
+}
+
+button {
+  cursor: pointer;
+}
+
+a {
+  color: #666;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #f70442;
+}
+
+button, input {
+  font-family: Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, sans-serif;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  background-color: #f4f4f4;
+  font: 12px/1.5 Microsoft YaHei, Heiti SC, tahoma, arial, Hiragino Sans GB, sans-serif;
+  color: #333;
+}
+
+.hide, .none {
+  display: none;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  clear: both;
+  display: block;
+  content: ".";
+  height: 0;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+//超出...
+.text-elli {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+//container宽度1200
+.width1200 {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+//字体居左
+.font-left {
+  text-align: left;
+}
+
+//字体居中
+.font-center {
+  text-align: center;
+}
+
+//字体居右
+.font-right {
+  text-align: right;
+}
+
+@register: xyz;
+.@{register} {
+  //顶部
+  &-common {
+    &-top {
+      line-height: 36px;
+      background: #e4e4e4;
+      height: 36px;
+      color: #3b3b3b;
+      &-user {
+        &-header {
+          margin: 6px 20px 0 20px;
+        }
+        &-name {
+          color: #f70442;
+          padding-right: 26px;
+          max-width: 136px;
+        }
+      }
+      &-category {
+        a {
+          padding: 0 20px;
+        }
+        .bor1 {
+          position: relative;
+        }
+        .bor1:after {
+          content: "";
+          position: absolute;
+          right: 0;
+          top: 4px;
+          width: 1px;
+          height: 12px;
+          background: #3b3b3b;
+        }
+      }
+    }
+    &-center {
+      background: #3b3b3b;
+      height: 68px;
+      line-height: 68px;
+      border-bottom: 2px solid #0d0d0d;
+      &-logo {
+        padding-top: 10px;
+      }
+      &-big {
+        padding-left: 14px;
+        padding-right: 10px;
+        font-size: 24px;
+        color: #fff;
+      }
+      &-small {
+        padding-top: 2px;
+        padding-right: 78px;
+        font-size: 16px;
+        color: #fff;
+      }
+      &-search {
+        padding-top: 18px;
+        &-input {
+          display: block;
+          height: 32px;
+          line-height: 32px;
+          padding-left: 10px;
+          padding-right: 10px;
+          width: 500px;
+          border: 0;
+          outline: 0;
+        }
+        &-btn {
+          width: 50px;
+          height: 32px;
+          background: #f70442 url("../images/search-icon.png?__sp") center center no-repeat;
+          cursor: pointer;
+        }
+      }
+      &-cart {
+        position: relative;
+        &-img {
+          margin-top: 24px;
+        }
+        &-text {
+          font-size: 14px;
+          color: #fff;
+          padding-top: 2px;
+          padding-left: 4px;
+        }
+        &-bg {
+          position: absolute;
+          top: 10px;
+          right: -28px;
+          width: 28px;
+          height: 28px;
+          background: url("../images/cart-amount-bg.png?__sp") no-repeat center center;
+          z-index: 1;
+        }
+        &-num {
+          position: absolute;
+          top: 10px;
+          right: -28px;
+          color: #fff;
+          width: 28px;
+          height: 28px;
+          text-align: center;
+          line-height: 28px;
+          z-index: 2;
+        }
+      }
+    }
+    &-nav {
+      background: #fff;
+      height: 70px;
+      &-wrap {
+        padding-top: 20px;
+        position: relative;
+        z-index: 15;
+      }
+      &-category {
+        background: #f70442;
+        color: #fff;
+        font-size: 18px;
+        padding: 12px;
+        width: 210px;
+        &-icon {
+          margin-right: 10px;
+          display: none;
+        }
+        &-box {
+          position: absolute;
+          left: 0;
+          top: 71px;
+          z-index: 14;
+          width: 234px;
+          background: #fff;
+        }
+        &-left {
+          li {
+            border: 1px solid #fff;
+            border-right: 0;
+            padding-top: 10px;
+            line-height: 24px;
+            position: relative;
+          }
+          li.active {
+            border: 1px solid #f70442;
+            border-right: 0;
+            &:after {
+              content: "";
+              position: absolute;
+              right: -1px;
+              top: 0;
+              width: 1px;
+              height: 47px;
+              background: #fff;
+              z-index: 15;
+            }
+            p {
+              border-bottom-color: #fff;
+              a {
+                color: #f70442;
+              }
+            }
+          }
+        }
+        &-right {
+          display: none;
+          position: absolute;
+          top: 0;
+          left: 234px;
+          z-index: 14;
+          background: #fff;
+          width: 670px;
+          padding: 12px 30px;
+          border: 1px solid #f70442;
+          min-height: 404px;
+        }
+        &-title {
+          font-size: 16px;
+        }
+        &-num {
+          padding-top: 2px;
+          padding-left: 6px;
+          font-size: 12px;
+        }
+        &-item {
+          border-bottom: 1px solid #dbdbdb;
+          padding-bottom: 10px;
+          margin-left: 14px;
+          margin-right: 14px;
+        }
+        &-sub {
+          font-size: 14px;
+          a {
+            line-height: 30px;
+            padding-right:14px;
+          }
+        }
+        &-link {
+          a {
+            padding-right: 42px;
+            padding-bottom: 10px;
+            font-size: 12px;
+          }
+        }
+      }
+      &-list {
+        padding-top: 10px;
+        li {
+          font-size: 18px;
+          padding-left: 62px;
+        }
+      }
+      a:hover {
+        color: #f70442;
+      }
+      &-my {
+        cursor: pointer;
+        width: 110px;
+        height: 48px;
+        line-height: 48px;
+        position: relative;
+        border: 1px solid #fff;
+        border-bottom: 0;
+        text-align: center;
+        &-box {
+          display: none;
+          position: absolute;
+          right: -1px;
+          top: 48px;
+          z-index: 2;
+          width: 180px;
+          height: 104px;
+          background: #fff;
+          padding: 30px 0 10px;
+          border: 1px solid #dbdbdb;
+          font-size: 0;
+          line-height: 0;
+          text-align: left;
+          a {
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 12px;
+            line-height: 20px;
+            width: 50%;
+            padding-bottom: 14px;
+            text-align: center;
+          }
+        }
+      }
+      &-myed {
+        border: 1px solid #dbdbdb;
+        border-bottom: 0;
+        position: relative;
+        &:after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -1px;
+          width: 100%;
+          height: 1px;
+          background: #fff;
+          z-index: 2;
+        }
+      }
+    }
+    &-footer {
+      padding: 40px 0;
+      background: #787878;
+      color: #fff;
+      font-size: 14px;
+      text-align: center;
+      border-top:1px solid #848484;
+      a{
+        color:#fff;
+      }
+      a:hover{
+        color:#f70442;
+      }
+      &-category{
+        padding-bottom: 10px;
+        a{
+          padding:0 16px;
+        }
+      }
+    }
+  }
+  //面包屑
+  &-crumbs {
+    color: #333;
+    font-size: 14px;
+    padding: 18px 0;
+  }
+  //加载中
+  &-loading {
+    &-wrap {
+      display: none;
+    }
+    &-img {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      z-index: 1032;
+      margin-left: -35px;
+      margin-top: -26px;
+      text-align: center;
+      p {
+        margin-bottom: 10px;
+      }
+    }
+
+    &-mask {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background: #fff;
+      opacity: 0.5;
+      z-index: 1031;
+    }
+  }
+  &-go-top {
+    display: none;
+    position: fixed;
+    right: 50px;
+    bottom: 100px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 38px;
+    z-index: 5;
+  }
+  //优惠券
+  &-coupon{
+    padding:3px 6px;
+    text-align: center;
+    background: #fededf;
+    color:#ff0000;
+    border:1px solid #ff0000;
+    margin-right: 10px;
+    position: relative;
+    &:before{
+      content: "";
+      width: 6px;
+      height: 24px;
+      background: url("../images/coupon-left.png?__sp") no-repeat;
+      position: absolute;
+      left:-6px;
+      top:-1px;
+    }
+    &:after{
+      content: "";
+      width: 6px;
+      height: 24px;
+      background: url("../images/coupon-right.png?__sp") no-repeat;
+      position: absolute;
+      right:-6px;
+      top:-1px;
+    }
+    span{
+      padding-right: 4px;
+      margin-right: 4px;
+      border-right:1px dashed #ff0000;
+    }
+  }
+}
+
+//单选框未选中
+.single-chose {
+  background: url("../images/page-login.png") 0 -44px no-repeat;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+//单选框选中
+.single-chosed {
+  background: url("../images/page-login.png") 0 -64px no-repeat;
+}
+//红色字体
+.red-text {
+  color: #f70442;
+}
+
+
+
+
+
+
+
+
+
+
+

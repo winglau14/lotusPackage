@@ -1,0 +1,87 @@
+.aenean {
+	width: 120px;
+	height: 100px;
+	background: url('spritesheet.png');
+	background-position: -0px -308px;
+}
+
+.aenean-double-quotes {
+	width: 120px;
+	height: 100px;
+	background: url("spritesheet.png");
+	background-position: -0px -308px;
+}
+
+.jpg {
+	width: 100px;
+	height: 160px;
+	background: url('spritesheet.png');
+	background-position: -0px -408px;
+}
+
+.gif {
+	width: 100px;
+	height: 160px;
+	background: url('spritesheet.png');
+	background-position: -0px -0px;
+}
+
+.massa {
+	width: 120px;
+	height: 100px;
+	background: #ffff00 url('spritesheet.png');
+	background-position: -0px -100px;
+}
+
+.not-going-to-be-found {
+	width: 120px;
+	height: 100px;
+	background: #ffff00 url('../test-images/not-going-to-be-found.png');
+}
+
+.loremdummy {
+	overflow: hidden;
+	width: 200px;
+	width: 400px;
+	background: #cccccc;
+}
+
+.vitae {
+	width: 64px;
+	height: 64px;
+	background-image: url('spritesheet.png');
+	background-position: -0px -164px;
+}
+
+.qwerqwer {
+	width: 200px;
+	width: 400px;
+}
+
+.hello-with-hex {
+	width: 300px;
+	height: 80px;
+	background: url('spritesheet.png'), url('spritesheet.png');
+	background-position: -0px -50px, -0px -228px;
+}
+
+.meta-include-false {
+	width: 150px;
+	height: 100px;
+	/* @meta {"spritesheet": {"include": false}} */
+	background: url('../test-images/no-spritesheet.png');
+}
+
+.meta-include-true {
+	width: 64px;
+	height: 64px;
+	/* @meta {"spritesheet": {"include": true}} */
+	background-image: url('spritesheet.png');
+	background-position: -0px -568px;
+}
+
+.external-image {
+	width: 538px;
+	height: 190px;
+	background: url('https://www.google.com/images/srpr/logo11w.png');
+}

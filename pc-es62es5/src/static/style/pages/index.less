@@ -1,0 +1,387 @@
+@register: xyz-cart;
+.@{register} {
+  &-item{
+    margin-bottom: 20px;
+    &-store{
+      cursor: pointer;
+      color:#333;
+      font-size: 14px;
+      font-weight: bold;
+      background: #fff;
+      border-bottom:2px solid #eee;
+      padding: 12px;
+      i{
+        margin-top: 2px;
+      }
+      &-name{
+        padding-left: 10px;
+      }
+      &-name2{
+        color:#333;
+        padding-left: 10px;
+        padding-right: 10px;
+        max-width:200px;
+      }
+      &-tar{
+        margin-right: 10px;
+        background: #fff;
+      }
+      &-coupon{
+        cursor: pointer;
+      }
+      &-express{
+        text-align: left;
+        color:#999;
+        font-weight:normal;
+        padding-left: 30px;
+        padding-top: 4px;
+      }
+    }
+    &-product{
+      padding:20px;
+      background: #fff;
+      border:1px solid #ededed;
+      border-top:0;
+    }
+    table,thead,tbody,tr{
+      width: 100%;
+      display: block;
+    }
+    thead{
+      th{
+        padding:12px 4px;
+        border-bottom:1px solid #eee;
+      }
+    }
+    .th1{
+      width:420px;
+      padding-left: 10px;
+    }
+    .th2{
+      width:200px;
+    }
+    .th3{
+      width:250px;
+    }
+    .th4{
+      width:188px;
+    }
+    .th5{
+      width:100px;
+      position: relative;
+    }
+  }
+  &-tr{
+    td{
+      padding:20px 4px 16px;
+      vertical-align: top;
+      line-height: 24px;
+      border-bottom:1px dashed #dbdbdb;
+    }
+    &-fail-bg{
+      position: absolute;
+      left:0;
+      bottom:0;
+      width:100%;
+      height:100%;
+      display: block;
+      color:#fff;
+      filter:alpha(opacity=50);
+      opacity:0.5;
+      background: #000;
+      z-index: 1;
+    }
+    &-main{
+      &-box{
+        width:270px;
+      }
+      &-img{
+        margin-left: 20px;
+        margin-right: 20px;
+        border:1px solid #ebebeb;
+      }
+      &-img1{
+        position: relative;
+        &:before{
+          content: "失效";
+          position: absolute;
+          left:22px;
+          top:28px;
+          font-size: 18px;
+          color:#fff;
+          z-index: 2;
+        }
+      }
+      &-name,&-validity,&-company{
+        padding-bottom: 4px;
+      }
+      &-company{
+        color:#9b9b9b;
+      }
+    }
+    &-amount{
+      color:#939393;
+      &-wrap{
+        width:90px;
+        margin: 0 auto;
+        position: relative;
+      }
+    }
+    &-reduce,&-add{
+      width:20px;
+      height:20px;
+      border:1px solid #cbcbcb;
+      text-align: center;
+      line-height: 20px;
+      color:#e9e9e9;
+    }
+    &-reduce{
+      border-right:0;
+    }
+    &-add{
+      border-left:0;
+    }
+    &-reduced,&-add{
+      color:#666;
+      cursor: pointer;
+    }
+    &-input{
+      height: 18px;
+      line-height: 18px;
+      border:1px solid #cbcbcb;
+      width: 42px;
+      padding:1px;
+    }
+    &-sum{
+      color:#f70442;
+      font-size: 16px;
+    }
+  }
+  &-tr0{
+    td{
+      border-bottom: 0;
+    }
+  }
+  &-sub{
+    &-wrap{
+      display: block;
+      background: #fff7f7;
+      padding:12px 24px;
+      border:1px solid #ffeced;
+    }
+    &-total{
+      &-money{
+        padding-left: 4px;
+      }
+      &-category{
+        padding-right: 10px;
+        span{
+          margin-right: 4px;
+        }
+      }
+      &-coupon{
+        margin-left: 6px;
+        background: #fededf;
+        padding:2px 4px;
+        border:1px solid #f70442;
+      }
+    }
+    &-free{
+      padding-top: 4px;
+    }
+  }
+  &-fixed{
+    &-nav{
+      width:100%;
+      height: 56px;
+    }
+    &-module{
+      position: fixed;
+      left:0;
+      bottom:0;
+      width:100%;
+      height: 56px;
+      background: #fff;
+      border-top:1px solid #cecece;
+      border-bottom:1px solid #cecece;
+      z-index: 3;
+      a:hover{
+        color:#fff;
+      }
+      &-left{
+        padding-top: 18px;
+        a:hover{
+          color:#4a8ed4;
+        }
+      }
+      &-full{
+        padding-left: 10px;
+        padding-right: 26px;
+      }
+      &-delete{
+        padding-right: 26px;
+      }
+      &-right{
+        padding-top: 16px;
+      }
+      &-btn{
+        margin-left: 60px;
+        width:126px;
+        height: 56px;
+        line-height: 56px;
+        color:#fff;
+        background: #f70442;
+        text-align: center;
+        font-size: 24px;
+        cursor: pointer;
+      }
+    }
+    &-all{
+      &-money{
+        font-size: 18px;
+      }
+      &-camount,&-pamount{
+        padding-left: 6px;
+        padding-right: 6px;
+      }
+      &-free{
+        font-size: 14px;
+        color:#929292;
+      }
+    }
+    &-pl{
+      padding-left: 134px;
+    }
+  }
+  &-coupon{
+    &-jt{
+      display: none;
+      position: absolute;
+      right:40px;
+      bottom:11px;
+      z-index: 3;
+      background: url("../../images/jt-icon.png?__sp") no-repeat;
+      width: 14px;
+      height: 10px;
+    }
+    &-module{
+      display: none;
+      position: absolute;
+      top:54px;
+      right:12px;
+      padding:20px;
+      width: 408px;
+      height: 252px;
+      overflow-y: auto;
+      border:1px solid #f70a46;
+      background: #fff;
+      z-index: 2;
+      ul{
+        font-weight: normal;
+      }
+      li{
+        padding-top: 20px;
+      }
+    }
+    &-money{
+      font-size: 12px;
+      padding:2px 8px;
+      border:1px solid #f8d2d3;
+      margin-right: 20px;
+      width:72px;
+    }
+    &-infor{
+      line-height: 28px;
+      margin-right: 26px;
+      width:180px;
+    }
+    &-get{
+      width: 72px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      color:#fff;
+      background: #f70442;
+      font-size: 12px;
+      cursor: pointer;
+    }
+    &-geted{
+      display: none;
+      background: #dbdbdb;
+      cursor: text;
+    }
+  }
+  &-cd{
+    display: none;
+    width:450px;
+    margin-left: auto;
+    margin-right:auto;
+    padding-top: 42px;
+    margin-bottom: 20px;
+    &-tips{
+      color:#ff7800;
+      img{
+        margin-right: 4px;
+        vertical-align: top;
+      }
+    }
+    &-store{
+      height: 200px;
+      overflow-y: auto;
+      &-name{
+        height: 42px;
+        line-height: 42px;
+        background: #f3f3f3;
+        padding-left: 14px;
+        margin-top: 16px;
+        border:1px solid #eee;
+        font-weight: bold;
+      }
+    }
+    &-list{
+      border:1px solid #eee;
+      border-top:0;
+      padding:14px;
+      li{
+        border-bottom:1px dashed #eee;
+        padding-bottom: 14px;
+        line-height: 22px;
+      }
+      &-infor{
+        width:340px;
+      }
+      &-free-amount{
+        color:#ff6000;
+      }
+    }
+    &-btn{
+      border-radius: 16px;
+      margin-top: 14px;
+      width: 60px;
+      height: 24px;
+      line-height: 24px;
+      border:1px solid #eee;
+      text-align: center;
+    }
+    &-order-btn{
+      margin-top: 34px;
+      display: block;
+      width: 180px;
+      height: 40px;
+      line-height: 40px;
+      text-align: center;
+      color:#fff;
+      font-size: 14px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #f70442;
+      cursor: pointer;
+    }
+  }
+}
+.xyz-common-footer{
+  margin-bottom: 58px;
+}
+
+
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <meta name="renderer" content="webkit"/>
+    <title>小药站商城-采购车</title>
+    <link rel="stylesheet" href="./static/style/xyzCommon.css">
+    <link rel="stylesheet" href="./static/style/pages/index.css">
+</head>
+<body>
+<div id="xyz-common"></div>
+<!--面包屑-->
+<div class="xyz-crumbs width1200"><a href="/src/index.html">小药站采购端</a> > 采购车</div>
+<!--采购车列表-->
+<div class="xyz-cart-list width1200"></div>
+<!--采购车总计-->
+<div class="xyz-cart-fixed-nav">
+    <div class="xyz-cart-fixed-module">
+        <div class="width1200">
+            <div class="fl xyz-cart-fixed-module-left">
+                <i onclick="cartModule.choseClick(this,'single-chosed',4)" class="single-chose fl"></i>
+                <a href="javascript:void(0);" class="fl xyz-cart-fixed-module-full">全选</a>
+                <a href="javascript:void(0);" onclick="cartModule.deleteClick();" class="fl xyz-cart-fixed-module-delete">删除选中的商品</a>
+                <a href="javascript:void(0);" onclick="cartModule.addFavor(this,2);" class="fl xyz-cart-fixed-module-favor">加入收藏</a>
+            </div>
+            <a href="javascript:void(0);" onclick="cartModule.goToOrder();" class="fr xyz-cart-fixed-module-btn">去结算</a>
+            <div class="fr xyz-cart-fixed-module-right">
+                <p>
+                    <span>已选择<span class="red-text xyz-cart-fixed-all-camount">0</span>类 共<span class="red-text xyz-cart-fixed-all-pamount">0</span>件商品</span>
+                    <span>总价：<span class="red-text xyz-cart-fixed-all-money">¥0.00</span></span>
+                </p>
+                <!--<p class="xyz-cart-fixed-pl">
+                    已节省：<span class="xyz-cart-fixed-all-free">- ¥0.00</span>
+                </p>-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--数据加载中遮罩层-->
+<div class="xyz-loading-wrap">
+    <div class="xyz-loading-img"><p><img src="./static/images/loading.gif" alt=""></p>
+        <p>数据加载中</p></div>
+    <div class="xyz-loading-mask"></div>
+</div>
+</body>
+<!--polyfill库用于实现浏览器不支持的原生api-->
+<script src="https://cdn.bootcss.com/babel-polyfill/7.2.5/polyfill.min.js"></script>
+<script src="./static/js/lib/jquery-1.7.2.js"></script>
+<script src="./static/js/pages/index.js"></script>
+</html>
