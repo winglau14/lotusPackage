@@ -145,7 +145,7 @@ let WebpackConfig = {
         // 将公共模块提取，生成名为`vendors`的chunk
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendors',
-            filename:'./static/js/vendors.js',
+            filename:'static/js/vendors.js',
             chunks: chunks,
             minChunks: 2||chunks.length // 提取所有entry共同依赖的模块
         }),
