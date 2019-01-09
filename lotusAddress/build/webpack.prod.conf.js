@@ -10,6 +10,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 
 var env = config.build.env
+var direName = __dirname.split('\\')[2];
 
 var webpackConfig = merge(baseWebpackConfig, {
     module: {
@@ -36,8 +37,8 @@ var webpackConfig = merge(baseWebpackConfig, {
         //path: config.build.assetsRoot,
         path: path.resolve(__dirname, '../dist'),
         publicPath: '',
-        filename: 'lotus-picker.js', //打包生成文件的名字
-        library: 'LotusPicker', //reqire引入的名字
+        filename: direName+'.js', //打包生成文件的名字
+        library: direName, //reqire引入的名字
         libraryTarget: 'umd',
         umdNamedDefine: true
     },
@@ -55,7 +56,7 @@ var webpackConfig = merge(baseWebpackConfig, {
         // extract css into its own file
         new ExtractTextPlugin({
             //filename: utils.assetsPath('css/[name].[contenthash].css')
-            filename: ('lotus-picker.min.css')
+            filename: (direName+'.min.css')
         }),
 
         // Compress extracted CSS. We are using this plugin so that possible

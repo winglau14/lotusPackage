@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import App from './App'
 
-//滑动轮播组件引入
-import lotusCarousel from 'lotus-carousel'
-import 'lotus-carousel/dist/lotus-carousel.min'
-Vue.use(lotusCarousel);
+//省市区lotus-address组件引入
+import lotusAddress from 'lotus-address'
+import 'lotus-address/dist/lotus-address.min'
+Vue.use(lotusAddress);
 
 new Vue({
     el: '#app',
