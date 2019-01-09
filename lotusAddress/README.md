@@ -34,14 +34,31 @@
                                 townName:''
                             }
          }
-    }
+    },
+    methods: {
+                //打开picker
+                openPicker() {
+                    this.openFlag.isShow = true;
+                },
+                //获取最后选择的省市区的值
+                chosedVal(result) {
+                    if (!this.openFlag.isShow) {
+                        this.provinceName = result.province;
+                        this.cityName = result.city;
+                        this.townName = result.town;
+                        this.lotusAddressData.provinceName = result.province;
+                        this.lotusAddressData.cityName = result.city;
+                        this.lotusAddressData.townName = result.town;
+                    }
+                }
+            },
 ```
 
-(2)items的长度为显示多少栏,values是每一栏的数值类型为array,index为每一栏显示的初始值类型为number,可传可不传,type为每一栏显示的类型命名这个参数是必须的，类型为string,maxVal为最大的滑动值，类型为number，此参数可选<br/>
-(3)change为回调函数接收一个参数result，result这个参数里包含了在picker组件里选择的值还有索引值{index:0,val:1,type:'year',maxVal:6},cancel为取消按钮回调函数,返回picker组件flag标识false<br/>
-(4)title为picker组件里显示的标题，可传类型为string，不传则默认是请选择</br/>
-(5)flag为设置picker组件显示or隐藏<br/>
+(2)lotusAddressData,provinceName:省,cityName:市,townName:区,参数类型为字符串<br/>
+(3)chosedVal，result这个参数里包含了在picker组件里选择的值还有索引值{index:0,val:'省',type:'province'}<br/>
+(4)openFlag为设置lotusAddress组件显示or隐藏<br/>
+(5)使用有疑问可以参考src/App.vue文件,有清晰的demo操作与使用。<br/>
 4.演示 <br/>
-![lotusPicker](https://raw.githubusercontent.com/winglau14/lotusPackage/master/lotusPicker/1.gif)
+![lotusAddress](https://raw.githubusercontent.com/winglau14/lotusPackage/master/lotusAddress/1.gif)
 
 
