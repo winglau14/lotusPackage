@@ -109,16 +109,51 @@
             },
             //初始化数据
             initFn(){
+                //已选过省市区索引值
+                let pIndex = 0;
+                let cIndex = 0;
+                let tIndex = 0;
+                //获取省数据
                 lotusAddressJson.map((item,index)=>{
                     if(index<=34){
                         this.province.push(item.name);
                     }
                 });
+                //设置省数据
                 this.items[0].values = this.province;
-                const pid = this.getTarId(this.items[0].values[0]);
+                //选过省市区自动绑定数据
+                if(this._props.lotusAddressData.provinceName){
+                    this.items[0].values.map((item,index)=>{
+                        if(item === this._props.lotusAddressData.provinceName){
+                            pIndex = index;
+                        }
+                    });
+                    this.items[0].index = pIndex;
+                }
+                const pid = this.getTarId(this.items[0].values[pIndex]);
+                //设置市数据
                 this.items[1].values = this.getCityArr(pid);
-                const cid= this.getTarId(this.items[1].values[0]);
+                //选过市自动绑定数据
+                if(this._props.lotusAddressData.cityName){
+                    this.items[1].values.map((item,index)=>{
+                        if(item === this._props.lotusAddressData.cityName){
+                            cIndex = index;
+                        }
+                    });
+                    this.items[1].index = cIndex;
+                }
+                const cid= this.getTarId(this.items[1].values[cIndex]);
+                //设置区数据
                 this.items[2].values = this.getTownArr(cid);
+                //选过区自动绑定数据
+                if(this._props.lotusAddressData.townName){
+                    this.items[2].values.map((item,index)=>{
+                        if(item === this._props.lotusAddressData.townName){
+                            tIndex = index;
+                        }
+                    });
+                    this.items[2].index = tIndex;
+                }
             },
             //获取已选省市区index
             getTarIndex(arr,tarName){
