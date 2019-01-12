@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="./list.css">
+    <style>
+        .list{
+            background: red;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+<div class="list">list</div>
+<!--分页组件-->
+<div class="lotus-pagination" id="lotus-pagination">
+    <div class="lotus-pagination-total">共有<span id="lotus-pagination-total-num"></span>条记录</div>
+    <div class="lotus-pagination-list" id="lotus-pagination-list">
+        <a id="lotus-pagination-list-prev" href="javascript:void(0);">
+            &lt; 上一页</a> <div class="lotus-pagination-list-item" id="lotus-pagination-list-item">
+    </div>
+        <a id="lotus-pagination-list-next" href="javascript:void(0);">下一页 &gt;</a>
+        <span class="lotus-pagination-list-total" id="lotus-pagination-list-total"></span>
+        <span class="lotus-pagination-list-go">到第 <input id="lotus-pagination-list-cur" value="1" type="text">
+                        页</span>
+        <span class="lotus-pagination-list-ensure" id="lotus-pagination-list-ensure">确定</span>
+    </div>
+</div>
+</body>
+<script src="list.js"></script>
+</html>
