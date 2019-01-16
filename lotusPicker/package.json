@@ -1,7 +1,7 @@
 {
     "name": "lotus-picker",
-    "version": "1.0.6",
-    "description": "vue版本picker选择器",
+    "version": "1.0.7",
+    "description": "vue版本picker选择器支持pc与手机端",
     "author": "winglau14 <397069329@qq.com>",
     "main": "dist/lotus-picker.js",
     "private": false,

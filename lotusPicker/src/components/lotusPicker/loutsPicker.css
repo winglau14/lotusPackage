@@ -56,6 +56,9 @@
   text-overflow: ellipsis;
   box-sizing: border-box;
 }
+.lotus-picker-flex-item p {
+  cursor: default;
+}
 .lotus-picker-flex-item1 {
   /*display: -webkit-box;
   display: -webkit-flex;*/

@@ -42,7 +42,8 @@
                 flag:{
                     isShow:false
                 },
-                title:'标题'
+                title:'标题'，
+                selectValue:[1,33,9]
          }
     }
 ```
@@ -51,6 +52,7 @@
 (3)change为回调函数接收一个参数result，result这个参数里包含了在picker组件里选择的值还有索引值{index:0,val:1,type:'year',maxVal:6},cancel为取消按钮回调函数,返回picker组件flag标识false<br/>
 (4)title为picker组件里显示的标题，可传类型为string，不传则默认是请选择</br/>
 (5)flag为设置picker组件显示or隐藏<br/>
+(6)selectValue为picker组件中已选的值参数为array<br/>
 4.演示 <br/>
 ![lotusPicker](https://raw.githubusercontent.com/winglau14/lotusPackage/master/lotusPicker/1.gif)
 

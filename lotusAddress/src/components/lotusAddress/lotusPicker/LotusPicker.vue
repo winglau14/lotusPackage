@@ -95,7 +95,9 @@
                 //滑动到第一个，下拉判断
                 if (this.initY >= dom.offsetTop && this.my - this.sy > 0) {
                     const c = this.itemClientH;
-                    document.querySelector(`#lotus-picker-flex-item${index}`).style.cssText = `-webkit-transform:translate3d(0px,${c}px,0px);height:${this.itemClientH * itemVal.values.length}px;transition:all 500ms cubic-bezier(0.1, 0.57, 0.1, 1);transform:translate3d(0px,${c}px,0px);height:${this.itemClientH * itemVal.values.length}px;transition:all 500ms cubic-bezier(0.1, 0.57, 0.1, 1)`;
+                    if(document.querySelector(`#lotus-picker-flex-item${index}`)){
+                        document.querySelector(`#lotus-picker-flex-item${index}`).style.cssText = `-webkit-transform:translate3d(0px,${c}px,0px);height:${this.itemClientH * itemVal.values.length}px;transition:all 500ms cubic-bezier(0.1, 0.57, 0.1, 1);transform:translate3d(0px,${c}px,0px);height:${this.itemClientH * itemVal.values.length}px;transition:all 500ms cubic-bezier(0.1, 0.57, 0.1, 1)`;
+                    }
                 } else if (Math.abs(parseInt(y[1])) >= dom.scrollHeight - 2 * this.itemClientH && this.my - this.sy < 0) {
                     //滑动到最后一个，上拉判断
                     const c = dom.scrollHeight - 2 * this.itemClientH;
@@ -129,26 +131,26 @@
                     }
                 }
                 this.affirmResult(index);
-                document.getElementById(`lotus-picker-flex-item${index}`).onmouseup = (ev)=>{
-                    this.touchEnd(itemVal,index,ev);
-                    document.getElementById(`lotus-picker-flex-item${index}`).onmousemove = null;
-                    document.getElementById(`lotus-picker-flex-item${index}`).onmouseup = null;
-                };
             },
             //获取transform的值
             getTransformVal(obj) {
                 const dom = document.querySelector(obj);
-                let p = dom.style.webkitTransform || dom.style.transform;
-                //获取transform里值
-                const reg = /\(.*\)/;
-                p = p.match(reg)[0].replace(/\(|\)/g, "");
-                return p.split(",");
+                let p;
+                if(dom){
+                    p = dom.style.webkitTransform || dom.style.transform;
+                    //获取transform里值
+                    const reg = /\(.*\)/;
+                    p = p.match(reg)[0].replace(/\(|\)/g, "");
+                    return p.split(",");
+                }else{
+                    return [];
+                }
             },
             //设置transform的值
             setTransformVal(obj, yVal, pHeight, type, time){
-                if (type) {
+                if (type&&document.querySelector(obj)) {
                     document.querySelector(obj).style.cssText = `-webkit-transform:translate3d(0px,${yVal}px,0px);height:${pHeight}px;transition:all ${time || 500}ms cubic-bezier(0.1, 0.57, 0.1, 1);transform:translate3d(0px,${yVal}px,0px);height:${pHeight}px;transition:all ${time || 500}ms cubic-bezier(0.1, 0.57, 0.1, 1);`;
-                } else {
+                } else if(document.querySelector(obj)) {
                     document.querySelector(obj).style.cssText = `-webkit-transform:translate3d(0px,${yVal}px,0px);height:${pHeight}px;transition:none;transform:translate3d(0px,${yVal}px,0px);height:${pHeight}px;transition:none;`;
                 }
             },
