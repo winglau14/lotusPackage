@@ -1,5 +1,5 @@
 <template>
-    <div :s="changeStatus" v-if="flag.isShow" class="lotus-picker">
+    <div @mouseout="mouseOutFn" :s="changeStatus" v-if="flag.isShow" class="lotus-picker">
         <div class="lotus-picker-main">
             <div class="lotus-picker-top">
                 <span class="lotus-picker-top-cancel" @click="close">取消</span>
@@ -7,7 +7,7 @@
                 <span @click="close();affirmResult();" class="lotus-picker-top-confirm">确认</span>
             </div>
             <div class="lotus-picker-flex">
-                <div v-for="(itemList,curIndex) in lotusPickerData" :id="'lotus-picker-flex-item'+curIndex" :key="curIndex" class="lotus-picker-flex-item">
+                <div v-for="(itemList,curIndex) in lotusPickerData" @mousedown="touchStart(curIndex,$event,itemList)" :id="'lotus-picker-flex-item'+curIndex" :key="curIndex" class="lotus-picker-flex-item">
                     <p @touchstart="touchStart(curIndex,$event)" @touchmove="touchMove(itemList,curIndex,$event)" @touchend="touchEnd(itemList,curIndex)" v-for="(item,index) in itemList.values" v-text="item" :key="index"></p>
                 </div>
             </div>
@@ -31,7 +31,8 @@
                 initY: 0,
                 itemClientH: 0,
                 result: [],
-                status: false
+                status: false,
+                selectedIndex:0
             };
         },
         computed: {
@@ -45,16 +46,36 @@
         },
         components: {},
         methods: {
-            touchStart(index, e) {
+            touchStart(index, e,itemVal) {
                 e.preventDefault();
-                this.sy = e.touches[0].pageY;
+                if(e.touches){
+                    this.sy = e.touches[0].pageY;
+                }else{
+                    this.sy = e.pageY;
+                }
                 const y = this.getTransformVal(`#lotus-picker-flex-item${index}`);
                 this.initY = parseInt(y[1]);
+                this.selectedIndex = index;
+                //支持pc端滑动
+                document.getElementById(`lotus-picker-flex-item${index}`).onmousemove = (ev)=>{
+                    this.selectedIndex = index;
+                    this.touchMove(itemVal,index,ev);
+                };
+                document.getElementById(`lotus-picker-flex-item${index}`).onmouseup = (ev)=>{
+                    this.selectedIndex = index;
+                    this.touchEnd(itemVal,index,ev);
+                    document.getElementById(`lotus-picker-flex-item${index}`).onmousemove = null;
+                    document.getElementById(`lotus-picker-flex-item${index}`).onmouseup = null;
+                };
             },
             //滑动中
             async touchMove(itemVal, index, e) {
                 e.preventDefault();
-                this.my = e.touches[0].pageY;
+                if(e.touches){
+                    this.my = e.touches[0].pageY;
+                }else{
+                    this.my = e.pageY;
+                }
                 const y = (this.my - this.sy);
                 this.setTransformVal(`#lotus-picker-flex-item${index}`, (y + this.initY), this.itemClientH * itemVal.values.length, 1,400);
             },
@@ -104,10 +125,15 @@
                         });
                     }else if(index === 1){
                         const last = index+1;
-                        this.setTransformVal(`#lotus-picker-flex-item${last}`, this.itemClientH, this.itemClientH * itemVal.values.length);
+                        this.setTransformVal(`#lotus-picker-flex-item${last}`, this.itemClientH, this.itemClientH * this.lotusPickerData[last].values.length);
                     }
                 }
                 this.affirmResult(index);
+                document.getElementById(`lotus-picker-flex-item${index}`).onmouseup = (ev)=>{
+                    this.touchEnd(itemVal,index,ev);
+                    document.getElementById(`lotus-picker-flex-item${index}`).onmousemove = null;
+                    document.getElementById(`lotus-picker-flex-item${index}`).onmouseup = null;
+                };
             },
             //获取transform的值
             getTransformVal(obj) {
@@ -160,7 +186,7 @@
                         obj.index = cIndex;
                         obj.type = itemVal.type;
                         obj.val = itemVal.values[cIndex];
-                        if (itemVal.maxVal) {
+                        if (itemVal&&itemVal.maxVal) {
                             obj.maxVal = itemVal.maxVal;
                         }
 
@@ -216,6 +242,11 @@
                 });
                 //picker值的回传
                 this.$emit("change", this.result);
+            },
+            mouseOutFn(){
+                document.getElementById(`lotus-picker-flex-item${this.selectedIndex}`).onmousemove = null;
+                document.getElementById(`lotus-picker-flex-item${this.selectedIndex}`).onmouseup = null;
+                this.touchEnd(this.lotusPickerData[this.selectedIndex],this.selectedIndex);
             }
         },
         mounted() {

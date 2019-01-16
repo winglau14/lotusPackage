@@ -13,6 +13,7 @@
         bottom: 0;
         left: 0;
         width: 100%;
+        height: auto;
         background: #fbf9fe;
     }
     &-top {
@@ -40,7 +41,7 @@
         .fontSize(29);
         .lineHeight(120);
         .heightSingle(360);
-        overflow: hidden;
+		overflow:hidden;
         &-item {
             .flexN(1);
             .widthSingle(250);
@@ -48,6 +49,9 @@
             .paddingRight(20);
             .text-elli();
             .box-sizing();
+            p{
+                cursor: default;
+            }
         }
         &-item1 {
             .flex();

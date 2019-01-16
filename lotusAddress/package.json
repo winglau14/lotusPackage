@@ -1,7 +1,7 @@
 {
     "name": "lotus-address",
-    "version": "0.0.1",
-    "description": "vue版本省市区联动picker选择器",
+    "version": "0.0.2",
+    "description": "vue版本省市区联动picker选择器支持pc与手机端",
     "author": "winglau14 <397069329@qq.com>",
     "main": "dist/lotusAddress.js",
     "private": false,

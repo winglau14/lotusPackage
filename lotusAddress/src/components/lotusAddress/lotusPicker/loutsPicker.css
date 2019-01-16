@@ -12,6 +12,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  height: auto;
   background: #fbf9fe;
 }
 .lotus-picker-top {
@@ -55,6 +56,9 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   box-sizing: border-box;
+}
+.lotus-picker-flex-item p {
+  cursor: default;
 }
 .lotus-picker-flex-item1 {
   /*display: -webkit-box;
