@@ -46,13 +46,14 @@
 		},
 		methods:{
 			quiteFn(){
+				const _this = this;
 				uni.showModal({
 					title: '温馨提示',
 					content: '退出后不会删除任何数据，下次登录依然可以使用本账号',
 					success: function (res) {
 						if (res.confirm) {
 							//清除用户信息数据
-							this.$lotusUtils.setStorageFn('userInfor','').then(()=>{
+							_this.$lotusUtils.setStorageFn('userInfor','').then(()=>{
 								//页面跳转
 								uni.redirectTo({
 									url:"/pages/login/login"
