@@ -1,0 +1,57 @@
+@import (reference) '../../static/style/config.less';
+@import (reference) '../../static/style/set1Px.less';
+@lotus: list;
+.@{lotus} {
+ &-item{
+	 font-size: 30upx;
+	 position: relative;
+	 //.transition(#eee);
+	 justify-content: space-between;
+	 .box-sizing();
+	 color:#666;
+	 &::after{
+		.setBottomLine(#eee); 
+	 }
+	 &-link{
+		 padding:30upx;
+		 .flex();
+		 .flex-hvc();
+		 position: relative;
+		 .box-sizing();
+		 &::after{
+		 	content:"";
+		 	width:24upx;
+		 	height:24upx;
+		 	border-top-color:#dbdbdb;
+		 	border-top-style: solid;
+		 	border-right-color:#dbdbdb;
+		 	border-right-style: solid;
+		 	border-top-width: 4upx;
+		 	border-right-width: 4upx;
+		 	position: absolute;
+		 	top:50%;
+		 	right:50upx;
+		 	transform: rotate(45deg) translateY(-50%);
+		 }
+	 }
+	 text{
+		 display: block;
+	 }
+	 &-pic{
+		 width:120upx;
+		 height:120upx;
+		 border-radius: 10upx;
+	 }
+	 &-r{
+		padding-left:30upx;
+		padding-right:44upx;
+		.flexN(1);
+	 }
+	 &-time{
+		 font-size: 28upx;
+		 color:#999;
+	 }
+	 
+ }
+ 
+}

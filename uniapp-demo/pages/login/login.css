@@ -1,0 +1,56 @@
+.login {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #999;
+  width: 80%;
+}
+.login-welcome {
+  text-align: center;
+  font-size: 28upx;
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-welcome-line {
+  position: relative;
+}
+.login-welcome-line::after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1px solid #eee;
+  color: #eee;
+  transform-origin: 0 0;
+  transform: scaleY(0.5);
+}
+.login-welcome text {
+  white-space: nowrap;
+  flex: 1;
+}
+.login-welcome-title {
+  padding-left: 10upx;
+  padding-right: 10upx;
+}
+.login-list {
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 30upx;
+  padding-top: 80upx;
+}
+.login-list-item {
+  flex: 1;
+}
+.login-list-item text {
+  display: block;
+}

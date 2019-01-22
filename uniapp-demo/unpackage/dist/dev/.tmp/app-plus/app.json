@@ -1,0 +1,43 @@
+{
+  "pages": [
+    "pages/list/list",
+    "pages/userCenter/userCenter",
+    "pages/login/login",
+    "pages/form/form",
+    "pages/tempPage/tempPage",
+    "pages/light/light",
+    "pages/index/index",
+    "pages/detail/detail"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "帮您购",
+    "navigationBarBackgroundColor": "#13a3ff",
+    "backgroundColor": "#f0f0f6"
+  },
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#13A3FF",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/list/list",
+        "text": "首页",
+        "iconPath": "static/images/jl-icon1.png",
+        "selectedIconPath": "static/images/jl-icon.png"
+      },
+      {
+        "pagePath": "pages/userCenter/userCenter",
+        "text": "我",
+        "iconPath": "static/images/user-default.png",
+        "selectedIconPath": "static/images/user-default2.png"
+      }
+    ]
+  },
+  "splashscreen": {
+    "autoclose": true
+  },
+  "appname": "帮您购"
+}

@@ -1,0 +1,99 @@
+@import (reference) '../../static/style/config.less';
+@import (reference) '../../static/style/set1Px.less';
+@lotus: fill-form;
+.@{lotus} {
+	font-size: 32upx;
+	line-height: 32upx;
+	color: #333;
+	&-item{
+		.flex();
+		.flex-hvc();
+		justify-content: flex-start;
+		padding:40upx 30upx;
+		position: relative;
+		.box-sizing();
+		&::before{
+			.setBottomLine(#eee);
+		}
+		
+		&-l{
+			white-space: nowrap;
+			.flex();
+			.flex-hvc();
+			color:#666;
+			justify-content: flex-end;
+			&-red{
+				margin-top: 14upx;
+				margin-right:4upx;
+				color:red;
+			}
+			text{
+				display: block;
+				line-height: 32upx;
+			}
+		}
+		&-r{
+			.flexN(3);
+			.box-sizing();
+			uni-textarea{
+				font-size: 32upx;
+				line-height: 32upx;
+			}
+		}
+		&-img{
+			width:120upx;
+			height:120upx;
+			&-list{
+				.flex();
+				.flex-hvc();
+				justify-content: flex-start;
+				flex-wrap: wrap;
+			}
+			&-wrap{
+				position: relative;
+				margin-right:40upx;
+				margin-bottom:40upx;
+				border:1px dashed #eee;
+				padding:14upx;
+			}
+		}
+		&-delete{
+			width:40upx;
+			height:40upx;
+			background: url("../../static/images/delete-icon.png") no-repeat;
+			background-size:100% 100%;
+			 position: absolute;
+			 right:-20upx;
+			 top:-20upx;
+		}
+		&-camera{
+			width:120upx;
+			height:120upx;
+			margin-bottom:40upx;
+			margin-right:40upx;
+			background: url("../../static/images/camera-icon.png") no-repeat;
+			background-size: 100% 100%;
+			position: relative;
+			&::after{
+				content: "最多可选两张";
+				font-size: 24upx;
+				color:red;
+				position: absolute;
+				right:-150upx;
+				top:50%;
+				transform: translateY(-50%);
+				white-space: nowrap;
+			}
+		}
+		&-tips{
+			color:#666;
+			font-size:24upx;
+			padding-bottom:30upx;
+			display: block;
+		}
+	}
+	&-item1{
+		flex-flow: column;
+	}
+	
+}

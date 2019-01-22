@@ -1,0 +1,177 @@
+.express-logo {
+  width: 160upx;
+  height: 160upx;
+  display: block;
+  margin: 80upx auto;
+  background: #fff;
+}
+.express-input-module {
+  position: relative;
+  margin-left: 40upx;
+  margin-right: 40upx;
+  color: #999;
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.express-input-module:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1px solid #C7C7C7;
+  color: #C7C7C7;
+  transform-origin: 0 0;
+  transform: scaleY(0.5);
+}
+.express-input-module:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1px solid #C7C7C7;
+  color: #C7C7C7;
+  transform-origin: 0 100%;
+  transform: scaleY(0.5);
+}
+.express-input-val {
+  font-size: 36upx;
+  min-height: auto;
+  padding: 20upx 20upx 20upx 0;
+  color: #999;
+}
+.express-input-text {
+  font-size: 36upx;
+  white-space: nowrap;
+}
+.express-input-qr {
+  width: 54upx;
+  height: 54upx;
+}
+.express-button {
+  background-color: #13a3ff !important;
+  margin: 60upx 100upx;
+}
+.express-history {
+  position: relative;
+}
+.express-history-title {
+  padding-left: 50upx;
+  font-size: 32upx;
+  color: #999;
+  padding-top: 20upx;
+  padding-bottom: 20upx;
+  border-bottom: 1px solid #eee;
+  display: block;
+  background: #f0f0f6;
+}
+.express-history-img {
+  width: 80upx;
+  height: 80upx;
+  margin-right: 30upx;
+}
+.express-history-model {
+  background: #fff;
+  padding-top: 30upx;
+  padding-bottom: 30upx;
+}
+.express-history-item {
+  font-size: 30upx;
+  margin: 0 45upx;
+  background: #f9f9f9;
+  border: 1px solid #eee;
+  border-radius: 10upx;
+  padding: 20upx;
+  margin-bottom: 30upx;
+}
+.express-history-wrap1 {
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: flex-start;
+}
+.express-history-company {
+  padding-bottom: 10upx;
+  display: block;
+}
+.express-history-number {
+  display: block;
+  color: #666;
+}
+.express-history-content {
+  color: #999;
+}
+.express-jq {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.express-jq-content {
+  background: #fff;
+  width: 600upx;
+  border: 1px solid #dbdbdb;
+  border-radius: 10upx;
+}
+.express-jq-title1 {
+  padding-top: 40upx;
+  display: block;
+  font-size: 32upx;
+  font-weight: bold;
+  text-align: center;
+}
+.express-jq-title2 {
+  padding-top: 20upx;
+  display: block;
+  font-size: 24upx;
+  color: #13a3ff;
+  text-align: center;
+}
+.express-jq-action {
+  margin-top: 40upx;
+  padding-bottom: 30upx;
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30upx;
+  text-align: center;
+  border-top: 1px solid #dbdbdb;
+  position: relative;
+}
+.express-jq-action::before {
+  content: '';
+  width: 1px;
+  height: 100%;
+  background: #dbdbdb;
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+.express-jq-cancel,
+.express-jq-right {
+  padding-top: 30upx;
+  flex: 1;
+  color: #666;
+}
+.express-jq-right {
+  color: #13a3ff;
+}

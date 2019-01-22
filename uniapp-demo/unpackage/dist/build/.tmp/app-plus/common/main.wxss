@@ -1,0 +1,21 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*每个页面公共css */
+.lotus-btn{
+	background-color: #13a3ff !important;
+	margin: 60rpx 100rpx;
+}
+

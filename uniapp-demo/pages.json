@@ -1,0 +1,79 @@
+{
+    "pages" : [
+        //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+        {
+            "path" : "pages/list/list",
+            "style" : {
+                "navigationBarTitleText" : "^_^记录^_^"
+            }
+        },{
+            "path" : "pages/userCenter/userCenter",
+            "style" : {
+                "navigationBarTitleText" : "^_^我^_^"
+            }
+        },
+        {
+            "path" : "pages/login/login",
+            "style" : {
+                "navigationBarTitleText" : "^_^帮您购^_^"
+            }
+        },
+        {
+            "path" : "pages/form/form",
+            "style" : {
+                "navigationBarTitleText" : "^_^填您想要的^_^"
+            }
+        },
+        {
+            //落地页
+            "path" : "pages/tempPage/tempPage",
+            "style" : {
+                "navigationBarTitleText" : ""
+            }
+        },
+        {
+            "path" : "pages/light/light",
+            "style" : {
+                "navigationBarTitleText" : "^_^打开闪光灯^_^"
+            }
+        },
+        {
+            "path" : "pages/index/index",
+            "style" : {
+                "navigationBarTitleText" : "我要查物流"
+            }
+        },
+        {
+            "path" : "pages/detail/detail",
+            "style" : {
+                "navigationBarTitleText" : "物流详情"
+            }
+        }
+    ],
+    "globalStyle" : {
+        "navigationBarTextStyle" : "white",
+        "navigationBarTitleText" : "帮您购",
+        "navigationBarBackgroundColor" : "#13a3ff",
+        "backgroundColor" : "#f0f0f6"
+    },
+    "tabBar" : {
+        "color" : "#666",
+        "selectedColor" : "#13A3FF",
+        "backgroundColor" : "#FFFFFF",
+        "borderStyle" : "black",
+        "list" : [
+            {
+                "pagePath" : "pages/list/list",
+                "text" : "首页",
+                "iconPath" : "static/images/jl-icon1.png", //iconfont 图片颜色bfbfbf
+                "selectedIconPath" : "static/images/jl-icon.png"
+            },
+            {
+                "pagePath" : "pages/userCenter/userCenter",
+                "text" : "我",
+                "iconPath" : "static/images/user-default.png",
+                "selectedIconPath" : "static/images/user-default2.png"
+            }
+        ]
+    }
+}
