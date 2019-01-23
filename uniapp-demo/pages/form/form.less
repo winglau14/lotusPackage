@@ -67,8 +67,8 @@
 			 top:-20upx;
 		}
 		&-camera{
-			width:120upx;
-			height:120upx;
+			width:100upx;
+			height:100upx;
 			margin-bottom:40upx;
 			margin-right:40upx;
 			background: url("../../static/images/camera-icon.png") no-repeat;
@@ -95,5 +95,21 @@
 	&-item1{
 		flex-flow: column;
 	}
-	
+	&-fix{
+		height:204upx;
+		&-wrap{
+			position: fixed;
+			left:0;
+			bottom:0;
+			width:100%;
+			z-index:14;
+			background: #fff;
+			&::before{
+				.setTopLine(#dbdbdb);
+			}
+		}
+		&-btn{
+			margin:40upx 50upx;
+		}
+	}
 }

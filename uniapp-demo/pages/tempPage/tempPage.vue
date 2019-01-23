@@ -25,11 +25,11 @@
 		onShow: function () {
 			setTimeout(()=>{
 				//获取用户信息
-				this.$lotusUtils.getStorageFn('userInfor1').then((response)=>{
+				this.$lotusUtils.getStorageFn('userInfor').then((response)=>{
 					if(response){
-						//获取到用户信息
-						uni.redirectTo({
-							url: '/pages/form/form'
+						//跳转到个人中心
+						uni.switchTab({
+							url: '/pages/userCenter/userCenter'
 						});
 					}else{
 						//未获取到用户信息

@@ -83,8 +83,8 @@
   top: -20upx;
 }
 .fill-form-item-camera {
-  width: 120upx;
-  height: 120upx;
+  width: 100upx;
+  height: 100upx;
   margin-bottom: 40upx;
   margin-right: 40upx;
   background: url("../../static/images/camera-icon.png") no-repeat;
@@ -109,4 +109,30 @@
 }
 .fill-form-item1 {
   flex-flow: column;
+}
+.fill-form-fix {
+  height: 204upx;
+}
+.fill-form-fix-wrap {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 14;
+  background: #fff;
+}
+.fill-form-fix-wrap::before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1px solid #dbdbdb;
+  color: #dbdbdb;
+  transform-origin: 0 0;
+  transform: scaleY(0.5);
+}
+.fill-form-fix-btn {
+  margin: 40upx 50upx;
 }

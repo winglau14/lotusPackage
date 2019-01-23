@@ -71,8 +71,11 @@
 				</view>
 			</view>
 		</view>
-		<button @tap="test" class="lotus-btn" type="primary">提交</button>
-		<!-- <button @tap="loginFn" class="lotus-btn" type="primary">登录</button> -->
+		<view class="fill-form-fix">
+			<view class="fill-form-fix-wrap">
+				<button @tap="test" class="fill-form-fix-btn lotus-btn" type="primary">提交</button>
+			</view>
+		</view>
 	</view>
 </template>
 
