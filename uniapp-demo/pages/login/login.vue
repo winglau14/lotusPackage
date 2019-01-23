@@ -6,7 +6,7 @@
 			<text class="login-welcome-line"></text>
 		</view>
 		<view class="login-list">
-			<view @tap="loginType('weixin');" class="login-list-item">
+			<view @tap="loginType" class="login-list-item">
 				<image style="width:100upx;height:100upx;" src="../../static/images/wx-icon.png" mode="aspectFit"></image>
 				<text>微信</text>
 			</view>
@@ -29,7 +29,7 @@
 			//登录方式
 			loginType(type){
 				//开放的第三方登录
-				if(type){
+				if(typeof type === 'string'){
 					this.$lotusUtils.wxLoginFn(type).then((response)=>{
 						/* uni.showToast({
 							title:JSON.stringify(response),

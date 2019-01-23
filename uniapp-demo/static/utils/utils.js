@@ -137,7 +137,7 @@ const lotusUtils = {
 						resolve(true);
 					} catch (e) {
 						// error
-						resolve(`设置本地存储${sKey}失败`);
+						resolve(false);
 					}
 				});
 			}else{
@@ -150,7 +150,7 @@ const lotusUtils = {
 							resolve(true);
 						},
 						fail:function(error){
-							resolve(`设置本地存储${sKey}失败`);
+							resolve(false);
 						}
 					});
 				});
@@ -168,7 +168,7 @@ const lotusUtils = {
 					}
 				} catch (e) {
 					// error
-					resolve(`获取本地存储${sKey}失败`);
+					resolve(false);
 				}
 			});
 		}else{
@@ -180,13 +180,41 @@ const lotusUtils = {
 						resolve(res.data);
 					},
 					fail:function(error){
-						resolve(`获取本地存储${sKey}失败`);
+						resolve(false);
 					}
 				});
 			});
 		}
 	},
-	
+	//获取系统的信息
+	getSystemInfor(){
+		return new Promise((resolve,reject)=>{
+			uni.getSystemInfo({
+				success: function (res) {
+					/* 
+					console.log(res.model);//手机型号
+					console.log(res.pixelRatio);//设备像素比
+					console.log(res.screenWidth); //屏幕宽度
+					console.log(res.screenHeight); //屏幕高度
+					console.log(res.windowWidth);//可使用窗口宽度
+					console.log(res.windowHeight);//可使用窗口高度
+					console.log(res.windowTop); //可使用窗口的顶部位置
+					console.log(res.windowBottom); //可使用窗口的底部位置
+					console.log(res.statusBarHeight); //状态栏的高度
+					console.log(res.language);//应用设置的语言
+					console.log(res.version);//引擎版本号
+					console.log(res.platform); //客户端平台
+					console.log(res.SDKVersion); //客户端基础库版本
+					*/
+					resolve(res);
+				},
+				fail:function(){
+					resolve(false);
+				}
+			});
+			
+		});
+	}
 	
 	
 	

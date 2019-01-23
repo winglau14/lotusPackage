@@ -1,35 +1,44 @@
 <template>
-	<view></view>
+	<view>
+		<lotus-splash :lotusSplashData="splashData"></lotus-splash>
+	</view>
 </template>
 <script>
+	import LotusSplash from "../../components/lotusSplash/LotusSplash.vue"
 	export default {
+		data(){
+			return{
+				splashData:{
+                    welcomeTitle:'欢迎使用',
+                    appTitle:'帮您购',
+                    bottomTitle:'帮您购提供服务',
+                    logo:'/static/images/app-icon/mipmap-xhdpi/W.png'
+                    },
+					delay:2000 //动画执行完成时间
+			}
+		},
+		components:{
+			LotusSplash
+		},
 		onLaunch: function () {
 		},
 		onShow: function () {
-			try{
-				const value = uni.getStorage({
-					key:'userInfor',
-					success: function (res) {
-						//获取到微信用户
-						if(res.data){
-							uni.switchTab({
-								url: '/pages/form/form'
-							});
-						}
-					},
-					fail() {
-						//获取不到微信用户信息
-						uni.navigateTo({
+			setTimeout(()=>{
+				//获取用户信息
+				this.$lotusUtils.getStorageFn('userInfor1').then((response)=>{
+					if(response){
+						//获取到用户信息
+						uni.redirectTo({
+							url: '/pages/form/form'
+						});
+					}else{
+						//未获取到用户信息
+						uni.redirectTo({
 							url: '/pages/login/login'
 						});
 					}
 				});
-				
-			}catch(e){
-				//TODO handle the exception
-			}
-			
-			
+			},this.delay);
 		},
 		onHide: function () {
 			

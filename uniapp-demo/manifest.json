@@ -72,7 +72,7 @@
             }
         },
         "splashscreen" : {
-            "waiting" : true
+            "waiting" : false
         }
     },
     /* SDK配置 */
