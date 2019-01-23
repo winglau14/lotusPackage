@@ -83,8 +83,8 @@
   top: -20upx;
 }
 .fill-form-item-camera {
-  width: 100upx;
-  height: 100upx;
+  width: 90upx;
+  height: 90upx;
   margin-bottom: 40upx;
   margin-right: 40upx;
   background: url("../../static/images/camera-icon.png") no-repeat;

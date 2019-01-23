@@ -35,7 +35,7 @@ const lotusUtils = {
 													//console.log('success');
 													resolve({
 														code: 1,
-														userData:userInfor
+														userInfor: userInfor
 													});
 												}
 											});
@@ -119,48 +119,48 @@ const lotusUtils = {
 					})
 				},
 				complete: (res) => {
-					uni.showToast({
+					/* uni.showToast({
 						title: `${JSON.stringify(res)}`,
 						icon: 'none'
-					})
+					}) */
 				}
 			});
 		});
 	},
 	//设置本地缓存
-	setStorageFn(sKey,sVal,type){
-			//同步设置本地缓存
-			if(type === "sync"){
-				return new Promise((resolve,reject)=>{
-					try {
-						uni.setStorageSync(sKey,sVal);
+	setStorageFn(sKey, sVal, type) {
+		//同步设置本地缓存
+		if (type === "sync") {
+			return new Promise((resolve, reject) => {
+				try {
+					uni.setStorageSync(sKey, sVal);
+					resolve(true);
+				} catch (e) {
+					// error
+					resolve(false);
+				}
+			});
+		} else {
+			//异步设置本地缓存
+			return new Promise((resolve, reject) => {
+				uni.setStorage({
+					key: sKey,
+					data: sVal,
+					success: function(res) {
 						resolve(true);
-					} catch (e) {
-						// error
+					},
+					fail: function(error) {
 						resolve(false);
 					}
 				});
-			}else{
-				//异步设置本地缓存
-				return new Promise((resolve,reject)=>{
-					uni.setStorage({
-						key:sKey,
-						data:sVal,
-						success: function (res) {
-							resolve(true);
-						},
-						fail:function(error){
-							resolve(false);
-						}
-					});
-				});
-			}
-		},
+			});
+		}
+	},
 	//获取缓存信息
-	getStorageFn(sKey,type){
+	getStorageFn(sKey, type) {
 		//同步获取本地缓存
-		if(type === "sync"){
-			return new Promise((resolve,reject)=>{
+		if (type === "sync") {
+			return new Promise((resolve, reject) => {
 				try {
 					const value = uni.getStorageSync(sKey);
 					if (value) {
@@ -171,15 +171,15 @@ const lotusUtils = {
 					resolve(false);
 				}
 			});
-		}else{
+		} else {
 			//异步获取本地缓存
-			return new Promise((resolve,reject)=>{
+			return new Promise((resolve, reject) => {
 				uni.getStorage({
-					key:sKey,
-					success: function (res) {
+					key: sKey,
+					success: function(res) {
 						resolve(res.data);
 					},
-					fail:function(error){
+					fail: function(error) {
 						resolve(false);
 					}
 				});
@@ -187,10 +187,10 @@ const lotusUtils = {
 		}
 	},
 	//获取系统的信息
-	getSystemInfor(){
-		return new Promise((resolve,reject)=>{
+	getSystemInfor() {
+		return new Promise((resolve, reject) => {
 			uni.getSystemInfo({
-				success: function (res) {
+				success: function(res) {
 					/* 
 					console.log(res.model);//手机型号
 					console.log(res.pixelRatio);//设备像素比
@@ -208,16 +208,16 @@ const lotusUtils = {
 					*/
 					resolve(res);
 				},
-				fail:function(){
+				fail: function() {
 					resolve(false);
 				}
 			});
-			
+
 		});
 	}
-	
-	
-	
+
+
+
 }
 
 export {

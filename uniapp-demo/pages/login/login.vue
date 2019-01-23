@@ -29,17 +29,20 @@
 			//登录方式
 			loginType(type){
 				//开放的第三方登录
+				const _this = this;
 				if(typeof type === 'string'){
-					this.$lotusUtils.wxLoginFn(type).then((response)=>{
-						/* uni.showToast({
-							title:JSON.stringify(response),
-							icon:'none'
-						}); */
-						if(response.code>0){
-							uni.switchTab({
-								url: '/pages/userCenter/userCenter'
+					//获取第三方授权用户信息
+					_this.$lotusUtils.wxLoginFn(type).then((response)=>{
+							const result = JSON.parse(response.userInfor);
+							//调用注册api
+							_this.registerApiFn(type,result).then((regData)=>{
+								if(regData.code === 1){
+									//跳转个人中心
+									uni.switchTab({
+										url: '/pages/userCenter/userCenter'
+									});
+								}
 							});
-						}
 					});
 				}else{
 					//未授权
@@ -48,6 +51,15 @@
 						icon:"none"
 					})
 				}
+			},
+			//用户注册
+			registerApiFn(type,result){
+				return this.$lotusUtils.ajax(`${this.$lotusUtils.webUrl.api}user/login`,'POST',{
+					openId:result.openId,
+					nickName:result.nickName,
+					source:type,
+					avatarUrl:result.avatarUrl
+				});
 			}
 		},
 		onLoad() {
@@ -56,6 +68,7 @@
 		onShow(){
 			
 		}
+		
 	}
 </script>
 
