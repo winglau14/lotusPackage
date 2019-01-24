@@ -2,6 +2,17 @@
     "pages" : [
         //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
         {
+            "path" : "pages/list/list",
+            "style" : {
+                "navigationBarTitleText" : "^_^记录^_^"
+            }
+        },{
+            //表单详情页
+            "path" : "pages/formDetail/formDetail",
+            "style" : {
+                "navigationBarTitleText" : ""
+            }
+        },{
             //落地页
             "path" : "pages/tempPage/tempPage",
             "style" : {
@@ -9,6 +20,11 @@
 				"app-plus": {
                     "titleNView": false //禁用原生导航栏
                 }
+            }
+        },{
+            "path" : "pages/form/form",
+            "style" : {
+                "navigationBarTitleText" : "^_^填您想要的^_^"
             }
         },{
             "path" : "pages/userCenter/userCenter",
@@ -20,18 +36,6 @@
             "path" : "pages/login/login",
             "style" : {
                 "navigationBarTitleText" : "^_^帮您购-欢迎登录^_^"
-            }
-        },
-		{
-		    "path" : "pages/list/list",
-		    "style" : {
-		        "navigationBarTitleText" : "^_^记录^_^"
-		    }
-		},
-        {
-            "path" : "pages/form/form",
-            "style" : {
-                "navigationBarTitleText" : "^_^填您想要的^_^"
             }
         },
         {

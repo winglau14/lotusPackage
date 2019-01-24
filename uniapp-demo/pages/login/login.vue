@@ -6,11 +6,11 @@
 			<text class="login-welcome-line"></text>
 		</view>
 		<view class="login-list">
-			<view @tap="loginType" class="login-list-item">
+			<view @tap="loginClick" class="login-list-item">
 				<image style="width:100upx;height:100upx;" src="../../static/images/wx-icon.png" mode="aspectFit"></image>
 				<text>微信</text>
 			</view>
-			<view @tap="loginType('qq');" class="login-list-item">
+			<view @tap="loginClick('qq');" class="login-list-item">
 				<image style="width:100upx;height:100upx;" src="../../static/images/qq-icon.png" mode="aspectFit"></image>
 				<text>QQ</text>
 			</view>
@@ -22,7 +22,7 @@
 	export default {
 		data(){
 			return{
-				
+				loginTime:null
 			}
 		},
 		methods:{
@@ -60,6 +60,13 @@
 					source:type,
 					avatarUrl:result.avatarUrl
 				});
+			},
+			//防止点击登录多次
+			loginClick(type){
+				clearTimeout(this.loginTime);
+				this.loginTime = setTimeout(()=>{
+					this.loginType(type);
+				},200);
 			}
 		},
 		onLoad() {

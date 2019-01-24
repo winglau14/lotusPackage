@@ -1,11 +1,12 @@
 .user-center-top {
   text-align: center;
   font-size: 30upx;
-  color: #666;
-  background: #fff;
+  color: #fff;
+  height: 340upx;
   position: relative;
-  padding: 60upx 0 50upx;
-  margin-bottom: 30upx;
+  padding: 80upx 0 40upx;
+  margin-bottom: 20upx;
+  background: #41cdfe;
 }
 .user-center-top::before {
   content: " ";
@@ -19,9 +20,20 @@
   transform-origin: 0 100%;
   transform: scaleY(0.5);
 }
+.user-center-top::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 1;
+  height: 220upx;
+  background: #41cdfe url("../../static/images/top-bg.png") no-repeat;
+  background-size: 100% 100%;
+}
 .user-center-top-header {
-  width: 140upx;
-  height: 140upx;
+  width: 90upx;
+  height: 90upx;
   display: block;
   margin: 0 auto 30upx;
   border-radius: 20upx;
@@ -50,7 +62,7 @@
   align-items: center;
   justify-content: center;
   justify-content: space-between;
-  padding: 40upx;
+  padding: 35upx;
   position: relative;
   -webkit-user-select: none;
   user-select: none;
@@ -125,7 +137,7 @@
 }
 .user-center-quit {
   background: #13a3ff;
-  margin: 100upx 100upx 0;
+  margin: 70upx 100upx 0;
   border-radius: 14upx;
   padding: 24upx;
   position: relative;

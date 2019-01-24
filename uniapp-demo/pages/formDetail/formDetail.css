@@ -1,0 +1,23 @@
+.form-detail {
+  padding-left: 40upx;
+  padding-right: 40upx;
+}
+.form-detail-item {
+  font-size: 32upx;
+  color: #666;
+  padding-top: 30upx;
+  padding-bottom: 30upx;
+  position: relative;
+}
+.form-detail-item::before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1px solid #eee;
+  color: #eee;
+  transform-origin: 0 100%;
+  transform: scaleY(0.5);
+}

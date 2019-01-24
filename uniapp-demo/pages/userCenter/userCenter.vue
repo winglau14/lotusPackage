@@ -2,8 +2,8 @@
 	<view class="user-center lotus-wrap">
 		<!--用户信息-->
 		<view class="user-center-top">
-			<image class="user-center-top-header" :src="headerImg?headerImg:'../../static/images/user-default.png'" mode="aspectFit"></image>
-			<view class="user-center-top-msg"><text style="color:#333;">昵称：</text>{{nickName?nickName:'--'}}</view>
+			<image class="user-center-top-header" :src="headerImg?headerImg:'../../static/images/user-default3.png'" mode="aspectFit"></image>
+			<view class="user-center-top-msg"><text style="color:#fff;">昵称：</text>{{nickName?nickName:'--'}}</view>
 		</view>
 		<!--用户信息 END-->
 		<!--用户操作-->
