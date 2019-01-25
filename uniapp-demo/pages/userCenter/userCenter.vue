@@ -22,7 +22,7 @@
 					<text class="user-center-list-jt"></text>
 				</view>
 			</navigator>
-			<view class="user-center-list-item">
+			<view @tap="callPhone" class="user-center-list-item">
 				<image class="user-center-list-icon" src="../../static/images/service-icon.png" mode="aspectFit"></image>
 				<view class="user-center-list-text">
 					<text>客服</text>
@@ -38,9 +38,9 @@
 			<!--退出登录-->
 			<view @tap="quiteFn" class="user-center-quit">退出登录</view>
 		</view>
-		<!--自定义confirm弹窗-->
+		<!--退出登录自定义confirm弹窗-->
 		<lotus-confirm @lotusConfirm="callBackFn" :ConfirmData="confirmData"></lotus-confirm>
-		<!--自定义confirm弹窗 END-->
+		<!--退出登录自定义confirm弹窗 END-->
 	</view>
 </template>
 
@@ -98,6 +98,12 @@
 						url:"/pages/login/login"
 					});
 				})
+			},
+			//拨打电话
+			callPhone() {
+				uni.makePhoneCall({
+					phoneNumber: '13316246503' //仅为示例
+				});
 			}
 		},
 		onLoad() {

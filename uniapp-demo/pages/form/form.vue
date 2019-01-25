@@ -80,6 +80,7 @@
 </template>
 
 <script>
+	import lrz from 'lrz'
 	export default {
 		data() {
 			return {
@@ -108,6 +109,14 @@
 					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
 					success: function (res) {
 						const imgList = res.tempFilePaths;
+						lrz(imgList[0]).then(function (rst) {
+							//console.log(rst.base64);
+							_this.upLoadImg(rst.base64);
+								// 处理成功会执行
+							}).catch(function (err){
+								// 处理失败会执行
+							});
+						
 						imgList.map((item,index)=>{
 							_this.imageList.push(item);
 						});
@@ -213,6 +222,15 @@
 				}
 				//验证通过返回true
 				return true;
+			},
+			//图片上传
+			upLoadImg(file){
+				/* let formData = new FormData();
+				formData.append('file', file);
+				console.log(JSON.stringify(formData)); */
+				this.$lotusUtils.ajax(`${this.$lotusUtils.webUrl.api}upLoad/pic`,'POST',{formData:file}).then((response)=>{
+					
+				});
 			}
 		},
 		onShow(){
