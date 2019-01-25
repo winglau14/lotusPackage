@@ -1,0 +1,27 @@
+.success-img {
+  width: 100%;
+  height: 300upx;
+  display: block;
+  margin: 0 auto 30upx;
+}
+.success-text {
+  text-align: center;
+  display: block;
+  font-size: 32upx;
+  color: #666;
+  padding-top: 60upx;
+}
+.success-btn-wrap {
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 80upx 40upx 0 40upx;
+}
+.success-btn-wrap .mini-btn {
+  padding: 16upx 80upx;
+}
+.success-btn-wrap-l {
+  color: #666 !important;
+}

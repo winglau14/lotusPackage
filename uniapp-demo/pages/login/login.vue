@@ -6,7 +6,7 @@
 			<text class="login-welcome-line"></text>
 		</view>
 		<view class="login-list">
-			<view @tap="loginClick" class="login-list-item">
+			<view @tap="loginClick('weixin');" class="login-list-item">
 				<image style="width:100upx;height:100upx;" src="../../static/images/wx-icon.png" mode="aspectFit"></image>
 				<text>微信</text>
 			</view>
@@ -33,6 +33,9 @@
 				if(typeof type === 'string'){
 					//获取第三方授权用户信息
 					_this.$lotusUtils.wxLoginFn(type).then((response)=>{
+							if(!response.userInfor){
+								return false;
+							}
 							const result = JSON.parse(response.userInfor);
 							//调用注册api
 							_this.registerApiFn(type,result).then((regData)=>{

@@ -26,6 +26,7 @@
 			setTimeout(()=>{
 				//获取用户信息
 				this.$lotusUtils.getStorageFn('userInfor').then((response)=>{
+					//console.log(response);
 					if(response){
 						//跳转到个人中心
 						uni.switchTab({

@@ -156,8 +156,16 @@
 					if(response.code === 1){
 						uni.showToast({
 							title:'提交成功:'+response.data,
-							icon:'none'
+							icon:'none',
+							mask:true,
+							success:function() {
+								//提交成功跳转表单详情页
+								uni.redirectTo({
+									url:'/pages/success/success?id='+response.data
+								});
+							}
 						});
+						
 					}
 					
 				});

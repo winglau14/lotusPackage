@@ -46,8 +46,8 @@
   display: block;
 }
 .list-item-pic {
-  width: 120upx;
-  height: 120upx;
+  width: 94upx;
+  height: 94upx;
   border-radius: 10upx;
 }
 .list-item-r {
@@ -58,6 +58,7 @@
 .list-item-time {
   font-size: 28upx;
   color: #999;
+  padding-top: 10upx;
 }
 .list-no-data {
   position: absolute;

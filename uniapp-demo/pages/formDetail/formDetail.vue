@@ -48,8 +48,11 @@
 		},
 		onLoad(options) {
 			const _this = this;
+			//判断是否获取到表单id
+			if(options.id === 'undefined'){
+				return false;
+			}
 			this.buyFormId = options.id;
-			console.log(options.id);
 			this.$lotusUtils.ajax(`${_this.$lotusUtils.webUrl.api}buy/detail`,'GET',{
 				buyFormId:_this.buyFormId
 			}).then((response)=>{

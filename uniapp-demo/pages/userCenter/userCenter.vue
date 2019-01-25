@@ -23,6 +23,12 @@
 				</view>
 			</navigator>
 			<view class="user-center-list-item">
+				<image class="user-center-list-icon" src="../../static/images/service-icon.png" mode="aspectFit"></image>
+				<view class="user-center-list-text">
+					<text>客服</text>
+				</view>
+			</view>
+			<view class="user-center-list-item">
 				<image class="user-center-list-icon" src="../../static/images/setting-icon.png" mode="aspectFit"></image>
 				<view class="user-center-list-text">
 					<text>关于帮您购</text>

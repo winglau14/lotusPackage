@@ -3,7 +3,7 @@
 			<!--列表数据1-->
 			<view v-for="(item,index) in listArray" :key="index" class="list-item">
 				<navigator open-type="navigate" class="list-item-link" :url="'../formDetail/formDetail?id='+item.buyFormId">
-					<image class="list-item-pic" src="../../static/images/wx-icon.png" mode="aspectFit"></image>
+					<image class="list-item-pic" src="../../static/images/form-list-icon.png" mode="aspectFit"></image>
 					<view class="list-item-r">
 						<text>名称：{{item.buyFormData.productName}}</text>
 						<text class="list-item-time">创建时间：{{item.createTime}}</text>
@@ -79,6 +79,7 @@
 				this.listArray = [];
 				this.pageIndex = 0;
 				this.flag = true;
+				this.noDataFlag = false;
 			}
 		},
 		onLoad() {
@@ -100,3 +101,5 @@
 <style lang="less">
 @import "./list.less";
 </style>
+
+

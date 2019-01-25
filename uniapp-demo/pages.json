@@ -2,34 +2,43 @@
     "pages" : [
         //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
         {
+            //落地页
+            "path" : "pages/tempPage/tempPage",
+            "style" : {
+                "navigationBarTitleText" : "",
+                "app-plus" : {
+                    "titleNView" : false //禁用原生导航栏
+                }
+            }
+        },{
+            "path" : "pages/success/success",
+            "style" : {
+                "navigationBarTitleText" : "提交成功"
+            }
+        },
+        {
             "path" : "pages/list/list",
             "style" : {
                 "navigationBarTitleText" : "^_^记录^_^"
             }
-        },{
+        },
+        {
             //表单详情页
             "path" : "pages/formDetail/formDetail",
             "style" : {
                 "navigationBarTitleText" : ""
             }
-        },{
-            //落地页
-            "path" : "pages/tempPage/tempPage",
-            "style" : {
-                "navigationBarTitleText" : "",
-				"app-plus": {
-                    "titleNView": false //禁用原生导航栏
-                }
-            }
-        },{
+        },
+        {
             "path" : "pages/form/form",
             "style" : {
                 "navigationBarTitleText" : "^_^填您想要的^_^"
             }
-        },{
+        },
+        {
             "path" : "pages/userCenter/userCenter",
             "style" : {
-                "navigationBarTitleText" : "^_^我^_^"
+                "navigationBarTitleText" : "^_^我的^_^"
             }
         },
         {
@@ -56,6 +65,7 @@
                 "navigationBarTitleText" : "物流详情"
             }
         }
+        
     ],
     "globalStyle" : {
         "navigationBarTextStyle" : "white",
@@ -77,7 +87,7 @@
             },
             {
                 "pagePath" : "pages/userCenter/userCenter",
-                "text" : "我",
+                "text" : "我的",
                 "iconPath" : "static/images/user-default.png",
                 "selectedIconPath" : "static/images/user-default2.png"
             }

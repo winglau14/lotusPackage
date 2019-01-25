@@ -24,6 +24,10 @@ const lotusUtils = {
 											icon: 'none'
 										}); */
 										if (infoRes.errMsg.indexOf("getUserInfo:ok") > -1) {
+											if(type === 'qq'){
+												//头像字段重新赋值
+												infoRes.userInfo.avatarUrl = infoRes.userInfo.figureurl_qq_2;
+											}
 											const userInfor = JSON.stringify(infoRes.userInfo);
 											//console.log(userInfor);
 											//缓存用户信息
@@ -102,7 +106,7 @@ const lotusUtils = {
 		});
 		return new Promise((resolve, reject) => {
 			uni.request({
-				url: url, //仅为示例，并非真实接口地址。
+				url: url, //api接口地址。
 				method: method,
 				data: options,
 				header: {
