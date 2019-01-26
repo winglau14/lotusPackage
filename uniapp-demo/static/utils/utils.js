@@ -1,6 +1,7 @@
 const lotusUtils = {
 	webUrl: {
-		api: 'http://192.168.1.143:3001/' //https://express.xiaoyaozhan.com/express/
+		api: 'http://bngapi.winglau14.com/', //https://express.xiaoyaozhan.com/express/
+		imgUrl:'http://bngapi.winglau14.com'
 	},
 	//第三方登录
 	wxLoginFn(type) {
@@ -99,7 +100,7 @@ const lotusUtils = {
 		})
 	},
 	//接口请求封装url=>api请求url,method=>请求的方法GET OR POST,options=>api请求data参数
-	ajax(url, method, options) {
+	ajax(url, method, options,contentType) {
 		uni.showLoading({
 			title: '加载中',
 			mask: true
@@ -110,7 +111,7 @@ const lotusUtils = {
 				method: method,
 				data: options,
 				header: {
-					'content-type': 'application/x-www-form-urlencoded', //自定义请求头信息
+					'content-type': contentType||'application/x-www-form-urlencoded', //自定义请求头信息
 				},
 				success: (res) => {
 					uni.hideLoading();

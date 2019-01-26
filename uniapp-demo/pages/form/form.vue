@@ -64,7 +64,8 @@
 				<text v-if="imageList.length" class="fill-form-item-tips">图片点击可以预览</text>
 				<view class="fill-form-item-img-list">
 					<view v-for="(itemList,index) in imageList" :key="index" class="fill-form-item-img-wrap">
-						<image @tap="imgPreviewer(itemList);" class="fill-form-item-img" :src="itemList" mode="aspectFit"></image>
+						<!-- <image @tap="imgPreviewer(itemList);" class="fill-form-item-img" :src="$lotusUtils.webUrl.api+itemList.imgUrl" mode="aspectFit"></image> -->
+						<image @tap="imgPreviewer(itemList);" class="fill-form-item-img" :src="imgWebUrl+itemList.imgUrl" mode="aspectFit"></image>
 						<view @tap="deleteImg(imageList,index);" class="fill-form-item-delete"></view>
 					</view>
 					<view v-if="imageList.length<2" @tap="openCamera(0);" class="fill-form-item-camera"></view>
@@ -80,7 +81,6 @@
 </template>
 
 <script>
-	import lrz from 'lrz'
 	export default {
 		data() {
 			return {
@@ -92,50 +92,66 @@
 				userPhone:'',//收货人手机号
 				userAddress:'',//收货地址
 				imageList:[],//附件
-				submitTime:null
+				submitTime:null,
+				imgWebUrl:this.$lotusUtils.webUrl.api
 			};
 		},
 		methods:{
 			//打开相机
 			openCamera(index){
-				/* this.$lotusUtils.openCamera().then((response)=>{
-					if(response){
-						this.imageList.push(response);
-					}
-				}); */
 				const _this = this;
 				uni.chooseImage({
 					count: 2, //默认9
-					sizeType: ['original', 'compressed'], //可以指定是原图还是压缩图，默认二者都有
+					sizeType: ['compressed'], //可以指定是原图还是压缩图，默认二者都有
 					success: function (res) {
-						const imgList = res.tempFilePaths;
-						lrz(imgList[0]).then(function (rst) {
-							//console.log(rst.base64);
-							_this.upLoadImg(rst.base64);
-								// 处理成功会执行
-							}).catch(function (err){
-								// 处理失败会执行
-							});
+						const imgList = res.tempFilePaths[0];
+						 uni.uploadFile({
+                            url: `${_this.$lotusUtils.webUrl.api}upLoad/image`, //仅为示例，非真实的接口地址
+                            filePath: imgList,
+                            name: 'file',
+                            formData: {
+                            },
+                            success: (uploadFileRes) => {
+                                const result = JSON.parse(uploadFileRes.data);
+                                if(result.code === 1){
+                                    const urlData = result.data;
+									_this.testUrl = _this.$lotusUtils.webUrl.api+urlData.imgUrl; 
+                                    _this.imageList.push(urlData);
+                                }
+                            },
+                            fail:(error)=>{
+                                console.log(JSON.stringify(error));
+                            }
+                        });
 						
-						imgList.map((item,index)=>{
-							_this.imageList.push(item);
-						});
 					}
 				});
 			},
 			//删除图片
 			deleteImg(imageList,index){
-				imageList.splice(index,1);
-				this.imageList = imageList;
+				const _this = this;
+				const imgName = `${imageList[index].imgName}.jpg`;
+				//删除图片api
+				_this.$lotusUtils.ajax(`${_this.$lotusUtils.webUrl.api}upLoad/imageDelete`,'POST',{
+					imgName
+				}).then((response)=>{
+					//删除成功
+					if(response.code === 1){
+						imageList.splice(index,1);
+						_this.imageList = imageList;
+					}
+				});
+				
 			},
 			loginFn(){
 				this.$lotusUtils.wxLoginFn();
 			},
 			//图片预览
-			imgPreviewer(url){
-				let imgUrl = [];
-				imgUrl .push(url);
-				this.$lotusUtils.imagesPreviewer(imgUrl);
+			imgPreviewer(imageList){
+				let imgUrlList = [];
+				const tempUrl = `${this.$lotusUtils.webUrl.api}${imageList.imgUrl}`;
+				imgUrlList .push(tempUrl);
+				this.$lotusUtils.imagesPreviewer(imgUrlList);
 			},
 			//表单提交api
 			async submitFn(){
@@ -225,12 +241,7 @@
 			},
 			//图片上传
 			upLoadImg(file){
-				/* let formData = new FormData();
-				formData.append('file', file);
-				console.log(JSON.stringify(formData)); */
-				this.$lotusUtils.ajax(`${this.$lotusUtils.webUrl.api}upLoad/pic`,'POST',{formData:file}).then((response)=>{
-					
-				});
+				return this.$lotusUtils.ajax(`${this.$lotusUtils.webUrl.api}upLoad/image`,'POST',file,'multipart/form-data');
 			}
 		},
 		onShow(){

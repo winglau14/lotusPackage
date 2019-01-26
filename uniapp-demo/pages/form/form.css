@@ -56,6 +56,7 @@
 .fill-form-item-img {
   width: 120upx;
   height: 120upx;
+  background-size: 100% 100%;
 }
 .fill-form-item-img-list {
   /*display: -webkit-box;
