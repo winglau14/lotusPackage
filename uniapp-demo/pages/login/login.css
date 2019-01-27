@@ -46,10 +46,32 @@
   justify-content: center;
   text-align: center;
   font-size: 30upx;
-  padding-top: 80upx;
+  padding-top: 40upx;
 }
 .login-list-item {
+  padding-top: 40upx;
+  padding-bottom: 40upx;
   flex: 1;
+  position: relative;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.login-list-item:active::before {
+  opacity: 0.15;
+}
+.login-list-item::before {
+  content: " ";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  border-color: #000;
+  background-color: #000;
+  border-radius: inherit;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 }
 .login-list-item text {
   display: block;

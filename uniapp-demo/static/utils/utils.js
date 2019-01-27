@@ -1,7 +1,9 @@
 const lotusUtils = {
 	webUrl: {
-		api: 'http://bngapi.winglau14.com/', //https://express.xiaoyaozhan.com/express/
-		imgUrl:'http://bngapi.winglau14.com'
+		api: 'http://192.168.1.143:3001/', //http://bngapi.winglau14.com/
+		imgUrl:'http://192.168.1.143:3001',//http://bngapi.winglau14.com
+		/* api: 'http://bngapi.winglau14.com/', //生产环境url
+		imgUrl:'http://bngapi.winglau14.com' */
 	},
 	//第三方登录
 	wxLoginFn(type) {

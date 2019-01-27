@@ -2,6 +2,11 @@
     "pages" : [
         //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
         {
+            "path" : "pages/list/list",
+            "style" : {
+                "navigationBarTitleText" : "^_^记录^_^"
+            }
+        },{
             //落地页
             "path" : "pages/tempPage/tempPage",
             "style" : {
@@ -11,15 +16,14 @@
                 }
             }
         },{
+            "path" : "pages/form/form",
+            "style" : {
+                "navigationBarTitleText" : "^_^填您想要的^_^"
+            }
+        },{
             "path" : "pages/success/success",
             "style" : {
                 "navigationBarTitleText" : "提交成功"
-            }
-        },
-        {
-            "path" : "pages/list/list",
-            "style" : {
-                "navigationBarTitleText" : "^_^记录^_^"
             }
         },
         {
@@ -27,12 +31,6 @@
             "path" : "pages/formDetail/formDetail",
             "style" : {
                 "navigationBarTitleText" : ""
-            }
-        },
-        {
-            "path" : "pages/form/form",
-            "style" : {
-                "navigationBarTitleText" : "^_^填您想要的^_^"
             }
         },
         {

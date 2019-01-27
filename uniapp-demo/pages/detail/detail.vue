@@ -142,7 +142,6 @@ export default {
 		},
 		//拨打电话
 		callPhone(phone) {
-			debugger;
 			uni.makePhoneCall({
 				phoneNumber: phone //仅为示例
 			});

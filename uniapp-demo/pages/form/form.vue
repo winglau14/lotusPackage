@@ -93,7 +93,8 @@
 				userAddress:'',//收货地址
 				imageList:[],//附件
 				submitTime:null,
-				imgWebUrl:this.$lotusUtils.webUrl.api
+				imgWebUrl:this.$lotusUtils.webUrl.api,
+				formId:0
 			};
 		},
 		methods:{
@@ -105,6 +106,10 @@
 					sizeType: ['compressed'], //可以指定是原图还是压缩图，默认二者都有
 					success: function (res) {
 						const imgList = res.tempFilePaths[0];
+						/* uni.showLoading({
+							title: '图片上传中',
+							mask: true
+						}); */
 						 uni.uploadFile({
                             url: `${_this.$lotusUtils.webUrl.api}upLoad/image`, //仅为示例，非真实的接口地址
                             filePath: imgList,
@@ -112,6 +117,7 @@
                             formData: {
                             },
                             success: (uploadFileRes) => {
+								//uni.hideLoading();
                                 const result = JSON.parse(uploadFileRes.data);
                                 if(result.code === 1){
                                     const urlData = result.data;
@@ -143,9 +149,6 @@
 				});
 				
 			},
-			loginFn(){
-				this.$lotusUtils.wxLoginFn();
-			},
 			//图片预览
 			imgPreviewer(imageList){
 				let imgUrlList = [];
@@ -173,14 +176,29 @@
 					imageList:this.imageList,//附件
 					
 				}
-				this.$lotusUtils.ajax(`${this.$lotusUtils.webUrl.api}buy/add`,'POST',{
-					openId:JSON.parse(userInfor).openId,
-					buyFormData:JSON.stringify(buyFormData)
-				}).then((response)=>{
+				//更新表单信息
+				let url = '';
+				let upDateObj = {};
+				if(this.formId>0){
+					url = `${this.$lotusUtils.webUrl.api}buy/update`;
+					upDateObj = {
+						openId:JSON.parse(userInfor).openId,
+						buyFormData:JSON.stringify(buyFormData),
+						buyFormId:this.formId
+					};
+				}else{
+					//新增表单信息
+					url = `${this.$lotusUtils.webUrl.api}buy/add`;
+					upDateObj = {
+						openId:JSON.parse(userInfor).openId,
+						buyFormData:JSON.stringify(buyFormData)
+					};
+				}
+				this.$lotusUtils.ajax(url,'POST',upDateObj).then((response)=>{
 					console.log(JSON.stringify(response));
 					if(response.code === 1){
 						uni.showToast({
-							title:'提交成功:'+response.data,
+							title:'提交成功',
 							icon:'none',
 							mask:true,
 							success:function() {
@@ -216,6 +234,13 @@
 						icon:'none'
 					});
 					return false;
+				}else if(!/[1-9]$|^[1-9]\d{1,2}$/g.test(this.amount)){
+					uni.showToast({
+						title:'数量输入有误',
+						icon:'none'
+					});
+					this.amount = '';
+					return false;
 				}else if(!this.userName){
 					uni.showToast({
 						title:'姓名不能为空',
@@ -242,9 +267,40 @@
 			//图片上传
 			upLoadImg(file){
 				return this.$lotusUtils.ajax(`${this.$lotusUtils.webUrl.api}upLoad/image`,'POST',file,'multipart/form-data');
+			},
+			//获取表单详情
+			getFormDetail(){
+				const _this = this;
+				this.$lotusUtils.ajax(`${_this.$lotusUtils.webUrl.api}buy/detail`,'GET',{
+					buyFormId:_this.formId
+				}).then((response)=>{
+					if(response.code === 1){
+						const res = response.data;
+						_this.buyFormData = res.buyFormData;
+						_this.imageList = res.buyFormData.imageList;
+						_this.productName = res.buyFormData.productName;
+						_this.productSpec= res.buyFormData.productSpec;
+						_this.factory = res.buyFormData.factory;
+						_this.amount = res.buyFormData.amount;
+						_this.userName= res.buyFormData.userName;
+						_this.userPhone= res.buyFormData.userPhone;
+						_this.userAddress= res.buyFormData.userAddress;
+						//设置导航条标题
+						uni.setNavigationBarTitle({
+							title: `${res.buyFormData.productName}`
+						});
+					}
+				});
 			}
 		},
+		onLoad(options) {
+			this.formId = options.id;
+		},
 		onShow(){
+			//有formId获取详情
+			if(this.formId>0){
+				this.getFormDetail();
+			}
 		}
 	}
 </script>

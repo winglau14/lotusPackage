@@ -21,3 +21,26 @@
   transform-origin: 0 100%;
   transform: scaleY(0.5);
 }
+.form-detail-img-list {
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+}
+.form-detail-img-list image {
+  display: block;
+  flex: 1;
+  width: 50%;
+  height: 200upx;
+  margin: 20upx 30upx;
+}
+.form-detail-btn {
+  font-size: 30upx;
+  color: #fff;
+  text-align: center;
+  border-radius: 10upx;
+  display: block;
+  line-height: 92upx;
+}
