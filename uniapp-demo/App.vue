@@ -29,4 +29,17 @@
 		background-color: #13a3ff !important;
 		margin: 60upx 100upx;
 	}
+	uni-toast .uni-toast{
+		width:140upx !important;
+	}
+	uni-toast .uni-toast__content{
+		font-size: 26upx !important;
+		margin: 0 0 26upx !important;
+	}
+	uni-toast .uni-icon_toast.uni-loading{
+		width:60upx !important;
+		height:60upx !important;
+		margin:22upx 0 0 !important;		
+		
+	}
 </style>
