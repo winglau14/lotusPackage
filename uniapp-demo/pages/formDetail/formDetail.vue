@@ -34,11 +34,14 @@
 				<image @tap="imgPreviewer(item)" v-for="(item,index) in imageList" :key="index" :src="webUrl+item.imgUrl" mode="aspectFit"></image>
 			</view>
 		</view>
-		<view class="form-detail-fix">
+		
+		<!-- <view class="form-detail-fix">
 			<view class="form-detail-fix-wrap">
 				<navigator class="lotus-btn form-detail-fix-btn" :url="'/pages/form/form?id='+buyFormId">编辑</navigator>
 			</view>
-		</view>
+		</view> -->
+		<navigator class="lotus-btn form-detail-btn" :url="'/pages/form/form?id='+buyFormId">编辑</navigator>
+		<view @tap="deleteForm" class="lotus-btn form-detail-delete">删除</view>
 	</view>
 </template>
 
@@ -59,12 +62,29 @@
 				const tempUrl = `${this.$lotusUtils.webUrl.api}${imageList.imgUrl}`;
 				imgUrlList .push(tempUrl);
 				this.$lotusUtils.imagesPreviewer(imgUrlList);
+			},
+			//删除表单
+			deleteForm(){
+				const _this = this;
+				this.$lotusUtils.ajax(`${_this.$lotusUtils.webUrl.api}buy/delete`,'POST',{
+					id:_this.buyFormId
+				}).then((response)=>{
+					if(response.code === 1){
+						uni.showToast({
+							icon:"none",
+							title:"删除成功",
+							success() {
+								uni.switchTab({
+									url:"/pages/userCenter/userCenter"
+								})
+							}
+						})
+					}
+				})
 			}
 		},
 		onLoad(options) {
-			console.log(options.id);
 			this.buyFormId = options.id;
-			
 		},
 		onShow(){
 			//判断是否获取到表单id
