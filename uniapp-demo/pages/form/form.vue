@@ -53,7 +53,7 @@
 				<text class="fill-form-item-l-red">*</text><text>地址：</text>
 			</view>
 			<view class="fill-form-item-r">
-				<textarea style="width:580upx;" v-model="userAddress" maxlength="500" auto-height value="" placeholder="请输入收货人地址" />
+				<textarea style="width:580upx;" v-model="userAddress" maxlength="500" auto-height placeholder="请输入收货人地址" />
 			</view>
 		</view>
 		<view class="fill-form-item" style="padding-bottom: 0;">
@@ -64,7 +64,6 @@
 				<text v-if="imageList.length" class="fill-form-item-tips">图片点击可以预览</text>
 				<view class="fill-form-item-img-list">
 					<view v-for="(itemList,index) in imageList" :key="index" class="fill-form-item-img-wrap">
-						<!-- <image @tap="imgPreviewer(itemList);" class="fill-form-item-img" :src="$lotusUtils.webUrl.api+itemList.imgUrl" mode="aspectFit"></image> -->
 						<image @tap="imgPreviewer(itemList);" class="fill-form-item-img" :src="imgWebUrl+itemList.imgUrl" mode="aspectFit"></image>
 						<view @tap="deleteImg(imageList,index);" class="fill-form-item-delete"></view>
 					</view>
@@ -102,7 +101,7 @@
 			openCamera(index){
 				const _this = this;
 				uni.chooseImage({
-					count: 2, //默认9
+					count: 1, //默认1只选一张
 					sizeType: ['compressed'], //可以指定是原图还是压缩图，默认二者都有
 					success: function (res) {
 						const imgList = res.tempFilePaths[0];
@@ -139,8 +138,10 @@
 				const imgName = `${imageList[index].imgName}.jpg`;
 				//删除图片api
 				_this.$lotusUtils.ajax(`${_this.$lotusUtils.webUrl.api}upLoad/imageDelete`,'POST',{
-					imgName
+					imgName,
+					buyFormId:_this.formId
 				}).then((response)=>{
+					console.log(JSON.stringify(response));
 					//删除成功
 					if(response.code === 1){
 						imageList.splice(index,1);
@@ -195,7 +196,7 @@
 					};
 				}
 				this.$lotusUtils.ajax(url,'POST',upDateObj).then((response)=>{
-					console.log(JSON.stringify(response));
+					//console.log(JSON.stringify(response));
 					if(response.code === 1){
 						uni.showToast({
 							title:'提交成功',
@@ -264,10 +265,6 @@
 				//验证通过返回true
 				return true;
 			},
-			//图片上传
-			upLoadImg(file){
-				return this.$lotusUtils.ajax(`${this.$lotusUtils.webUrl.api}upLoad/image`,'POST',file,'multipart/form-data');
-			},
 			//获取表单详情
 			getFormDetail(){
 				const _this = this;
@@ -279,12 +276,12 @@
 						_this.buyFormData = res.buyFormData;
 						_this.imageList = res.buyFormData.imageList;
 						_this.productName = res.buyFormData.productName;
-						_this.productSpec= res.buyFormData.productSpec;
+						_this.productSpec = res.buyFormData.productSpec;
 						_this.factory = res.buyFormData.factory;
 						_this.amount = res.buyFormData.amount;
-						_this.userName= res.buyFormData.userName;
-						_this.userPhone= res.buyFormData.userPhone;
-						_this.userAddress= res.buyFormData.userAddress;
+						_this.userName = res.buyFormData.userName;
+						_this.userPhone = res.buyFormData.userPhone;
+						_this.userAddress = res.buyFormData.userAddress;
 						//设置导航条标题
 						uni.setNavigationBarTitle({
 							title: `${res.buyFormData.productName}`

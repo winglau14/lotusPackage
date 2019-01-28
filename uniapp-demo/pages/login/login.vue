@@ -69,7 +69,7 @@
 				clearTimeout(this.loginTime);
 				this.loginTime = setTimeout(()=>{
 					this.loginType(type);
-				},200);
+				},160);
 			}
 		},
 		onLoad() {

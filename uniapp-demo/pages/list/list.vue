@@ -67,6 +67,8 @@
 						}
 						//暂无数据的标识判断
 						_this.listArray.length?_this.noDataFlag= false:_this.noDataFlag=true;
+					}else{
+						_this.noDataFlag = true;
 					}
 				});
 			},

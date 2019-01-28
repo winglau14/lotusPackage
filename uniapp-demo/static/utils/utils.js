@@ -1,9 +1,9 @@
 const lotusUtils = {
 	webUrl: {
-		api: 'http://192.168.1.143:3001/', //http://bngapi.winglau14.com/
-		imgUrl:'http://192.168.1.143:3001',//http://bngapi.winglau14.com
-		/* api: 'http://bngapi.winglau14.com/', //生产环境url
-		imgUrl:'http://bngapi.winglau14.com' */
+		/* api: 'http://192.168.1.143:3001/', //http://bngapi.winglau14.com/开发环境url
+		imgUrl: 'http://192.168.1.143:3001', //http://bngapi.winglau14.com */
+		api: 'http://bngapi.winglau14.com/', //生产环境url
+		imgUrl:'http://bngapi.winglau14.com'
 	},
 	//第三方登录
 	wxLoginFn(type) {
@@ -27,7 +27,7 @@ const lotusUtils = {
 											icon: 'none'
 										}); */
 										if (infoRes.errMsg.indexOf("getUserInfo:ok") > -1) {
-											if(type === 'qq'){
+											if (type === 'qq') {
 												//头像字段重新赋值
 												infoRes.userInfo.avatarUrl = infoRes.userInfo.figureurl_qq_2;
 											}
@@ -102,18 +102,19 @@ const lotusUtils = {
 		})
 	},
 	//接口请求封装url=>api请求url,method=>请求的方法GET OR POST,options=>api请求data参数
-	ajax(url, method, options,contentType) {
+	ajax(url, method, options, contentType) {
 		uni.showLoading({
 			title: '加载中',
 			mask: true
 		});
+
 		return new Promise((resolve, reject) => {
 			uni.request({
 				url: url, //api接口地址。
 				method: method,
 				data: options,
 				header: {
-					'content-type': contentType||'application/x-www-form-urlencoded', //自定义请求头信息
+					'content-type': contentType || 'application/x-www-form-urlencoded', //自定义请求头信息
 				},
 				success: (res) => {
 					uni.hideLoading();

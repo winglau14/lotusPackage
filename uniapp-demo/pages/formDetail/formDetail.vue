@@ -29,12 +29,16 @@
 			<text>{{buyFormData.userAddress}}</text>
 		</view>
 		<view v-if="imageList.length>0" class="form-detail-item">
-			<text>附件：</text>
+			<view>附件：<text class="form-detail-item-tips">图片点击可以预览</text></view>
 			<view class="form-detail-img-list">
 				<image @tap="imgPreviewer(item)" v-for="(item,index) in imageList" :key="index" :src="webUrl+item.imgUrl" mode="aspectFit"></image>
 			</view>
 		</view>
-		<navigator class="lotus-btn form-detail-btn" :url="'/pages/form/form?id='+buyFormId">编辑</navigator>
+		<view class="form-detail-fix">
+			<view class="form-detail-fix-wrap">
+				<navigator class="lotus-btn form-detail-fix-btn" :url="'/pages/form/form?id='+buyFormId">编辑</navigator>
+			</view>
+		</view>
 	</view>
 </template>
 
@@ -58,15 +62,16 @@
 			}
 		},
 		onLoad(options) {
-			const _this = this;
-			//判断是否获取到表单id
-			if(options.id === 'undefined'){
-				return false;
-			}
+			console.log(options.id);
 			this.buyFormId = options.id;
 			
 		},
 		onShow(){
+			//判断是否获取到表单id
+			if(!this.buyFormId){
+				return false;
+			}
+			const _this = this;
 			this.$lotusUtils.ajax(`${_this.$lotusUtils.webUrl.api}buy/detail`,'GET',{
 				buyFormId:_this.buyFormId
 			}).then((response)=>{

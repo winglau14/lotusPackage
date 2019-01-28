@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "imgfile2base64": "^0.1.4",
+    "lrz": "^4.9.40",
     "moment": "^2.24.0"
   }
 }

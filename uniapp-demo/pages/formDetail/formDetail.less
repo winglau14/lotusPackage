@@ -13,6 +13,10 @@
 	 &::before{
 		 .setBottomLine(#eee);
 	 }
+	 &-tips{
+		 color:#666;
+		 font-size:24upx;
+	 }
  }
  &-img-list{
 	 .flex();
@@ -26,15 +30,29 @@
 		 margin:20upx 30upx;
 	 }
  }
- &-btn{
-	 font-size: 30upx;
-	 color:#fff;
-	 text-align: center;
-	 border-radius: 10upx;
-	 display: block;
-	 line-height: 92upx;
+
+ &-fix{
+ 	height:204upx;
+ 	&-wrap{
+ 		position: fixed;
+ 		left:0;
+ 		bottom:0;
+ 		width:100%;
+ 		z-index:14;
+ 		background: #fff;
+ 		&::before{
+ 			.setTopLine(#dbdbdb);
+ 		}
+ 	}
+ 	&-btn{
+ 		 font-size: 36upx;
+ 		 color:#fff;
+ 		 text-align: center;
+ 		 border-radius: 10upx;
+ 		 display: block;
+ 		 line-height: 92upx;
+ 	}
  }
- 
  
  
 }
