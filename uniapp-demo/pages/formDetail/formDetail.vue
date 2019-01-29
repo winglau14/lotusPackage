@@ -34,12 +34,6 @@
 				<image @tap="imgPreviewer(item)" v-for="(item,index) in imageList" :key="index" :src="webUrl+item.imgUrl" mode="aspectFit"></image>
 			</view>
 		</view>
-		
-		<!-- <view class="form-detail-fix">
-			<view class="form-detail-fix-wrap">
-				<navigator class="lotus-btn form-detail-fix-btn" :url="'/pages/form/form?id='+buyFormId">编辑</navigator>
-			</view>
-		</view> -->
 		<navigator class="lotus-btn form-detail-btn" :url="'/pages/form/form?id='+buyFormId">编辑</navigator>
 		<view @tap="deleteForm" class="lotus-btn form-detail-delete">删除</view>
 	</view>
@@ -85,8 +79,6 @@
 		},
 		onLoad(options) {
 			this.buyFormId = options.id;
-		},
-		onShow(){
 			//判断是否获取到表单id
 			if(!this.buyFormId){
 				return false;
@@ -105,6 +97,9 @@
 					});
 				}
 			});
+		},
+		onShow(){
+			
 		}
 	}
 </script>
