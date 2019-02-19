@@ -8,35 +8,7 @@
 
 ;(function(window, document, undefined) {
     var lotusPagination = {
-        /*config:{
-            index:0,
-            totalNum:20,
-            showPageSize:2,
-            maxShowNum:7,
-            parentDom:'lotus-pagination',
-            leftPageTotal:'lotus-pagination-total-num',
-            domItemList:'lotus-pagination-list-item',
-            prevBtn:'lotus-pagination-list-prev',
-            nextBtn:'lotus-pagination-list-next',
-            enSureBtn:'lotus-pagination-list-ensure',
-            curNum:'lotus-pagination-list-cur',
-            rightPageTotal:'lotus-pagination-list-total',
-            callback:function (errors) {
-            }
-        },*/
         init: function (options) {
-            //参数判断与合并
-            /*if(!options){
-                options = this.config;
-            }else{
-                for(var key in options){
-                    this.config[key] = options[key];
-                }
-                console.log(this.config);
-                options = this.config;
-
-            }*/
-           // console.log(lotusPagination.config);
             var parentDom = document.getElementById(options.parentDom);
             var showPageTotalNum = document.getElementById(options.leftPageTotal);
             var dom = document.getElementById(options.domItemList);
@@ -56,12 +28,12 @@
             }else{
 				parentDom.style.display = 'none';
 			}
-			console.log(lotusPagination);
+			//console.log(lotusPagination);
             //前台页面共有多少条数据显示
             showPageTotalNum.innerText = options.totalNum;
             showTotalNum.innerText = '共' + totalPage + '页';
             curNum.value = options.index + 1;
-            console.log(totalPage);
+            //console.log(totalPage);
             //生成翻页item
             function createDom(page) {
                 //console.log(page, lotusPagination.index);
@@ -193,6 +165,10 @@
                 };
                 //确定跳转
                 enSureBtn.onclick = function () {
+                    //判断options.index === parseInt(curNum.value)-1 相等不用执行回调函数
+                    if(options.index === parseInt(curNum.value)-1){
+                        return false;
+                    }
                     options.index = parseInt(curNum.value) - 1;
                     //页码数据重组
                     pageCommonFn();
@@ -202,7 +178,7 @@
                     }
                 };
                 //输入框判断
-                curNum.onkeyup = function () {
+                curNum.onkeyup = function (event) {
                     var reg = /^[1-9]$|^[1-9]\d{1,}$/g;
                     if(!reg.test(this.value)){
                         this.value = 1;
@@ -210,7 +186,17 @@
                     if (this.value > totalPage) {
                         this.value = totalPage;
                     }
-                }
+                    //按enter键执行回调函数
+                    if(event.keyCode === 13){
+                        options.index = parseInt(curNum.value) - 1;
+                        //页码数据重组
+                        pageCommonFn();
+                        //回调函数
+                        if (options) {
+                            options.callback(options.index);
+                        }
+                    }
+                };
             }
             //初始化页码数据
             createDom(totalPage > options.maxShowNum ? options.maxShowNum : totalPage);
