@@ -97,37 +97,60 @@
 			};
 		},
 		methods:{
+			//图片压缩
+			compressImage(imageUrl){
+				return new Promise((resolve,reject)=>{
+					plus.zip.compressImage({
+							src:imageUrl,
+							dst:imageUrl,
+							quality:40,
+							overwrite:true
+						},
+						function() {
+							resolve(imageUrl);
+							//console.log("Compress success!");
+						},function(error) {
+							console.log(JSON.stringify(error));
+					});
+				})
+			},
 			//打开相机
 			openCamera(index){
 				const _this = this;
 				uni.chooseImage({
 					count: 1, //默认1只选一张
-					sizeType: ['compressed'], //可以指定是原图还是压缩图，默认二者都有
+					//sizeType: ['compressed'], //可以指定是原图还是压缩图，默认二者都有
 					success: function (res) {
 						const imgList = res.tempFilePaths[0];
+						const t = imgList.split('/');
+						console.log(t[t.length-1]);
+						_this.compressImage(imgList).then((response)=>{
+							console.log(imgList);
+							uni.uploadFile({
+							    url: `${_this.$lotusUtils.webUrl.api}upLoad/image`, //仅为示例，非真实的接口地址
+							    filePath: response,
+							    name: 'file',
+							    formData: {
+							    },
+							    success: (uploadFileRes) => {
+									//uni.hideLoading();
+							        const result = JSON.parse(uploadFileRes.data);
+							        if(result.code === 1){
+							            const urlData = result.data;
+										_this.testUrl = _this.$lotusUtils.webUrl.api+urlData.imgUrl; 
+							            _this.imageList.push(urlData);
+							        }
+							    },
+							    fail:(error)=>{
+							        console.log(JSON.stringify(error));
+							    }
+							});
+						});
 						/* uni.showLoading({
 							title: '图片上传中',
 							mask: true
 						}); */
-						 uni.uploadFile({
-                            url: `${_this.$lotusUtils.webUrl.api}upLoad/image`, //仅为示例，非真实的接口地址
-                            filePath: imgList,
-                            name: 'file',
-                            formData: {
-                            },
-                            success: (uploadFileRes) => {
-								//uni.hideLoading();
-                                const result = JSON.parse(uploadFileRes.data);
-                                if(result.code === 1){
-                                    const urlData = result.data;
-									_this.testUrl = _this.$lotusUtils.webUrl.api+urlData.imgUrl; 
-                                    _this.imageList.push(urlData);
-                                }
-                            },
-                            fail:(error)=>{
-                                console.log(JSON.stringify(error));
-                            }
-                        });
+						 
 						
 					}
 				});

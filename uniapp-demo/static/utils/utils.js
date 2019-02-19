@@ -107,7 +107,6 @@ const lotusUtils = {
 			title: '加载中',
 			mask: true
 		});
-
 		return new Promise((resolve, reject) => {
 			uni.request({
 				url: url, //api接口地址。
