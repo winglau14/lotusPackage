@@ -188,6 +188,10 @@
                     }
                     //按enter键执行回调函数
                     if(event.keyCode === 13){
+                        //判断options.index === parseInt(curNum.value)-1 相等不用执行回调函数
+                        if(options.index === parseInt(curNum.value)-1){
+                            return false;
+                        }
                         options.index = parseInt(curNum.value) - 1;
                         //页码数据重组
                         pageCommonFn();
