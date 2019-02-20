@@ -17,7 +17,7 @@
         <div class="lotus-pagination-list-item" id="lotus-pagination-list-item"></div>
         <a id="lotus-pagination-list-next" href="javascript:void(0);">下一页 ></a>
         <span class="lotus-pagination-list-total" id="lotus-pagination-list-total"></span>
-        <span class="lotus-pagination-list-go">到第 <input id="lotus-pagination-list-cur" value="1" type="text"> 页</span>
+        <span class="lotus-pagination-list-go">到第 <label><input id="lotus-pagination-list-cur" value="1" type="text"></label> 页</span>
         <span class="lotus-pagination-list-ensure" id="lotus-pagination-list-ensure">确定</span>
     </div>
 </div>
@@ -28,7 +28,7 @@
         <div class="lotus-pagination-list-item" id="lotus-pagination-list-item1"></div>
         <a id="lotus-pagination-list-next1" href="javascript:void(0);">下一页 ></a>
         <span class="lotus-pagination-list-total" id="lotus-pagination-list-total1"></span>
-        <span class="lotus-pagination-list-go">到第 <input id="lotus-pagination-list-cur1" value="1" type="text"> 页</span>
+        <span class="lotus-pagination-list-go">到第 <label><input id="lotus-pagination-list-cur1" value="1" type="text"> 页</label></span>
         <span class="lotus-pagination-list-ensure" id="lotus-pagination-list-ensure1">确定</span>
     </div>
 </div>
@@ -48,15 +48,15 @@
         enSureBtn:'lotus-pagination-list-ensure',
         curNum:'lotus-pagination-list-cur',
         rightPageTotal:'lotus-pagination-list-total',
-        //hideLeftPageTotal:true,
+        hideLeftPageTotal:true,
         callback:function(response){
             console.log('选择第'+(response+1)+'页');
             test(response);
         }
     });
     //回调函数
-    function test(obj){
-
+    function test(res){
+        console.log(`执行了回调：当前点击页码:${res+1}`);
     }
     lotusPagination.init({
         index: 0,//翻页索引值
