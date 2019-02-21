@@ -22,7 +22,8 @@
     "Contacts": {},
     "Fingerprint": {},
     "Speech": {},
-    "OAuth": {}
+    "OAuth": {},
+    "Share": {}
   },
   "plus": {
     "useragent": {
@@ -32,7 +33,7 @@
     "splashscreen": {
       "target": "id:1",
       "autoclose": true,
-      "waiting": true,
+      "waiting": false,
       "delay": 0
     },
     "popGesture": "close",
@@ -47,9 +48,9 @@
     "distribute": {
       "icons": {
         "android": {
-          "xhdpi": "C:/Users/Dell/Desktop/images/mipmap-mdpi/W.png",
-          "xxhdpi": "C:/Users/Dell/Desktop/images/mipmap-hdpi/W.png",
-          "xxxhdpi": "C:/Users/Dell/Desktop/images/mipmap-xhdpi/W.png"
+          "xhdpi": "static/images/app-icon/mipmap-mdpi/W.png",
+          "xxhdpi": "static/images/app-icon/mipmap-hdpi/W.png",
+          "xxxhdpi": "static/images/app-icon/mipmap-xhdpi/W.png"
         }
       },
       "google": {
@@ -88,11 +89,17 @@
         },
         "oauth": {
           "weixin": {
-            "appid": "wxd298d25b6cb7925a",
-            "appsecret": "5509d88f318a024d5d1007e8dff56bff"
+            "appid": "wxee1d7f63e20f9205",
+            "appsecret": "eccb375437a6f54eac00ca13e34e1ff5"
           },
           "qq": {
             "appid": "101548262"
+          }
+        },
+        "share": {
+          "weixin": {
+            "appid": "wxee1d7f63e20f9205",
+            "appsecret": "eccb375437a6f54eac00ca13e34e1ff5"
           }
         },
         "audio": {
@@ -102,6 +109,12 @@
         }
       }
     },
-    "allowsInlineMediaPlayback": true
+    "allowsInlineMediaPlayback": true,
+    "safearea": {
+      "background": "#FFFFFF",
+      "bottom": {
+        "offset": "auto"
+      }
+    }
   }
 }

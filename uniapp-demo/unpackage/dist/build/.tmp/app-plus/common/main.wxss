@@ -13,9 +13,32 @@
 
 
 
+/*主标题*/
+.font-color1{
+	color:#191919;
+}
+/*副标题*/
+.font-color2{
+	color:#7f7f7f;
+}
+.lotus-wrap{
+	background: #f2f2f2;
+}
 /*每个页面公共css */
 .lotus-btn{
 	background-color: #13a3ff !important;
 	margin: 60rpx 100rpx;
+}
+uni-toast .uni-toast{
+	width:140rpx !important;
+}
+uni-toast .uni-toast__content{
+	font-size: 26rpx !important;
+	margin: 0 0 26rpx !important;
+}
+uni-toast .uni-icon_toast.uni-loading{
+	width:60rpx !important;
+	height:60rpx !important;
+	margin:22rpx 0 0 !important;
 }
 

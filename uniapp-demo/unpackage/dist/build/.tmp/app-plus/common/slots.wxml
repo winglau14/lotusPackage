@@ -1,1 +1,4 @@
+<import src="/components/lotusSplash/LotusSplash.vue.wxml" />
+<import src="/components/lotusLoadMoreText/LotusLoadMoreText.vue.wxml" />
+<import src="/components/lotusConfirm/LotusConfirm.vue.wxml" />
 

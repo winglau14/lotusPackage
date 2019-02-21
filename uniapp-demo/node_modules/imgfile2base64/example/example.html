@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../index.js"></script>
+</head>
+<body>
+<input id="file" type="file"/>
+<img id="img" src=""/>
+<script>
+    document.getElementById('file').addEventListener('change',
+        function (e) {
+            var file = e.target.files[0];
+            imgfile2base64(file, function (base64) {
+                document.getElementById('img').setAttribute('src', base64);
+            }, {
+                width: 100,
+                quality: 0.5
+            });
+        }
+    )
+</script>
+</body>
+</html>
