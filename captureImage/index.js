@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path'); //系统路径模块
 const app = express();
 const request = require('request');
 const cheerio = require('cheerio');
@@ -46,7 +47,7 @@ const saveImg = function(dirName,imgUrlList,res){
                 }).catch(err => {
                     console.error(err);
                 });
-        },500);
+        },300);
     });
 };
 //图片下载来源选择
@@ -70,13 +71,14 @@ function requestType(url,type,res1,dirName1,imgSize){
             }
         });
     }else if(type === 'aljk'){
+        console.log(type);
         puppeteer.launch().then(async browser => {
             const page = await browser.newPage();
             await page.goto(`${url}`);
-            setTimeout(async()=>{
+            setTimeout(async ()=>{
                 const html = await page.$eval("#J_UlThumb",ele=>ele.innerHTML);
                 //console.log(html);
-                const reg = /"\/\/.*"/g;
+                const reg = /"\/\/.*\.jpg"/g;
                 const t = html.match(reg);
                 t.map((item)=>{
                     item = item.replace('"','https:').replace('60x60',`${imgSize}x${imgSize}`).replace('"','');
@@ -85,7 +87,7 @@ function requestType(url,type,res1,dirName1,imgSize){
                 //console.log(imgUrlList);
                 saveImg('./static/'+dirName1,imgUrlList,res1);
                 await browser.close();
-            },200);
+            },300);
         });
     }
 }
@@ -120,9 +122,8 @@ app.use('*', function(req, res){
 });
 
 
-
 //开启服务
-app.listen(process.env.PORT || 3111, function () {
+app.listen(process.env.PORT || 3100, function () {
     console.log('listen port:3100');
 });
 
