@@ -47,7 +47,7 @@ const saveImg = function(dirName,imgUrlList,res){
                 }).catch(err => {
                     console.error(err);
                 });
-        },300);
+        },1000);
     });
 };
 //图片下载来源选择
@@ -87,7 +87,7 @@ function requestType(url,type,res1,dirName1,imgSize){
                 //console.log(imgUrlList);
                 saveImg('./static/'+dirName1,imgUrlList,res1);
                 await browser.close();
-            },300);
+            },1000);
         });
     }
 }
