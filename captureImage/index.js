@@ -73,17 +73,19 @@ function requestType(url,type,res1,dirName1,imgSize){
         puppeteer.launch().then(async browser => {
             const page = await browser.newPage();
             await page.goto(`${url}`);
-            const html = await page.$eval("#J_UlThumb",ele=>ele.innerHTML);
-            //console.log(html);
-            const reg = /"\/\/.*"/g;
-            const t = html.match(reg);
-            t.map((item)=>{
-                item = item.replace('"','https:').replace('60x60',`${imgSize}x${imgSize}`).replace('"','');
-                imgUrlList.push(item);
-            });
-            //console.log(imgUrlList);
-            saveImg('./static/'+dirName1,imgUrlList,res1);
-            await browser.close();
+            setTimeout(async()=>{
+                const html = await page.$eval("#J_UlThumb",ele=>ele.innerHTML);
+                //console.log(html);
+                const reg = /"\/\/.*"/g;
+                const t = html.match(reg);
+                t.map((item)=>{
+                    item = item.replace('"','https:').replace('60x60',`${imgSize}x${imgSize}`).replace('"','');
+                    imgUrlList.push(item);
+                });
+                //console.log(imgUrlList);
+                saveImg('./static/'+dirName1,imgUrlList,res1);
+                await browser.close();
+            },200);
         });
     }
 }
@@ -113,14 +115,14 @@ app.get('/delete',function(req,res){
         });
     });
 });
-app.use('/', function(req, res){
+app.use('*', function(req, res){
     res.sendFile(__dirname+'/index.html');
 });
 
 
 
 //开启服务
-app.listen(process.env.PORT || 3100, function () {
+app.listen(process.env.PORT || 3111, function () {
     console.log('listen port:3100');
 });
 
