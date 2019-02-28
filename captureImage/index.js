@@ -70,6 +70,22 @@ function requestType(url,type,res1,dirName1,imgSize){
                 saveImg('./static/'+dirName,imgUrlList,res1);
             }
         });
+    }if(type === 'jd'){
+        request(url,function(err,res,body){
+            const t = url.split('/');
+            const dirName = dirName1||t[t.length-1].replace('.html','');
+            //console.log(url);
+            if(!err && res.statusCode === 200){
+                const $ = cheerio.load(body);
+                //京东图片下载
+                $(".spec-list li").each(function(){
+                    const imgUrl = 'https:'+$(this).find("img").attr("src").replace('/n5/',`/n1/`);
+                    imgUrlList.push(imgUrl);
+                });
+                //console.log(imgUrlList);
+                saveImg('./static/'+dirName,imgUrlList,res1);
+            }
+        });
     }else if(type === 'aljk'){
         console.log(type);
         puppeteer.launch().then(async browser => {
@@ -108,6 +124,15 @@ app.post('/aljk',function(req,res){
     const imgSize = req.body.imgSize||'500';
     //阿里健康下载
     requestType(url,'aljk',res,dirName,imgSize);
+});
+//京东下载
+app.post('/jd',function(req,res){
+    const url = req.body.url;
+    const dirName = req.body.dirName;
+    const imgSize = req.body.imgSize||'500';
+    //console.log(url);
+    //京东下载
+    requestType(url,'jd',res,dirName,imgSize);
 });
 //删除文件
 app.get('/delete',function(req,res){
