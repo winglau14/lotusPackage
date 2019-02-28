@@ -1,5 +1,4 @@
 const webpack = require('webpack');
-//const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -148,7 +147,7 @@ let WebpackConfig = {
             filename:'static/js/vendors.js',
             chunks: chunks,
             minChunks: 2||chunks.length // 提取所有entry共同依赖的模块
-        }),
+        })
     ],
     resolve:{
         alias:{
@@ -168,4 +167,5 @@ for(let item in pages){
     };
     WebpackConfig.plugins.push(new HtmlWebpackPlugin(conf));
 }
+console.log(process.env.NODE_ENV);
 module.exports = WebpackConfig;
