@@ -1,0 +1,26 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*每个页面公共css */
+.van-search .van-cell{
+	 -webkit-box-align: center;
+	 -webkit-align-items: center;
+	     -ms-flex-align: center;
+	         align-items: center;
+}
+.van-swipe__indicators{
+	bottom:40rpx !important;
+}
+

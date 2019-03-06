@@ -1,0 +1,124 @@
+.manga-detail-top {
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  background: #fbfbfb;
+  padding: 20upx 30upx;
+}
+.manga-detail-top-pic {
+  width: 210upx;
+  height: 280upx;
+}
+.manga-detail-top-msg {
+  padding-left: 40upx;
+}
+.manga-detail-top-title1 {
+  font-size: 40upx;
+  padding-bottom: 10upx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  white-space: nowrap;
+}
+.manga-detail-top-title2 {
+  font-size: 28upx;
+  color: #969696;
+}
+.manga-detail-module {
+  line-height: 90upx;
+  font-size: 30upx;
+  color: #969696;
+  text-align: center;
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.manga-detail-module:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1px solid #eee;
+  color: #eee;
+  transform-origin: 0 100%;
+  transform: scaleY(0.5);
+}
+.manga-detail-module-item {
+  display: block;
+  flex: 1;
+}
+.manga-detail-module-active {
+  color: #333;
+}
+.manga-detail-tab1 {
+  padding: 30upx 50upx;
+  font-size: 28upx;
+  color: #969696;
+}
+.manga-detail-tab2,
+.manga-detail-tab3 {
+  padding: 30upx 0 30upx 0;
+}
+.manga-detail-tab2-total,
+.manga-detail-tab3-total {
+  font-size: 24upx;
+  color: #969696;
+  padding-left: 28upx;
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  padding-right: 28upx;
+}
+.manga-detail-tab2-px,
+.manga-detail-tab3-px {
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.manga-detail-list {
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-bottom: 60upx;
+}
+.manga-detail-link {
+  border: 1px solid #dbdbdb;
+  margin-top: 40upx;
+  min-width: 210upx;
+  text-align: center;
+  font-size: 32upx;
+  color: #535252;
+  line-height: 90upx;
+  margin-left: 28upx;
+  border-radius: 10upx;
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.manga-detail-more {
+  border: 1px solid #dbdbdb;
+  margin-top: 40upx;
+  text-align: center;
+  font-size: 32upx;
+  color: #535252;
+  line-height: 90upx;
+  margin: 0 28upx 40upx;
+  border-radius: 10upx;
+}

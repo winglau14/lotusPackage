@@ -1,0 +1,48 @@
+@import (reference) '../../static/style/config.less';
+@import (reference) '../../static/style/set1Px.less';
+@lotus: manga-filter;
+.@{lotus}{
+ &-item{
+	position: relative;
+	padding:30upx;
+	.flex();
+	.flex-hvc();
+	justify-content: flex-start;
+	&:after{
+		.setBottomLine(#eee);
+	}
+ }
+ &-pic{
+	 width:210upx;
+	 height:280upx;
+ }
+ &-intor{
+	 width:500upx;
+	 padding-left:30upx;
+ }
+ &-txt1{
+	 font-size: 34upx;
+	 display: block;
+	 padding-bottom:8upx;
+ }
+ &-txt2{
+ 	 font-size: 26upx;
+	 color:#969696;
+	 display: block;
+	 padding-bottom:8upx;
+ }
+ &-tag{
+	 font-size: 24upx;
+	 color:#969696;
+	 padding-bottom:8upx;
+	 display: block;
+ }
+ &-txt3{
+ 	font-size: 26upx;
+ 	color:#969696;
+	.flex();
+	.text-elipsis-lines(1);
+ }
+ 
+ 
+}

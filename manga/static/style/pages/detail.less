@@ -1,0 +1,102 @@
+@import (reference) '../config.less';
+@import (reference) '../set1Px.less';
+@lotus: manga-detail;
+.@{lotus}{
+	&-top{
+		.flex();
+		.flex-hc();
+		background: #fbfbfb;
+		padding:20upx 30upx;
+		&-pic{
+			width:210upx;
+			height:280upx;
+		}
+		&-msg{
+			padding-left:40upx;
+		}
+		&-title1{
+			font-size:40upx;
+			padding-bottom: 10upx;
+			.text-elipsis-lines(1);
+			white-space: nowrap;
+		}
+		&-title2{
+			font-size:28upx;
+			color:#969696;
+		}
+	}
+	&-module{
+		line-height: 90upx;
+		font-size: 30upx;
+		color:#969696;
+		text-align: center;
+		.flex();
+		.flex-hvc();
+		position: relative;
+		&:before{
+			.setBottomLine(#eee);
+		}
+		&-item{
+			display: block;
+			.flexN(1);
+		}
+		&-active{
+			color:#333;
+		}
+	}
+	&-tab1{
+		padding:30upx 50upx;
+		font-size: 28upx;
+		color:#969696;
+	}
+	&-tab2,&-tab3{
+		padding:30upx 0 30upx 0;
+		&-total{
+			font-size: 24upx;
+			color:#969696;
+			padding-left: 28upx;
+			.flex();
+			.flex-hvc();
+			justify-content: space-between;
+			padding-right: 28upx;
+		}
+		&-px{
+			.flex();
+			.flex-hvc();
+		}
+	}
+	&-list{
+		.flex();
+		.flex-hc();
+		flex-wrap: wrap;
+		padding-bottom: 60upx;
+	}
+	&-link{
+		border:1px solid #dbdbdb;
+		margin-top: 40upx;
+		min-width:210upx;
+		text-align: center;
+		font-size: 32upx;
+		color:#535252;
+		line-height: 90upx;
+		margin-left:28upx;
+		border-radius: 10upx;
+		.flex();
+		.flex-hvc();
+	}
+	&-more{
+		border:1px solid #dbdbdb;
+		margin-top: 40upx;
+		text-align: center;
+		font-size: 32upx;
+		color:#535252;
+		line-height: 90upx;
+		margin:0 28upx 40upx;
+		border-radius: 10upx;
+	}
+	
+	
+	
+	
+	
+}
