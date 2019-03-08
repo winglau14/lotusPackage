@@ -40,6 +40,25 @@
   background: #ff9a00;
   filter: blur(0upx);
 }
+.manga-view-top {
+  position: fixed;
+  right: 40upx;
+  bottom: 300upx;
+  z-index: 999;
+  width: 70upx;
+  height: 70upx;
+  background: rgba(0, 0, 0, 0.5);
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.manga-view-top-pic {
+  width: 30upx;
+  height: 40upx;
+  vertical-align: middle;
+}
 uni-image {
   margin: 0 auto;
   display: block;

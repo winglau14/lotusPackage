@@ -1,10 +1,7 @@
 const lotusUtils = {
 	webUrl: {
-		/* api: 'http://192.168.1.143:3001/', //http://bngapi.winglau14.com/开发环境url
-		imgUrl: 'http://192.168.1.143:3001', //http://bngapi.winglau14.com */
-		api: 'http://192.168.1.76:3100/mApi/', //生产环境url
-		//api: 'https://express.winglau14.com/mApi',
-		imgUrl:'http://bngapi.winglau14.com'
+		//api: 'http://192.168.1.76:3100/mApi/', //开发环境url
+		api: 'https://express.winglau14.com/mApi/'//生产环境url
 	},
 	//第三方登录
 	wxLoginFn(type) {
@@ -103,11 +100,13 @@ const lotusUtils = {
 		})
 	},
 	//接口请求封装url=>api请求url,method=>请求的方法GET OR POST,options=>api请求data参数
-	ajax(url, method, options, contentType) {
+	ajax(url, method, options, showLoading,contentType) {
+		//显示加载中
 		uni.showLoading({
 			title: '加载中',
 			mask: true
 		});
+	
 		return new Promise((resolve, reject) => {
 			uni.request({
 				url: url, //api接口地址。
@@ -127,10 +126,6 @@ const lotusUtils = {
 					})
 				},
 				complete: (res) => {
-					/* uni.showToast({
-						title: `${JSON.stringify(res)}`,
-						icon: 'none'
-					}) */
 				}
 			});
 		});
@@ -171,9 +166,7 @@ const lotusUtils = {
 			return new Promise((resolve, reject) => {
 				try {
 					const value = uni.getStorageSync(sKey);
-					if (value) {
-						resolve(value);
-					}
+					resolve(value);
 				} catch (e) {
 					// error
 					resolve(false);

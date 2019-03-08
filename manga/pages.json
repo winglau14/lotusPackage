@@ -6,6 +6,28 @@
 				"navigationBarTitleText": "爱动漫"
 			}
 		},{
+			//跳转腾讯站点预览
+			"path": "pages/tempView/tempView",
+			"style": {
+				"navigationBarTitleText": "爱动漫"
+			}
+		},{
+			"path": "pages/categoryList/categoryList",
+			"style": {
+				"navigationBarTitleText": "爱动漫"
+			}
+		},{
+			"path": "pages/category/category",
+			"style": {
+				"navigationBarTitleText": "爱动漫"
+			}
+		},
+		{
+			"path": "pages/search/search",
+			"style": {
+				"navigationBarTitleText": "爱动漫"
+			}
+		},{
 			//首页分类更多
 			"path": "pages/filter/filter",
 			"style": {
@@ -28,5 +50,31 @@
 		"navigationBarTitleText": "爱动漫",
 		"navigationBarBackgroundColor": "#f8f8f8f8",
 		"backgroundColor": "#f0f0f6"
+	},
+	"tabBar" : {
+	    "color" : "#666",
+	    "selectedColor" : "#13A3FF",
+	    "backgroundColor" : "#fbfbfb",
+	    "borderStyle" : "black",
+	    "list" : [
+	        {
+	            "pagePath" : "pages/index/index",
+	            "text" : "首页",
+	            "iconPath" : "static/images/home-icon1.png", //iconfont 图片颜色bfbfbf
+	            "selectedIconPath" : "static/images/home-icon2.png"
+	        },
+	        {
+	            "pagePath" : "pages/category/category",
+	            "text" : "分类",
+	            "iconPath" : "static/images/category-icon1.png",
+	            "selectedIconPath" : "static/images/category-icon2.png"
+	        },
+	        {
+	            "pagePath" : "pages/search/search",
+	            "text" : "搜索",
+	            "iconPath" : "static/images/search-icon1.png",
+	            "selectedIconPath" : "static/images/search-icon2.png"
+	        }
+	    ]
 	}
 }

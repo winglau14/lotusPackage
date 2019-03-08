@@ -15,7 +15,7 @@
 					</swiper>
 				</view>
 				<!--category-->
-				<view class="manga-index-category">
+				<!-- <view class="manga-index-category">
 					<navigator class="manga-index-category-link" url="/">
 						<text class="manga-index-category-icon manga-index-category-icon1"></text>
 						<text>分类</text>
@@ -32,7 +32,7 @@
 						<text class="manga-index-category-icon manga-index-category-icon4"></text>
 						<text>历史</text>
 					</navigator>
-				</view>
+				</view> -->
 				<!--日漫经典-->
 				<view class="manga-index-module">
 					<view class="manga-index-module-title">
@@ -111,20 +111,31 @@
 					</view>
 				</view>
 				<view style="color:#969696;font-size: 30upx;text-align: center;padding-bottom: 40upx;">^_^爱动漫，给主人你想要的，应有尽有^_^</view>		
+				<!--广告位-->
+				<!--  #ifdef  H5 -->
+				<advModule :advData="advData"></advModule>
+				<!--  #endif -->
 	</view>
 </template>
 <style lang="less">
 	@import "../../static/style/pages/index.less";
 </style>
 <script>
+	import advModule from "../../components/advert/advert.vue";
 	export default {
 		data() {
 			return {
 				indexData:{},//首页数据源
 				jdData:{},//日漫经典
+				advData:{
+					href:'https://s.click.taobao.com/VoofrEw',
+					imgUrl:'http://img.alicdn.com/bao/uploaded/i2/1824693883/O1CN011eYSNt5WB7hCWkZ_!!1824693883.jpg',
+					title:'海贼王手办路飞索隆艾斯模型公仔动漫周边生日礼物男生二次元摆件'
+				}
 			}
 		},
 		components:{
+			advModule
 		},
 		onLoad() {
 			this.getDataList();
@@ -136,7 +147,7 @@
 				this.$lotusUtils.ajax(`${this.$lotusUtils.webUrl.api}`,'POST',{
 					uri:"Index/all",
 					options:JSON.stringify({})
-				},false).then((response)=>{
+				}).then((response)=>{
 					const res = response.data;
 					if(res){
 						_this.indexData = res;
@@ -152,7 +163,7 @@
 						filter:"japanComic",
 						page:1
 					})
-				},false).then((response)=>{
+				}).then((response)=>{
 					const res = response.data;
 					if(res){
 						_this.jdData = res.splice(0,6);

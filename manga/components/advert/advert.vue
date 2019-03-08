@@ -1,31 +1,31 @@
 <template>
-	<view class="manga-advert" v-html="jdAdvHtml"></view>
+	<view v-if="flag" class="manga-advert">
+		<image class="manga-advert-close" v-on:tap="clickClose" src="../../static/images/delete-icon.png" mode="aspectFit"></image>
+		<a class="manga-advert-link" :href="advData.href">
+			<image class="manga-advert-pic" :src="advData.imgUrl" mode="aspectFit"></image>
+			<span class="manga-advert-txt">{{advData.title}}</span>
+		</a>
+	</view>
 </template>
 
 <script>
-	let jd_union_unid="1001396773",jd_ad_ids="1455:6",jd_union_pid="CLevtoSVLRCltMDdAxoAILDPwLUGKgA=";
-	let jd_width=0;
-	let jd_height=0;
-	let jd_union_euid="";
-	let p="AhQEVhhbFAQUAmVEH0hfIlgRRgYlXVZaCCsfSlpMWGVEH0hfIl8XRyUPVk96ME8lXVBgWhNpEnN9UWdZF2sVBBIOXRtZEwAQN1UaWhUAGgBTHVklMk1DCEZrXmwTNwpfBkgyEgNRG1IXBxUDVB9fEjITN2Ur";
-	const jdAdv = require("./jdAdvert.js");
+	
 	export default {
+		props:['advData'],
 		data() {
 			return {
-				jdAdvHtml:''
+				flag:true
 			}
 		},
 		components:{
 		},
 		onLoad(options) {
-			jdAdvHtml = jdAdv;
-			console.log(jdAdv);
 		},
 		onShow() {},
 		onHide(){},
 		methods: {
-			getAdvert(){
-				
+			clickClose(){
+				this.flag = !this.flag;
 			}
 		}
 	}

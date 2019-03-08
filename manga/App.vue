@@ -27,4 +27,16 @@
 		padding-top: 40upx;
 		padding-bottom: 40upx;
 	}
+	uni-toast .uni-toast{
+		width:5em;
+		font-size: 14px;
+	}
+	uni-toast .uni-icon_toast.uni-loading{
+		margin:8px 0 0;
+		width:30px;
+		height:30px;
+	}
+	uni-toast .uni-toast__content{
+		margin:0 0 10px;
+	}
 </style>

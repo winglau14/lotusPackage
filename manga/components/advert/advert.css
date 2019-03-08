@@ -1,0 +1,38 @@
+.manga-advert {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  z-index: 998;
+  width: 300upx;
+  background: rgba(0, 0, 0, 0.5);
+  transform: translate(0, -50%, 0);
+}
+.manga-advert-pic {
+  width: 300upx;
+  height: 300upx;
+  display: block;
+}
+.manga-advert-txt {
+  color: #fff;
+  font-size: 24upx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  margin: 16upx;
+  text-align: center;
+}
+.manga-advert-link {
+  text-decoration: none;
+}
+.manga-advert-close {
+  width: 40upx;
+  height: 40upx;
+  display: block;
+  position: absolute;
+  left: 250upx;
+  top: -30upx;
+  z-index: 999;
+  background: transparent;
+}

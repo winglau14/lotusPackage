@@ -20,30 +20,42 @@
 			<!--目录-->
 			<view v-if="curIndex === 1" class="manga-detail-tab2">
 				<view class="manga-detail-tab2-total">
-				{{upDate}} 更新到{{detailData.lated_seqno}}话
+				{{upDate}} 更新到{{categoryArr.length}}话
 				<view v-if="pxFlag" v-on:tap="pxChange" class="manga-detail-tab2-px">
 					<image style="width:30upx;height:30upx;" :src="'/static/images/'+pxImg+'-icon.png'" mode="aspectFit"></image>{{pxText}}
 				</view>
 				</view>
 				<view class="manga-detail-list">
 					<view v-for="(item,index) in categoryArr" v-if="index<9&&watchMore" :key="index">
-						<navigator v-if="item.vip_state == 1&&index==0" class="manga-detail-link" :url="'/pages/view/view?type=0&id='+id+'&cid='+item.chapter_id+'&max='+maxChapter+'&prev='+item.prev+'&next='+item.next">
+						<navigator v-if="item.vip_state == 1&&index==0" class="manga-detail-link" :url="'/pages/view/view?type='+(item.type?item.type:'tx')+'&id='+id+'&cid='+item.chapter_id">
 							{{item.seq_no}}
 						</navigator>
-						<navigator v-if="item.vip_state == 1&&index>0" class="manga-detail-link" :url="'/pages/view/view?type=1&id='+id+'&cid='+item.chapter_id+'&max='+maxChapter+'&prev='+item.prev+'&next='+item.next">
+						<navigator v-if="item.vip_state == 1&&index>0" class="manga-detail-link" :url="'/pages/view/view?type='+(item.type?item.type:'tx')+'&id='+id+'&cid='+item.chapter_id">
 							{{item.seq_no}}
 						</navigator>
+						<!-- <navigator v-if="item.vip_state == 1&&index==0" class="manga-detail-link" :url="'/pages/tempView/tempView?id='+id+'&cid='+item.chapter_id">
+							{{item.seq_no}}
+						</navigator>
+						<navigator v-if="item.vip_state == 1&&index>0" class="manga-detail-link" :url="'/pages/tempView/tempView?id='+id+'&cid='+item.chapter_id">
+							{{item.seq_no}}
+						</navigator> -->
 						<view v-if="item.vip_state == 2" v-on:tap="copyrightFn"  class="manga-detail-link">
 							{{item.seq_no}}<image  style="width:40upx;height:40upx;" src="/static/images/lock-icon.png" mode="aspectFit"></image>
 						</view>
 					</view>
 					<view v-for="(item,index) in categoryArr" v-if="!watchMore" :key="index">
-						<navigator v-if="item.vip_state == 1&&index==0"  class="manga-detail-link" :url="'/pages/view/view?t=0&id='+id+'&cid='+item.chapter_id+'&max='+maxChapter+'&prev='+item.prev+'&next='+item.next">
+						<navigator v-if="item.vip_state == 1&&index==0"  class="manga-detail-link" :url="'/pages/view/view?t='+(item.type?item.type:'tx')+'&id='+id+'&cid='+item.chapter_id">
 							{{item.seq_no}}
 						</navigator>
-						<navigator v-if="item.vip_state == 1&&index>0"  class="manga-detail-link" :url="'/pages/view/view?t=1&id='+id+'&cid='+item.chapter_id+'&max='+maxChapter+'&prev='+item.prev+'&next='+item.next">
+						<navigator v-if="item.vip_state == 1&&index>0"  class="manga-detail-link" :url="'/pages/view/view?t='+(item.type?item.type:'tx')+'&id='+id+'&cid='+item.chapter_id">
 							{{item.seq_no}}
 						</navigator>
+						<!-- <navigator v-if="item.vip_state == 1&&index==0"  class="manga-detail-link" :url="'/pages/tempView/tempView?id='+id+'&cid='+item.chapter_id">
+							{{item.seq_no}}
+						</navigator>
+						<navigator v-if="item.vip_state == 1&&index>0"  class="manga-detail-link" :url="'/pages/tempView/tempView?id='+id+'&cid='+item.chapter_id">
+							{{item.seq_no}}
+						</navigator> -->
 						<view v-if="item.vip_state == 2" v-on:tap="copyrightFn" class="manga-detail-link">
 							{{item.seq_no}}<image  style="width:40upx;height:40upx;" src="/static/images/lock-icon.png" mode="aspectFit"></image>
 						</view>
@@ -62,6 +74,7 @@
 	@import "../../static/style/pages/detail.less";
 </style>
 <script>
+	import advModule from "../../components/advert/advert.vue";
 	export default {
 		data() {
 			return {
@@ -76,8 +89,16 @@
 				pxFlag:false,
 				pxImg:'down',
 				pxText:'正序',
-				maxChapter:0
+				maxChapter:0,
+				advData:{
+					href:'https://s.click.taobao.com/VoofrEw',
+					imgUrl:'http://img.alicdn.com/bao/uploaded/i2/1824693883/O1CN011eYSNt5WB7hCWkZ_!!1824693883.jpg',
+					title:'海贼王手办路飞索隆艾斯模型公仔动漫周边生日礼物男生二次元摆件'
+				}
 			}
+		},
+		components:{
+			advModule
 		},
 		onLoad(options) {
 			if(options.id){
@@ -124,7 +145,6 @@
 						id:_this.id
 					})
 				}).then((response)=>{
-					_this.test = JSON.stringify(response);
 					const res = response.data;
 					if(res){
 						_this.pageShow = true;
@@ -161,8 +181,10 @@
 						const t = res.update_time*1000;
 						const curT = new Date(t);
 						_this.upDate = `${curT.getFullYear()}-${(curT.getMonth()+1)<10?'0'+(curT.getMonth()+1):(curT.getMonth()+1)}-${curT.getDate()}`;
-						
-						
+						//海贼王更新标识
+						if(_this.id == '505430'){
+							_this.getDataList2();
+						}
 					}else{
 						//版权问题
 						uni.showModal({
@@ -173,6 +195,43 @@
 								uni.navigateBack();
 							}
 						});
+					}
+				})
+			},
+			getDataList2(){
+				const _this = this;
+				this.$lotusUtils.ajax(`${_this.$lotusUtils.webUrl.shApi}`,'POST',{
+					uri:"",
+					options:JSON.stringify({
+						id:_this.id
+					})
+				}).then((response)=>{
+					const res = response.data;
+					if(res){
+						const curObj = res.comicsIndexes['1'].nums;
+						let tempArr = [];
+						for(let i in curObj){
+							for(let b in curObj[i]){
+								tempArr.push(curObj[i][b]);
+							}
+						}
+						const shLen = tempArr.length;
+						const txLen = _this.categoryArr.length;
+						const len = shLen - txLen;
+						let lastArr = [];
+						for(let i = 0;i<=len-1;i++){
+							let tObj = {
+								chapter_id:0,
+								seq_no:i+txLen+1,
+								vip_state:1,
+								type:'sh'
+							}
+							if(tempArr[i+txLen].length === 2){
+								tObj.chapter_id = tempArr[i+txLen]['0']['id'];
+								lastArr.push(tObj);
+							}
+						}
+						_this.categoryArr = lastArr.concat(_this.categoryArr);
 					}
 				})
 			}
