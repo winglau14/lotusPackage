@@ -1,0 +1,35 @@
+@import (reference) '../../style/config.less';
+@import (reference) '../../style/set1Px.less';
+@lotus: manga-advert;
+.@{lotus}{
+ position: fixed;
+ right:0;
+ top:30%;
+ z-index: 998;
+ .widthSingle(300);
+ background: rgba(0,0,0,0.5);
+transform: translate(0,-50%,0);
+ &-pic{
+	 .width(300);
+	 display: block;
+ }
+ &-txt{
+	 color:#fff;
+	.fontSize(12);
+	 .text-elipsis-lines(1);
+	 .margin(8);
+	 text-align: center;
+ }
+ &-link{
+	text-decoration: none;
+ }
+ &-close{
+	 .width(40);
+	 display: block;
+	 position: absolute;
+	 .left(250);
+	 .top(-20);
+	 z-index: 999;
+	 background: transparent;
+ }
+}

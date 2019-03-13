@@ -24,6 +24,7 @@
 }
 .manga-view-wrap {
   position: relative;
+  box-sizing: border-box;
 }
 .manga-view-wrap:after {
   display: none;

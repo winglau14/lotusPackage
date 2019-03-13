@@ -1,0 +1,104 @@
+@import (reference) '../../static/style/config.less';
+@import (reference) '../../static/style/set1Px.less';
+@lotus: manga-search;
+.@{lotus}{
+	&-module{
+		background: #fbfbfb;
+		padding:20upx;
+		position: fixed;
+		left:0;
+		width:100%;
+		z-index:14;
+		.box-sizing();
+	}
+	&-left{
+		.flex();
+		.flex-hvc();
+		background: #ffff;
+		border-radius: 8upx;
+		padding:0 20upx;
+		margin-right:30upx;
+	}
+ &-form{
+	.flex();
+	.flex-hvc();
+	&-btn{
+		font-size: 30upx;
+		color:#969696;
+	}
+ }
+ &-input{
+	 width:460upx;
+	 padding:10upx 20upx;
+	 .flex();
+	 .flex-hvc();
+	 font-size: 30upx;
+ }
+ &-hot{
+	 padding:136upx 40upx;
+	 overflow: hidden;
+	 &-title{
+		 font-size:32upx;
+		 color:#969696;
+		 clear: both;
+		 display: block;
+	 }
+	 &-link{
+		 border:1px solid #dbdbdb;
+		 padding:20upx;
+		 margin-top:20upx;
+		 margin-right:30upx;
+		 float: left;
+		 font-size: 28upx;
+		 color:#333;
+		 border-radius: 10upx;
+		 min-width: 140upx;
+		 text-align: center;
+	 }
+ }
+ &-result{
+	 padding-top:116upx;
+	 &-item{
+	 	position: relative;
+	 	padding:30upx;
+	 	.flex();
+	 	.flex-hvc();
+	 	justify-content: flex-start;
+	 	&:after{
+	 		.setBottomLine(#eee);
+	 	}
+	 }
+	 &-pic{
+	 	 width:210upx;
+	 	 height:280upx;
+	 }
+	 &-intor{
+	 	 width:500upx;
+	 	 padding-left:30upx;
+	 }
+	 &-txt1{
+	 	 font-size: 34upx;
+	 	 display: block;
+	 	 padding-bottom:8upx;
+	 }
+	 &-txt2{
+	 	 font-size: 26upx;
+	 	 color:#969696;
+	 	 display: block;
+	 	 padding-bottom:8upx;
+	 }
+	 &-tag{
+	 	 font-size: 24upx;
+	 	 color:#969696;
+	 	 padding-bottom:8upx;
+	 	 display: block;
+	 }
+	 &-txt3{
+	 	font-size: 26upx;
+	 	color:#969696;
+	 	.flex();
+	 	.text-elipsis-lines(1);
+	 }
+ }
+ 
+}

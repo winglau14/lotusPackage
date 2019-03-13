@@ -1,0 +1,107 @@
+@import (reference) '../../../static/style/config.less';
+@import (reference) '../../../static/style/set1Px.less';
+@lotus: manga-search;
+.@{lotus}{
+	&-module{
+		background: #fbfbfb;
+		.padding(10);
+		position: fixed;
+		left:0;
+		width:100%;
+		z-index:14;
+		.box-sizing();
+	}
+	&-left{
+		.flex();
+		.flex-hvc();
+		background: #ffff;
+		.borderRadius(4);
+		.padding2(0,10);
+		.marginRight(15);
+	}
+ &-form{
+	.flex();
+	.flex-hvc();
+	&-btn{
+		.fontSize(15);
+		color:#969696;
+	}
+ }
+ &-input{
+	 .widthSingle(230);
+	 .padding2(5,10);
+	 .fontSize(15);
+	 .flex();
+	 .flex-hvc();
+	 border:0;
+	 border-radius: 0;
+	 outline: 0;
+ }
+ &-hot{
+	 .padding2(68,20);
+	 overflow: hidden;
+	 &-title{
+		.fontSize(16);
+		 color:#969696;
+		 clear: both;
+		 display: block;
+	 }
+	 &-link{
+		 border:1px solid #dbdbdb;
+		 .padding(10);
+		 .marginTop(10);
+		 .marginRight(15);
+		 float: left;
+		 .fontSize(14);
+		 color:#333;
+		 .borderRadius(5);
+		 .minWidth(70);
+		 text-align: center;
+	 }
+ }
+ &-result{
+	 .paddingTop(58);
+	 &-item{
+	 	position: relative;
+	 	.padding(15);
+	 	.flex();
+	 	.flex-hvc();
+	 	justify-content: flex-start;
+	 	&:after{
+	 		.setBottomLine(#eee);
+	 	}
+	 }
+	 &-pic{
+		 .widthSingle(105);
+		 .heightSingle(140);
+	 }
+	 &-intor{
+		 .widthSingle(250);
+		 .paddingLeft(15);
+	 }
+	 &-txt1{
+	 	 display: block;
+		 .fontSize(17);
+		 .paddingBottom(4);
+	 }
+	 &-txt2{
+	 	 color:#969696;
+	 	 display: block;
+		 .fontSize(13);
+		 .paddingBottom(4);
+	 }
+	 &-tag{
+	 	 color:#969696;
+	 	 display: block;
+		 .fontSize(12);
+		 .paddingBottom(4);
+	 }
+	 &-txt3{
+		 .fontSize(13);
+	 	color:#969696;
+	 	.flex();
+	 	.text-elipsis-lines(1);
+	 }
+ }
+ 
+}

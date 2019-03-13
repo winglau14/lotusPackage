@@ -1,0 +1,19 @@
+.lotus-to-top {
+  position: fixed;
+  right: 40upx;
+  bottom: 300upx;
+  z-index: 999;
+  width: 70upx;
+  height: 70upx;
+  background: rgba(0, 0, 0, 0.5);
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lotus-to-top-pic {
+  width: 30upx;
+  height: 40upx;
+  vertical-align: middle;
+}

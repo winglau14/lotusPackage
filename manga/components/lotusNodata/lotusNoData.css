@@ -1,0 +1,13 @@
+.lotus-no-data {
+  text-align: center;
+}
+.lotus-no-data-pic {
+  width: 272upx;
+  height: 498upx;
+  margin: 0 auto;
+  display: block;
+}
+.lotus-no-data-text {
+  font-size: 30upx;
+  color: #969696;
+}

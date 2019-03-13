@@ -1,0 +1,125 @@
+.manga-search-module {
+  background: #fbfbfb;
+  padding: 20upx;
+  position: fixed;
+  left: 0;
+  width: 100%;
+  z-index: 14;
+  box-sizing: border-box;
+}
+.manga-search-left {
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffff;
+  border-radius: 8upx;
+  padding: 0 20upx;
+  margin-right: 30upx;
+}
+.manga-search-form {
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.manga-search-form-btn {
+  font-size: 30upx;
+  color: #969696;
+}
+.manga-search-input {
+  width: 460upx;
+  padding: 10upx 20upx;
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30upx;
+}
+.manga-search-hot {
+  padding: 136upx 40upx;
+  overflow: hidden;
+}
+.manga-search-hot-title {
+  font-size: 32upx;
+  color: #969696;
+  clear: both;
+  display: block;
+}
+.manga-search-hot-link {
+  border: 1px solid #dbdbdb;
+  padding: 20upx;
+  margin-top: 20upx;
+  margin-right: 30upx;
+  float: left;
+  font-size: 28upx;
+  color: #333;
+  border-radius: 10upx;
+  min-width: 140upx;
+  text-align: center;
+}
+.manga-search-result {
+  padding-top: 116upx;
+}
+.manga-search-result-item {
+  position: relative;
+  padding: 30upx;
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: flex-start;
+}
+.manga-search-result-item:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1px solid #eee;
+  color: #eee;
+  transform-origin: 0 100%;
+  transform: scaleY(0.5);
+}
+.manga-search-result-pic {
+  width: 210upx;
+  height: 280upx;
+}
+.manga-search-result-intor {
+  width: 500upx;
+  padding-left: 30upx;
+}
+.manga-search-result-txt1 {
+  font-size: 34upx;
+  display: block;
+  padding-bottom: 8upx;
+}
+.manga-search-result-txt2 {
+  font-size: 26upx;
+  color: #969696;
+  display: block;
+  padding-bottom: 8upx;
+}
+.manga-search-result-tag {
+  font-size: 24upx;
+  color: #969696;
+  padding-bottom: 8upx;
+  display: block;
+}
+.manga-search-result-txt3 {
+  font-size: 26upx;
+  color: #969696;
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
