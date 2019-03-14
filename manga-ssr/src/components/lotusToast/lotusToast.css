@@ -1,0 +1,21 @@
+.lotus-toast {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background: rgba(255, 255, 255, 0);
+}
+.lotus-toast-inner {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  background: rgba(0, 0, 0, 0.5);
+  transform: translate3D(-50%, -50%, 0);
+  text-align: center;
+  font-size: 0.37333333rem;
+  color: #fff;
+  min-width: 1.73333333rem;
+  padding: 0.13333333rem 0.13333333rem;
+  line-height: 0.42666667rem;
+}

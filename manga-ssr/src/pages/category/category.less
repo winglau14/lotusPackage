@@ -1,0 +1,47 @@
+@import (reference) '../../../static/style/config.less';
+@import (reference) '../../../static/style/set1Px.less';
+@lotus: manga-category;
+.@{lotus}{
+	.paddingBottom(50);
+	&-hot{
+		text-align: center;
+		.paddingTop(10);
+		/*.paddingBottom(10);*/
+		color:#969696;
+		.fontSize(16);
+		&-list{
+			.flex();
+			.flex-hvc();
+			flex-wrap: wrap;
+			justify-content: flex-start;
+			.paddingLeft(10);
+			position: relative;
+			&:after{
+				.setBottomLine(#eee);
+			}
+		}
+	}
+	&-link{
+		.padding4(10,10,10,0);
+		width:50%;
+		.flex();
+		.flex-hvc();
+		justify-content: space-between;
+		position: relative;
+		.box-sizing();
+	}
+	&-txt{
+		color:#969696;
+		.fontSize(14);
+		position: absolute;
+		.left(15);
+		.top(50);
+		z-index: 2;
+	}
+	&-pic{
+		.width(171);
+		.heightSingle(100);
+	}
+	
+	
+}

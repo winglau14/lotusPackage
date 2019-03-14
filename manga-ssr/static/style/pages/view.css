@@ -1,0 +1,66 @@
+.manga-view-prev {
+  text-align: center;
+  font-size: 34upx;
+  background: #fbfbfb;
+  line-height: 90upx;
+  position: relative;
+  color: #969696;
+  margin-bottom: 8upx;
+}
+.manga-view-prev:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1px solid #dbdbdb;
+  color: #dbdbdb;
+  transform-origin: 0 100%;
+  transform: scaleY(0.5);
+}
+.manga-view-pic {
+  width: 750upx;
+}
+.manga-view-wrap {
+  position: relative;
+  box-sizing: border-box;
+}
+.manga-view-wrap:after {
+  display: none;
+  content: "爱动漫^_^";
+  font-size: 20upx;
+  line-height: 32upx;
+  width: 140upx;
+  height: 40upx;
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  right: 40upx;
+  bottom: 20upx;
+  background: #ff9a00;
+  filter: blur(0upx);
+}
+.manga-view-top {
+  position: fixed;
+  right: 40upx;
+  bottom: 300upx;
+  z-index: 999;
+  width: 70upx;
+  height: 70upx;
+  background: rgba(0, 0, 0, 0.5);
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.manga-view-top-pic {
+  width: 30upx;
+  height: 40upx;
+  vertical-align: middle;
+}
+uni-image {
+  margin: 0 auto;
+  display: block;
+}

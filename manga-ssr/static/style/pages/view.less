@@ -1,0 +1,54 @@
+@import (reference) '../config.less';
+@import (reference) '../set1Px.less';
+@lotus: manga-view;
+.@{lotus}{
+	&-prev{
+		text-align: center;
+		.fontSize(17);
+		background: #fbfbfb;
+		.lineHeight(45);
+		position: relative;
+		color:#969696;
+		.marginBottom(4);
+		&:before{
+			.setBottomLine(#dbdbdb);
+		}
+	}
+&-pic{
+	width:100%;
+}
+&-wrap{
+	position: relative;
+	.box-sizing();
+	&:after{
+		display: none;
+		content: "爱动漫^_^";
+		.fontSize(10);
+		.lineHeight(16);
+		.widthSingle(70);
+		.heightSingle(20);
+		color:#fff;
+		text-align: center;
+		position: absolute;
+		.right(20);
+		.bottom(10);
+		background: rgba(255,154,0,1);
+		filter: blur(0upx);
+	}
+}
+&-top{
+	position: fixed;
+	.right(20);
+	.bottom(150);
+	z-index: 999;
+	.width(35);
+	background: rgba(0,0,0,0.5);
+	.flex();
+	.flex-hvc();
+	&-pic{
+		.widthSingle(15);
+		.heightSingle(20);
+		vertical-align: middle;
+	}
+}	
+}

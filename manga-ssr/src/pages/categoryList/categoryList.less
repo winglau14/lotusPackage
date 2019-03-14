@@ -1,0 +1,48 @@
+@import (reference) '../../../static/style/config.less';
+@import (reference) '../../../static/style/set1Px.less';
+@lotus: manga-filter;
+.@{lotus}{
+ &-item{
+	position: relative;
+	.padding(15);
+	.flex();
+	.flex-hvc();
+	justify-content: flex-start;
+	&:after{
+		.setBottomLine(#eee);
+	}
+ }
+ &-pic{
+	 .widthSingle(105);
+	 .heightSingle(140);
+ }
+ &-intor{
+	 .paddingLeft(15);
+	 .widthSingle(250);
+ }
+ &-txt1{
+	 .fontSize(17);
+	 display: block;
+	 .paddingBottom(4);
+ }
+ &-txt2{
+	 .fontSize(13);
+	 .paddingBottom(4);
+	 color:#969696;
+	 display: block;
+ }
+ &-tag{
+	 .fontSize(12);
+	 .paddingBottom(4);
+	 color:#969696;
+	 display: block;
+ }
+ &-txt3{
+	 .fontSize(13);
+ 	color:#969696;
+	.flex();
+	.text-elipsis-lines(1);
+ }
+ 
+ 
+}
