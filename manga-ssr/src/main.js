@@ -55,7 +55,6 @@ es6Promise.polyfill();
 Vue.use(VueRouter);
 Vue.use(lotusAjax);
 Vue.use(lotusApiUrl);
-
 Vue.use(lotusUtils);
 if(typeof document !== "undefined"){
     const FastClick = require('fastclick');

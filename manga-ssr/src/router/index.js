@@ -9,6 +9,8 @@ import View from "../pages/view/view.vue"
 import Category from "../pages/category/category.vue"
 import CategoryList from "../pages/categoryList/categoryList.vue"
 import Search from "../pages/search/search.vue"
+import VideoIndex from "../pages/videoIndex/videoIndex.vue"
+import Video from "../pages/video/video.vue"
 import Test from "../testPages/Test.vue"
 
 Vue.use(Router);
@@ -45,6 +47,16 @@ const routes = [
         path: '/pages/search/search',
         name: 'Search',
         component: Search
+    },
+    {
+        path: '/videoIndex',
+        name: 'VideoIndex',
+        component: VideoIndex
+    },
+    {
+        path: '/watch',
+        name: 'Video',
+        component: Video
     },
     {
         path: '/test',

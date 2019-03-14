@@ -1,0 +1,33 @@
+@import (reference) "../../../static/style/config";
+
+@lotus: manga-video-index;
+.@{lotus} {
+  .paddingBottom(80);
+  &-list{
+    .flex();
+    .flex-hc();
+    flex-wrap: wrap;
+    .paddingLeft(20);
+    img{
+      .maxHeight(250);
+    }
+  }
+  &-link{
+    .box-sizing();
+    width:50%;
+    .paddingTop(20);
+    .paddingRight(20);
+  }
+  &-title1{
+    .fontSize(16);
+    .text-elipsis-lines(1);
+    line-height: normal;
+    .paddingTop(4);
+  }
+  &-title2{
+    .fontSize(14);
+    .paddingTop(4);
+    line-height: normal;
+    color:#ff9a6a;
+  }
+}

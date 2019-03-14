@@ -73,10 +73,17 @@
 				deleteFlag:false,
 				hotFlag:true,
                 tabBarData:[{
+                    path:'/videoIndex',
+                    icon:'/static/images/tv-icon1.png',
+                    selectedIcon:'/static/images/tv-icon2.png',
+                    title:'视频',
+                    color:'#333',
+                    selectedColor:'#13a3ff'
+                },{
                     path:'/',
                     icon:'/static/images/home-icon1.png',
                     selectedIcon:'/static/images/home-icon2.png',
-                    title:'首页',
+                    title:'漫画',
                     color:'#333',
                     selectedColor:'#13a3ff'
                 },{

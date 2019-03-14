@@ -1,0 +1,36 @@
+.manga-video-index {
+  padding-bottom: 2.13333333rem;
+}
+.manga-video-index-list {
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-left: 0.53333333rem;
+}
+.manga-video-index-list img {
+  max-height: 6.66666667rem;
+}
+.manga-video-index-link {
+  box-sizing: border-box;
+  width: 50%;
+  padding-top: 0.53333333rem;
+  padding-right: 0.53333333rem;
+}
+.manga-video-index-title1 {
+  font-size: 0.42666667rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  line-height: normal;
+  padding-top: 0.10666667rem;
+}
+.manga-video-index-title2 {
+  font-size: 0.37333333rem;
+  padding-top: 0.10666667rem;
+  line-height: normal;
+  color: #ff9a6a;
+}

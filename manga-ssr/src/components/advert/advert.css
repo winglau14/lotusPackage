@@ -1,7 +1,7 @@
 .manga-advert {
   position: fixed;
   right: 0;
-  top: 50%;
+  top: 30%;
   z-index: 998;
   width: 4rem;
   background: rgba(0, 0, 0, 0.5);
@@ -14,14 +14,17 @@
 }
 .manga-advert-txt {
   color: #fff;
-  font-size: 0.16rem;
+  font-size: 0.24rem;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
-  margin: 0.10666667rem;
+  margin: 0.13333333rem;
   text-align: center;
+  align-items: center;
+  justify-content: center;
+  line-height: normal;
 }
 .manga-advert-link {
   text-decoration: none;
