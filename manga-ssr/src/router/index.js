@@ -10,6 +10,7 @@ import Category from "../pages/category/category.vue"
 import CategoryList from "../pages/categoryList/categoryList.vue"
 import Search from "../pages/search/search.vue"
 import VideoIndex from "../pages/videoIndex/videoIndex.vue"
+import VideoDetail from "../pages/videoDetail/videoDetail.vue"
 import Video from "../pages/video/video.vue"
 import Test from "../testPages/Test.vue"
 
@@ -52,6 +53,11 @@ const routes = [
         path: '/videoIndex',
         name: 'VideoIndex',
         component: VideoIndex
+    },
+    {
+        path: '/videoDetail',
+        name: 'VideoDetail',
+        component: VideoDetail
     },
     {
         path: '/watch',
