@@ -65,10 +65,10 @@ const utils = {
     wx.previewImage(imgListObj)
   },
     webUrl: {
-        /*api: 'http://192.168.1.76:3100/mApi/', //开发环境url
-        shApi: 'http://192.168.1.76:3100/shApi/', //开发环境url
+        api: 'http://localhost:3100/', //开发环境url
+        /*shApi: 'http://192.168.1.76:3100/shApi/', //开发环境url
         lastApi: 'http://192.168.1.76:3100/lastApi/', //鼠绘url*/
-        api: 'https://express.winglau14.com/mApi/',//生产环境url
+        //api: 'https://express.winglau14.com/',//生产环境url
         shApi: 'https://express.winglau14.com/shApi/', //生产环境鼠绘url
         lastApi: 'https://express.winglau14.com/lastApi/', //生产环境鼠绘url
     }

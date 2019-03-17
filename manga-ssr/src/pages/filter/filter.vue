@@ -71,7 +71,7 @@
 				const _this = this;
 				if(_this.flag){
 					_this.flag = false;
-						this.$lotusAjax.post(`${_this.$lotusUtils.webUrl.api}`,{
+						this.$lotusAjax.post(`${_this.$lotusUtils.webUrl.api}mApi/`,{
 							uri:"Index/more",
 							options:JSON.stringify({
 								filter:_this.type,

@@ -10,11 +10,12 @@
     export default {
         data() {
             return {
-                url:'https://bobo.yong-cctv.com/share/eTOERov3fehigMQl'
+                url:''
             }
         },
         mounted() {
-            const title = this.$route.query.title;
+            const title = this.$route.query.name;
+            this.url = this.$route.query.url;
             this.$lotusChangeTitle(title);
         },
         computed: {

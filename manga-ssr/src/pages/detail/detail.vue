@@ -149,7 +149,7 @@
 			},
 			getDataList(){
 				const _this = this;
-				this.$lotusAjax.post(`${_this.$lotusUtils.webUrl.api}`,{
+				this.$lotusAjax.post(`${_this.$lotusUtils.webUrl.api}mApi`,{
 					uri:"Detail/comic",
 					options:JSON.stringify({
 						id:_this.id
@@ -201,7 +201,7 @@
 			},
 			getDataList2(){
 				const _this = this;
-				this.$lotusAjax.post(`${_this.$lotusUtils.webUrl.shApi}`,{
+				this.$lotusAjax.post(`${_this.$lotusUtils.webUrl.api}shApi`,{
 					uri:"",
 					options:JSON.stringify({
 						id:_this.id

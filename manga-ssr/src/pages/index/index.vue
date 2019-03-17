@@ -180,7 +180,7 @@
         methods: {
             getDataList() {
                 const _this = this;
-                this.$lotusAjax.post(`${this.$lotusUtils.webUrl.api}`, {
+                this.$lotusAjax.post(`${this.$lotusUtils.webUrl.api}mApi/`, {
                     uri: "Index/all",
                     options: JSON.stringify({})
                 }).then((response) => {
@@ -196,7 +196,7 @@
             //日漫经典
             getJdData() {
                 const _this = this;
-                this.$lotusAjax.post(`${this.$lotusUtils.webUrl.api}`, {
+                this.$lotusAjax.post(`${this.$lotusUtils.webUrl.api}mApi/`, {
                     uri: "Index/more",
                     options: JSON.stringify({
                         filter: "japanComic",

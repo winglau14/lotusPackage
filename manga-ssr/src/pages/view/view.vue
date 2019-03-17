@@ -66,7 +66,7 @@
 			//获取图片数据
 			getDataList(){
 				const _this = this;
-				this.$lotusAjax.post(`${this.$lotusUtils.webUrl.api}`,{
+				this.$lotusAjax.post(`${this.$lotusUtils.webUrl.api}mApi/`,{
 					uri:"View/comic",
 					options:JSON.stringify({
 						id:_this.id,
@@ -98,7 +98,7 @@
 			},
 			getShList(){
 				const _this = this;
-					this.$lotusAjax.post(`${this.$lotusUtils.webUrl.lastApi}`,{
+					this.$lotusAjax.post(`${this.$lotusUtils.webUrl.api}lastApi/`,{
 						id:_this.cid
 					}).then((response)=>{
 						const res = response.data;
