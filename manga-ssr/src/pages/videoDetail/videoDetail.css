@@ -8,7 +8,7 @@
 }
 .manga-video-detail-intor img {
   width: 3.73333333rem;
-  height: 5.6rem;
+  height: 5.06666667rem;
 }
 .manga-video-detail-msg {
   font-size: 0.34666667rem;
@@ -20,10 +20,12 @@
   display: -webkit-flex;*/
   display: flex;
   flex-wrap: wrap;
-  padding-left: 0.53333333rem;
+  padding-left: 0.8rem;
 }
 .manga-video-detail-list a {
-  width: 1.86666667rem;
+  min-width: 1.86666667rem;
+  padding-left: 0.26666667rem;
+  padding-right: 0.26666667rem;
   line-height: 0.90666667rem;
   border: 1px solid #dbdbdb;
   border-radius: 0.21333333rem;

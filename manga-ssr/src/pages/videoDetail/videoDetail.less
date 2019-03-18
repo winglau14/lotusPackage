@@ -8,7 +8,7 @@
     .flex-hvc();
     img{
         .widthSingle(140);
-        .heightSingle(210);
+        .heightSingle(190);
     }
 }
 &-msg{
@@ -19,9 +19,11 @@
 &-list{
     .flex();
     flex-wrap: wrap;
-    .paddingLeft(20);
+    .paddingLeft(30);
     a{
-        .widthSingle(70);
+        .minWidth(70);
+        .paddingLeft(10);
+        .paddingRight(10);
         .lineHeight(34);
         border:1px solid #dbdbdb;
         .borderRadius(8);

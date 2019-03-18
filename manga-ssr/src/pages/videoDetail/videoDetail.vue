@@ -30,7 +30,8 @@ import LotusToTop from "../../components/lotusToTop/lotusToTop.vue";
         data() {
             return {
                 url:'',
-                videoDetail:{}
+                videoDetail:{},
+                videoArr:[]
             }
         },
         components:{
@@ -51,6 +52,7 @@ import LotusToTop from "../../components/lotusToTop/lotusToTop.vue";
                     const res = response;
                     if (res.code === 1) {
                         _this.videoDetail = res.data;
+                        _this.videoArr = res.data.list.reverse();
                     }
                 });
             }

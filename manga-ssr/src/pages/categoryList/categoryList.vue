@@ -70,7 +70,7 @@
 				const _this = this;
 				if(_this.flag){
 					_this.flag = false;
-						this.$lotusAjax.post(`${_this.$lotusUtils.webUrl.api}`,{
+						this.$lotusAjax.post(`${_this.$lotusUtils.webUrl.api}mApi`,{
 							uri:"Classify/list",
 							options:JSON.stringify({
 								id:_this.id,

@@ -1,6 +1,6 @@
 <template>
     <div class="manga-video">
-        <iframe class="manga-video-iframe" :src="url" frameborder="0"></iframe>
+        <iframe id="load-resource" class="manga-video-iframe" :src="url" frameborder="0"></iframe>
     </div>
 </template>
 <style lang="less">
@@ -10,18 +10,27 @@
     export default {
         data() {
             return {
-                url:''
+                url: ''
             }
         },
         mounted() {
             const title = this.$route.query.name;
-            this.url = this.$route.query.url;
+            this.url = decodeURIComponent(this.$route.query.url);
             this.$lotusChangeTitle(title);
+            this.loadResource();
         },
-        computed: {
-
-        },
+        computed: {},
         methods: {
+            loadResource() {
+                if (typeof document) {
+                    const _this = this;
+                    const dom = document.getElementById("load-resource");
+                    _this.$lotus.loading.show();
+                    dom.onload = function () {
+                        _this.$lotus.loading.hide();
+                    }
+                }
+            }
         }
     }
 </script>

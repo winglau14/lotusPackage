@@ -5,13 +5,14 @@
 .@{lotus} {
   &-index{
     .paddingBottom(80);
+    height:auto;
     &-list{
       .flex();
       .flex-hc();
       flex-wrap: wrap;
       .paddingLeft(20);
       img{
-        .maxHeight(250);
+        .heightSingle(240);
       }
     }
     &-link{
@@ -21,13 +22,15 @@
       .paddingRight(20);
     }
     &-title1{
-      .fontSize(16);
+      .fontSize(14);
       .text-elipsis-lines(1);
       line-height: normal;
-      .paddingTop(4);
+      .paddingTop(10);
+      text-align: center;
+      color:#ff9a6a;
     }
     &-title2{
-      .fontSize(14);
+      .fontSize(12);
       .paddingTop(4);
       line-height: normal;
       color:#ff9a6a;
@@ -72,8 +75,7 @@
   }
  &-table{
    width:100%;
-   .marginTop(20);
-   
+   .marginTop(10);
    .lineHeight(40);
    &-thead{
     .paddingLeft(10);

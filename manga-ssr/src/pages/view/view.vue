@@ -9,6 +9,7 @@
 		<LotusToTop></LotusToTop>
 		<!--返回顶部END-->
 		<LotusConfirm @lotusConfirm="lotusConfirm" :ConfirmData="ConfirmData"></LotusConfirm>
+		<tabBar :tabBarData="tabBarData"></tabBar>
 	</div>
 </template>
 <style lang="less">
@@ -18,6 +19,7 @@
 	import LotusLoadMoreText from "../../components/lotusLoadMoreText/LotusLoadMoreText.vue";
     import LotusConfirm from "../../components/lotusConfirm/LotusConfirm.vue";
 	import LotusToTop from "../../components/lotusToTop/lotusToTop.vue";
+    import tabBar from "../../components/lotusTabBar/LotusTabBar.vue";
 	export default {
 		data() {
 			return {
@@ -34,13 +36,15 @@
                     showConfirm:false,
                     showImg:false,
                     twoButton:false
-                }
+                },
+                tabBarData:this.$lotusUtils.tabBarData,
 			}
 		},
 		components:{
 			LotusLoadMoreText,
 			LotusToTop,
-            LotusConfirm
+            LotusConfirm,
+            tabBar
 		},
 		mounted() {
             this.id = this.$route.query.id;

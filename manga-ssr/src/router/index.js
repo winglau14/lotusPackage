@@ -16,9 +16,8 @@ import Test from "../testPages/Test.vue"
 
 Vue.use(Router);
 
-const routes = [
-    {
-        path: '/',
+const routes = [{
+        path: '/manga',
         name: 'Index',
         component: Index
     },
@@ -50,7 +49,7 @@ const routes = [
         component: Search
     },
     {
-        path: '/videoIndex',
+        path: '/',
         name: 'VideoIndex',
         component: VideoIndex
     },

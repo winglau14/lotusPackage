@@ -1,5 +1,5 @@
 .manga-index {
-  /* padding-bottom:210upx; */
+  padding-bottom: 1.33333333rem;
   /*&-category{
 		position: relative;
 		z-index: 10;
@@ -65,7 +65,7 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  padding: 0.26666667rem 0.4rem 0.26666667rem 0.4rem;
+  padding: 0.4rem 0.4rem 0.26666667rem 0.4rem;
   justify-content: space-between;
 }
 .manga-index-module-icon {
@@ -92,6 +92,33 @@
 .manga-index-module-more {
   color: #969696;
   font-size: 0.37333333rem;
+  position: relative;
+  padding-right: 0.26666667rem;
+}
+.manga-index-module-more:before {
+  content: "";
+  width: 0.21333333rem;
+  height: 0.21333333rem;
+  position: absolute;
+  right: 0;
+  top: 48%;
+  border-top-width: 0.05333333rem;
+  border-right-width: 0.05333333rem;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-top-color: #dbdbdb;
+  border-right-color: #dbdbdb;
+  transform: translate3d(0, -50%, 0) rotate(45deg);
+}
+@media (max-width: 375px) {
+  .manga-index-module-more:before {
+    border-top-width: 1px;
+  }
+}
+@media (max-width: 375px) {
+  .manga-index-module-more:before {
+    border-right-width: 1px;
+  }
 }
 .manga-index-module-list {
   /*display: -webkit-box;

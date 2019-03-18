@@ -1,5 +1,6 @@
 .manga-video-index {
   padding-bottom: 2.13333333rem;
+  height: auto;
 }
 .manga-video-index-list {
   /*display: -webkit-box;
@@ -10,7 +11,7 @@
   padding-left: 0.53333333rem;
 }
 .manga-video-index-list img {
-  max-height: 6.66666667rem;
+  height: 6.4rem;
 }
 .manga-video-index-link {
   box-sizing: border-box;
@@ -19,17 +20,19 @@
   padding-right: 0.53333333rem;
 }
 .manga-video-index-title1 {
-  font-size: 0.42666667rem;
+  font-size: 0.37333333rem;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   line-height: normal;
-  padding-top: 0.10666667rem;
+  padding-top: 0.26666667rem;
+  text-align: center;
+  color: #ff9a6a;
 }
 .manga-video-index-title2 {
-  font-size: 0.37333333rem;
+  font-size: 0.32rem;
   padding-top: 0.10666667rem;
   line-height: normal;
   color: #ff9a6a;
@@ -80,7 +83,7 @@
 }
 .manga-video-table {
   width: 100%;
-  margin-top: 0.53333333rem;
+  margin-top: 0.26666667rem;
   line-height: 1.06666667rem;
 }
 .manga-video-table-thead {

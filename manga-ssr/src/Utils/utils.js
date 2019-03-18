@@ -65,12 +65,39 @@ const utils = {
     wx.previewImage(imgListObj)
   },
     webUrl: {
-        api: 'http://localhost:3100/', //开发环境url
-        /*shApi: 'http://192.168.1.76:3100/shApi/', //开发环境url
-        lastApi: 'http://192.168.1.76:3100/lastApi/', //鼠绘url*/
-        //api: 'https://express.winglau14.com/',//生产环境url
-        shApi: 'https://express.winglau14.com/shApi/', //生产环境鼠绘url
-        lastApi: 'https://express.winglau14.com/lastApi/', //生产环境鼠绘url
-    }
+        //api: 'http://localhost:3100/', //开发环境url
+        api: 'https://express.winglau14.com/',//生产环境url
+    },
+    tabBarData: [
+        {
+            path: '/',
+            icon: '/static/images/tv-icon1.png',
+            selectedIcon: '/static/images/tv-icon2.png',
+            title: '视频',
+            color: '#333',
+            selectedColor: '#13a3ff'
+        }, {
+            path: '/manga',
+            icon: '/static/images/home-icon1.png',
+            selectedIcon: '/static/images/home-icon2.png',
+            title: '漫画',
+            color: '#333',
+            selectedColor: '#13a3ff'
+        }, {
+            path: '/pages/category/category',
+            icon: '/static/images/category-icon1.png',
+            selectedIcon: '/static/images/category-icon2.png',
+            title: '分类',
+            color: '#333',
+            selectedColor: '#13a3ff'
+        }, {
+            path: '/pages/search/search',
+            icon: '/static/images/search-icon1.png',
+            selectedIcon: '/static/images/search-icon2.png',
+            title: '搜索',
+            color: '#333',
+            selectedColor: '#13a3ff'
+        }
+    ]
 };
 export default utils

@@ -89,6 +89,22 @@
 		&-more{
 			color:#969696;
 			.fontSize(14);
+			position: relative;
+			.paddingRight(10);
+			&:before{
+				content: "";
+				.width(8);
+				position: absolute;
+				right: 0;
+				top:48%;
+				.borderTop(2);
+				.borderRight(2);
+				border-top-style: solid;
+				border-right-style: solid;
+				border-top-color: #dbdbdb;
+				border-right-color: #dbdbdb;
+				transform: translate3d(0,-50%,0) rotate(45deg);
+			}
 		}
 		&-list{
 			.flex();
