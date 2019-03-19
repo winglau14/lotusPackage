@@ -13,12 +13,12 @@
             </div>
             <div class="manga-video-index-list">
                 <router-link class="manga-video-index-link" to="/videoDetail?name=海贼王&url=/?m=vod-detail-id-2320.html">
-                    <img src="/static/images/hzw-pic.jpg" alt="">
+                    <img src="https://img.yongjiu7.com/upload/vod/2019-01-17/154771241415.jpg" alt="">
                     <p class="manga-video-index-title1">海贼王</p>
                     <!--<p class="manga-video-index-title2">更新至:875话</p>-->
                 </router-link>
-                <router-link class="manga-video-index-link" to="/videoDetail?name=火影忍者：博人传之次世代继承者&url=/?m=vod-detail-id-33867.html">
-                    <img src="/static/images/brc-pic.jpg" alt="">
+                <router-link class="manga-video-index-link" to="/videoDetail?name=火影忍者：博人传之次世代继承者&url=/?m=vod-detail-id-1529.html">
+                    <img src="https://img.yongjiu7.com/upload/vod/2019-01-17/15477120582.jpg" alt="">
                     <p class="manga-video-index-title1">博人传之次世代继承者</p>
                     <!--<p class="manga-video-index-title2">更新至:97话</p>-->
                 </router-link>
@@ -40,15 +40,17 @@
             </div>
             <div v-if="tableArr.length>0" class="manga-video-table">
                 <p class="manga-video-table-thead">
-                    <span class="manga-video-table-title">影片名称</span>
-                    <span class="manga-video-table-range">影片类目</span>
+                    <span class="manga-video-table-title">资源名称</span>
+                    <span class="manga-video-table-range">地区分类</span>
+                    <span class="manga-video-table-status">连载集数</span>
                     <span class="manga-video-table-time">更新时间</span>
                 </p>
                 <ul class="manga-video-table-body">
                     <li v-for="(item,index) in tableArr" :key="index">
                         <router-link class="manga-video-table-link" :to="'/videoDetail?name='+item.name+'&url='+item.url">
                             <span class="manga-video-table-link-title" v-text="item.name"></span>
-                            <span class="manga-video-table-link-range" v-text="item.lm?item.lm:'--'"></span>
+                            <span class="manga-video-table-link-range" v-text="item.range?item.range:'--'"></span>
+                            <span class="manga-video-table-link-status" :style="item.pageIndex?' color:#ff9a6a;':' color:#969696;'" v-text="item.pageIndex?item.pageIndex:'完结'"></span>
                             <span class="manga-video-table-link-time" v-text="item.updateTime"></span>
                         </router-link>
                     </li>

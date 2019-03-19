@@ -15,7 +15,7 @@
         },
         mounted() {
             const title = this.$route.query.name;
-            this.url = decodeURIComponent(this.$route.query.url);
+            this.url = 'http://www.iqiyi.com/v_19rqu7afxk.html'||decodeURIComponent(this.$route.query.url);
             this.$lotusChangeTitle(title);
             this.loadResource();
         },
@@ -28,7 +28,10 @@
                     _this.$lotus.loading.show();
                     dom.onload = function () {
                         _this.$lotus.loading.hide();
-                    }
+                    };
+                    setTimeout(()=>{
+                        _this.$lotus.loading.hide();
+                    },2000);
                 }
             }
         }

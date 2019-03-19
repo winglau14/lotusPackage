@@ -11,7 +11,7 @@
   padding-left: 0.53333333rem;
 }
 .manga-video-index-list img {
-  height: 6.4rem;
+  height: 5.86666667rem;
 }
 .manga-video-index-link {
   box-sizing: border-box;
@@ -145,7 +145,6 @@
   padding-left: 0.26666667rem;
   padding-right: 0.26666667rem;
   box-sizing: border-box;
-  background: #fbfbfb;
   /*display: -webkit-box;
   display: -webkit-flex;*/
   display: flex;
