@@ -1,0 +1,6 @@
+{ ZipStreamError: ENOENT: no such file or directory, stat 'H:\lotusPackage\captureImage\static\1440323'
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'stat',
+  path: 'H:\\lotusPackage\\captureImage\\static\\1440323',
+  name: 'ZipStreamError' }

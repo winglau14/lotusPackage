@@ -1,0 +1,27 @@
+.lotus-no-data {
+  width: 100%;
+  font-size: 0.37333333rem;
+  padding-top: 0.26666667rem;
+  padding-bottom: 0.26666667rem;
+  color: #999;
+  text-align: center;
+}
+.lotus-no-data-text {
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lotus-no-data-text span {
+  display: block;
+  padding-left: 0.13333333rem;
+  padding-right: 0.13333333rem;
+}
+.lotus-no-data-line {
+  width: 1.33333333rem;
+  height: 1.33333333rem;
+  height: 1px;
+  background: #e5e5e5;
+  display: block;
+}

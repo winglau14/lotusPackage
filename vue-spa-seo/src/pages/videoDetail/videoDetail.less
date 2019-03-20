@@ -1,0 +1,41 @@
+@import (reference) "../../../static/style/config";
+
+@register: manga-video-detail;
+.@{register} {
+&-intor{
+    .padding(15);
+    .flex();
+    .flex-hvc();
+    img{
+        .widthSingle(140);
+        .heightSingle(190);
+    }
+}
+&-msg{
+    .fontSize(12);
+    .lineHeight(22);
+    .paddingLeft(10);
+}
+&-list{
+    .flex();
+    flex-wrap: wrap;
+    .paddingLeft(30);
+    a{
+        .minWidth(70);
+        .paddingLeft(10);
+        .paddingRight(10);
+        .lineHeight(34);
+        border:1px solid #dbdbdb;
+        .borderRadius(8);
+        text-align: center;
+        .fontSize(16);
+        color:#969696;
+        .marginRight(15);
+        .marginBottom(15);
+    }
+    
+}
+
+
+
+}

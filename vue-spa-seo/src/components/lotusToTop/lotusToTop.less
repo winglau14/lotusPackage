@@ -1,0 +1,21 @@
+@import (reference) '../../../static/style/config.less';
+@import (reference) '../../../static/style/set1Px.less';
+@lotus: lotus-to;
+.@{lotus}{
+ &-top{
+ 	position: fixed;
+ 	.right(20);
+ 	.bottom(100);
+ 	z-index: 999;
+ 	.width(35);
+ 	background: rgba(0,0,0,0.5);
+ 	.flex();
+ 	.flex-hvc();
+ 	&-pic{
+ 		.widthSingle(15);
+		.heightSingle(20);
+ 		vertical-align: middle;
+ 	}
+ }
+ 
+}

@@ -1,0 +1,36 @@
+@import (reference) "../../../static/style/config";
+@import (reference) "../../../static/style/set1Px";
+@register: lotus-tab-bar;
+.@{register} {
+background: #fbfbfb;
+position: fixed;
+  left:0;
+  bottom:0;
+  z-index: 9999;
+  width:100%;
+  .flex();
+  .flex-hvc();
+  .fontSize(12);
+  &:after{
+    .setTopLine(#eee);
+  }
+  &-list,&-wrap{
+    width:100%;
+    max-width: 750px;
+    .flex();
+    .flex-hvc();
+    justify-content: space-between;
+  }
+  &-item{
+    .padding2(4,0);
+    .flexN(1);
+    text-align: center;
+    &-pic{
+      .width(27);
+      vertical-align: middle;
+    }
+    &-title{
+      .paddingTop(4);
+    }
+  }
+}

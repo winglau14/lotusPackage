@@ -1,0 +1,17 @@
+.lotus-no-datas {
+  /* position: fixed;*/
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  padding-top: 2rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+.lotus-no-datas-img {
+  width: 8.08rem;
+  margin-bottom: 1.2rem;
+}
+.lotus-no-datas-text {
+  font-size: 0.42666667rem;
+  color: #656565;
+}

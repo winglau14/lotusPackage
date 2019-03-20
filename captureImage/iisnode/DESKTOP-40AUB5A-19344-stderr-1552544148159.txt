@@ -1,0 +1,2 @@
+Application has thrown an uncaught exception and is terminated:
+Error: ENOENT: no such file or directory, open 'H:\lotusPackage\captureImage\static\	奥卡西平片\201936212452279!500x500.jpg'
