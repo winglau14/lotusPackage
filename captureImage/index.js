@@ -10,6 +10,7 @@ const bodyParser = require("body-parser");
 const compressing = require('compressing');
 const cors = require('cors');
 const del = require('del');
+const rp = require('request-promise');
 app.use(bodyParser.urlencoded({extended: true}));
 //静态资源访问路由
 app.use('/static', express.static('static'));
@@ -107,6 +108,308 @@ function requestType(url,type,res1,dirName1,imgSize){
         });
     }
 }
+//爱漫画api
+var mApiUri = "https://wx.ac.qq.com/1.0.0/";
+function mangaApi(uri,optionData,method){
+    var options = {};
+    if(method === "POST"){
+        options = {
+            method: method,
+            uri:uri,
+            body:optionData||{},
+            json: true
+        }
+    }else{
+        options = {
+            method: "GET",
+            uri:uri,
+            qs:optionData||{},
+            json: true
+        }
+    }
+    return rp(options);
+}
+app.post('/mApi',function(req,res){
+    var uri = req.body.uri;
+    var options = req.body.options;
+    var method = req.body.method || "GET";
+    if(!uri||!options){
+        res.status(404);
+        res.json({
+           errorMessage:"参数错误辣，小老弟"
+        });
+        return false;
+    }
+    //console.log(typeof options);
+    mangaApi(mApiUri+uri,JSON.parse(options),method).then(function(response){
+        //console.log(response);
+        if(response){
+            if(typeof response === "string"){
+                res.json({
+                    data:JSON.parse(response).data
+                });
+            }else{
+                res.json({
+                    data:response.data
+                });
+            }
+
+        }
+    },function(error){
+        res.status(404);
+        res.json({
+            errorMessage:"非法请求"
+        });
+    });
+});
+//鼠绘api
+var shApiUri = "https://prod-api.ishuhui.com/ver/b6202578/anime/detail?id=1&type=comics&.json";
+app.post('/shApi',function(req,res){
+    var method = req.body.method || "GET";
+    mangaApi(shApiUri,'',method).then(function(response){
+        console.log(response);
+        if(response){
+            if(typeof response === "string"){
+                res.json({
+                    data:JSON.parse(response).data
+                });
+            }else{
+                res.json({
+                    data:response.data
+                });
+            }
+
+        }
+    },function(error){
+        res.status(404);
+        res.json({
+            errorMessage:"非法请求"
+        });
+    });
+});
+//海贼王最新一集api
+app.post('/lastApi',function(req,res){
+    var method = req.body.method || "GET";
+    var id = req.body.id;
+    console.log(id);
+    mangaApi('https://prod-api.ishuhui.com/comics/detail?id='+id,'',method).then(function(response){
+        console.log(response);
+        if(response){
+            if(typeof response === "string"){
+                res.json({
+                    data:JSON.parse(response).data
+                });
+            }else{
+                res.json({
+                    data:response.data
+                });
+            }
+
+        }
+    },function(error){
+        res.status(404);
+        res.json({
+            errorMessage:"非法请求"
+        });
+    });
+});
+
+//最快资源url
+const zyUrl = 'http://yongjiuzy.cc/'||'http://156zy.cc/'||'http://zuikzy.com/';
+//动漫列表下载
+function requestList(url,pRes){
+    request(zyUrl+url,function(err,res,body){
+        //console.log(url);
+        if(!err && res.statusCode === 200){
+            //console.log(body);
+            const $ = cheerio.load(body);
+            const totalPageText = $(".page_num").text();
+            const reg1 = /共\d{1,}/g;
+            const arr1 = totalPageText.match(reg1);
+            let data = {};
+            if(arr1.length){
+                //data.totalPage = arr1[0].replace("共","");
+                let curPageArr = [];
+                //console.log($("#data_list").find(".DianDian").length);
+                $("#data_list").find(".DianDian").each(function(){
+                    let obj = {};
+                    $(this).find("td").each(function(index){
+                        //console.log($(this).text(),index);
+                        if(index === 0){
+                            const curText = $(this).text();
+                            obj.name  = curText.split(" [")[0];//资源名称
+                            const tArr = curText.split(" [")[1].replace(']','').match(/\d{1,}/);
+                            if(tArr){
+                                obj.pageIndex  = curText.split(" [")[1].replace(']','').match(/\d{1,}/)[0];//资源集数
+                            }
+                            obj.url  = $(this).find("a").attr("href");//链接
+                        }if(index === 1){
+                            obj.lm  = $(this).text();//所属栏目
+                        }else if(index === 2){
+                            obj.range = $(this).text();//地区分类
+                        }else if(index === 3){
+                            obj.status = $(this).text();//连载状态
+                        }else{
+                            obj.updateTime = $(this).text().split(" ")[0];//更新时间
+                        }
+
+                    });
+                    if(obj.lm === "动漫"){
+                        curPageArr.push(obj);
+                    }
+                });
+                //当前列表数据
+                data.list = curPageArr;
+
+                pRes.json({
+                    code:1,
+                    data
+                });
+            }else{
+                pRes.json({
+                    code:0,
+                    data:null
+                });
+            }
+        }
+    });
+}
+//动漫详情下载
+function requestDetail(url,pRes){
+    request(zyUrl+url,function(err,res,body){
+        //console.log(url);
+        if(!err && res.statusCode === 200){
+            //console.log(body);
+            const $ = cheerio.load(body);
+            const pic = $(".videoPic img").attr("src");
+            let data = {pic};
+            let curPageArr = [];
+            $(".videoDetail").find("li").each(function(index){
+                if(index === 0){
+                    data.name  = $(this).text();//影片名称: 逆转裁判 〜对这个“真实”，有异议！Season 2
+                }else if(index === 1){
+                    data.otherName = $(this).text();//影片别名: Gyakuten Saiban
+                }else if(index === 3){
+                    data.zy = $(this).text();//影片主演: 梶裕贵,悠木碧,玉木雅士,中村千绘
+                }else if(index === 4){
+                    data.dy = $(this).text();//影片导演: 渡边步
+                }else if(index === 6){
+                    data.lan = $(this).find(".left").text();//语言分类: 日语
+                    data.range = $(this).find(".right").text();//影片地区: 日本
+                }else if(index === 7){
+                    data.status = $(this).find(".left").text();//连载状态：21
+                    data.year = $(this).find(".right").text();//上映年份: 2018
+                }else if(index === 8){
+                    data.updateTime = $(this).find(".left").text();//更新时间
+                }
+            });
+            //遍历动漫集数
+            $(".movievod").find("ul").find("li").each(function(index){
+                //console.log($(this).text());
+                let curObj = {};
+                const len = $(".movievod").find("ul").find("li").length-1;
+                if($(this).text().indexOf("m3u8")<0&&index>0&&index<len){
+                    const curText = $(this).text().replace("$"," ");
+                    curObj.page = curText.split(" ")[0];
+                    curObj.url = curText.split(" ")[1];
+                    curPageArr.push(curObj);
+                }
+            });
+            //当前列表数据
+            data.list = curPageArr.reverse();
+
+            pRes.json({
+                code:1,
+                data
+            });
+        }else{
+            pRes.json({
+                code:0,
+                data:null
+            });
+        }
+    });
+}
+//动漫搜索下载
+function requestSearch(url,pRes,wd){
+    request.post(zyUrl+'index.php?m=vod-search',{form:{wd}},function(err,res,body){
+        //console.log(url);
+        if(!err && res.statusCode === 200){
+            //console.log(body);
+            const $ = cheerio.load(body);
+            const totalPageText = $(".page_num").text();
+            const reg1 = /共\d{1,}/g;
+            const arr1 = totalPageText.match(reg1);
+            let data = {};
+            if(arr1.length){
+                //data.totalPage = arr1[0].replace("共","");
+                let curPageArr = [];
+                //console.log($("#data_list").find(".DianDian").length);
+                $("#data_list").find(".DianDian").each(function(){
+                    let obj = {};
+                    $(this).find("td").each(function(index){
+                        //console.log($(this).text(),index);
+                        if(index === 0){
+                            const curText = $(this).text();
+                            obj.name  = curText.split(" [")[0];//资源名称
+                            const tArr = curText.split(" [")[1].replace(']','').match(/\d{1,}/);
+                            if(tArr){
+                                obj.pageIndex  = curText.split(" [")[1].replace(']','').match(/\d{1,}/)[0];//资源集数
+                            }
+                            obj.url  = $(this).find("a").attr("href");//链接
+                        }if(index === 1){
+                            obj.lm  = $(this).text();//所属栏目
+                        }else if(index === 2){
+                            obj.range = $(this).text();//地区分类
+                        }else if(index === 3){
+                            obj.status = $(this).text();//连载状态
+                        }else{
+                            obj.updateTime = $(this).text().split(" ")[0];//更新时间
+                        }
+                    });
+                    if(obj.name.indexOf(wd)>-1&&obj.lm === "动漫"){
+                        curPageArr.push(obj);
+                    }
+                });
+                //当前列表数据
+                data.list = curPageArr;
+
+                pRes.json({
+                    code:1,
+                    data
+                });
+            }else{
+                pRes.json({
+                    code:0,
+                    data:null
+                });
+            }
+        }
+    });
+}
+//动漫栏目数据请求
+app.post('/movie',function(req,res){
+    const url = req.body.url;
+    //console.log(url);
+    //获取动漫栏目数据
+    requestList(url,res);
+});
+//动漫搜索
+app.post('/movieSearch',function(req,res){
+    const wd = req.body.wd;
+    //console.log(url);
+    //获取动漫栏目数据
+    requestSearch(zyUrl+"index.php?m=vod-search",res,wd);
+});
+//具体动漫集数请求
+app.post('/movieDetail',function(req,res){
+    const url = req.body.url;
+    //console.log(url);
+    //获取动漫栏目数据
+    requestDetail(url,res);
+});
+
+
 
 //健客下载
 app.post('/jk',function(req,res){
@@ -145,8 +448,6 @@ app.get('/delete',function(req,res){
 app.use('*', function(req, res){
     res.sendFile(__dirname+'/index.html');
 });
-
-
 //开启服务
 app.listen(process.env.PORT || 3100, function () {
     console.log('listen port:3100');
