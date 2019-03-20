@@ -160,7 +160,11 @@
                     const res = response.data;
                     if (res) {
                         _this.indexData = res;
-                        _this.imageList = res.banner;
+                        res.banner.map((item)=>{
+                            const obj = {pic:item.pic,url:`/pages/detail/detail?id=${item.comic_id}`};
+                            _this.imageList.push(obj);
+                        });
+                        console.log(res.banner);
                         _this.pageShowVal +=1;
                     }
                     this.getJdData();

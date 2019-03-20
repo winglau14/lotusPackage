@@ -66,7 +66,8 @@ const utils = {
   },
     webUrl: {
         //api: 'http://localhost:3100/', //开发环境url
-        api: 'https://express.winglau14.com/',//生产环境url
+        //api: 'https://express.winglau14.com/',//生产环境url
+        api:'http://express.xiaoyaozhan.com/'
     },
     tabBarData: [
         {

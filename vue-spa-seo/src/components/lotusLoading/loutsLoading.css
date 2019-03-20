@@ -2,6 +2,7 @@
   position: fixed;
   top: 0;
   width: 100%;
+  max-width: 750px;
   height: 100%;
   z-index: 999;
   background: rgba(255, 255, 255, 0);
@@ -22,7 +23,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate3d(-50%, -50%, 0);
+  transform: translate(-50%, -50%);
   /*display: -webkit-box;
   display: -webkit-flex;*/
   display: flex;

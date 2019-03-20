@@ -6,7 +6,7 @@ _isAuto:是否需要开始自动轮播?_isAuto= true开启，_isAuto= false不�
     <div class="lotus-slider-wrap">
         <ul class="lotus-slider-wrap-list" id="lotus-slider-wrap-list">
             <li v-for="(item,index) in imageList.concat(imageList)" :key="index" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd" @transitionend="transitionEnd">
-                <router-link :to="'/pages/detail/detail?id='+(item.comic_id?item.comic_id.toString():0)"><img @load="load" :src="item.pic" alt=""></router-link>
+                <router-link :to="item.url"><img @load="load" :src="item.pic" alt=""></router-link>
             </li>
         </ul>
         <p v-if="imageList.length>=4" class="lotus-slider-wrap-dot">
