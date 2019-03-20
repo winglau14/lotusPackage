@@ -1,105 +1,202 @@
 const gulp = require('gulp'),
     gulpReplace = require('gulp-replace'),
     tiny = require('gulp-tinypng-nokey'),
+    clean = require('gulp-clean'),
+    Uglify = require('gulp-uglify'),
     zip = require('gulp-zip'),
+    gutil = require('gulp-util'),
+    htmlmin = require('gulp-htmlmin'),
+    autoprefixer = require('gulp-autoprefixer'),
+    //spriter = require('./gulpLib/gulp-css-spriter'),
+    minifyCSS = require('gulp-minify-css'),
     gulpSequence = require('gulp-sequence');
-gulp.task('replFile', function () {
-    return gulp.src(['./src/**/*.vue', './src/**/*.js'])
-        /*.pipe(gulpReplace(/localStorage.SalesManNid2/g, 'localStorage.SalesManNid3'))//替换字符
-        .pipe(gulpReplace(/wxSalesMan11/g, 'wxSalesMan12'))//替换字符
-        .pipe(gulpReplace(/salesManInformation11/g, 'salesManInformation12'))//替换字符*/
-        .pipe(gulpReplace(/localStorage/g, 'sessionStorage'))
-        .pipe(gulp.dest('src/'));
+const tempL = __dirname.split('\\');
+const dirName = tempL[tempL.length-1];
+//打包开始
+gulp.task('tsStart', function () {
+    console.log('--------测试环境打包start！----------');
 });
-
-//url替换模块
-//开发环境
-gulp.task('deReplace', function () {
-    return gulp.src(['dist/**/*.js'])
-        .pipe(gulpReplace(/appid.{1,}&redirect_uri=?/, 'appid=wx4084b905a56a374f&redirect_uri='))//替换开发环境微信端appid
-        .pipe(gulpReplace(/(Auth:"http:\/\/.*?")/, 'Auth:"http://deoauth2.123yyf.com/OAuth/Token"'))//替换开发环境api url
-        .pipe(gulpReplace(/(yyfApiUrl:"http:\/\/.*?")/, 'yyfApiUrl:"http://deyaojili.123yyf.com/api/"'))//替换开发环境api url
-        .pipe(gulpReplace(/(wxApiUrl:"http:\/\/.*?")/, 'wxApiUrl:"http://dewx.123yyf.com/api/"'))//替换开发环境api url
-        .pipe(gulp.dest('dist/'));
+gulp.task('offStart', function () {
+    console.log('--------正式环境打包start！----------');
 });
-//测试环境
-gulp.task('tsReplace', function () {
-    return gulp.src(['dist/**/*.js'])
-        .pipe(gulpReplace(/appid.{1,}&redirect_uri=?/, 'appid=wx42f716fb71359b73&redirect_uri='))//替换测试环境微信端appid
-        .pipe(gulpReplace(/(Auth:"http:\/\/.*?")/, 'Auth:"http://tsoauth2.123yyf.com/OAuth/Token"'))//替换测试环境api url
-        .pipe(gulpReplace(/(yyfApiUrl:"http:\/\/.*?")/, 'yyfApiUrl:"http://tsyaojili.123yyf.com/api/"'))//替换测试环境api url
-        .pipe(gulpReplace(/(downloadFileUrl:"http:\/\/.*?")/, 'yyfApiUrl:"http://tsyaojili.123yyf.com/"'))//替换测试环境api url
-        .pipe(gulpReplace(/(wxApiUrl:"http:\/\/.*?")/, 'wxApiUrl:"http://tswx.123yyf.com/api/"'))//替换开发环境api url
-        .pipe(gulp.dest('dist/'));
+//样式自动补全
+gulp.task('cssAuto', function () {
+    const timestamp = +new Date();
+    return gulp.src(['lib/**/*.css'])
+        .pipe(autoprefixer({
+            browsers: ['iOS >= 7', 'Android >= 4.1','last 2 versions'],
+            cascade: false
+        }))
+        /*.pipe(spriter({
+            // 生成的spriter的位置
+            'spriteSheet': './lib/static/images/sprite'+timestamp+'.png',
+            // 生成样式文件图片引用地址的路径
+            // 如下将生产：backgound:url(../images/sprite20324232.png)
+            'pathToSpriteSheetFromCSS': '/static/images/sprite'+timestamp+'.png'
+        }))*/
+        .pipe(minifyCSS())//样式压缩
+        .pipe(gulp.dest('lib/'))
+});
+//html压缩
+gulp.task('tsHtmlmin', function () {
+    var options = {
+        removeComments: true,//清除HTML注释
+        collapseWhitespace: true,//压缩HTML
+        collapseBooleanAttributes: true,//省略布尔属性的值 <input checked="true"/> ==> <input />
+        removeEmptyAttributes: true,//删除所有空格作属性值 <input id="" /> ==> <input />
+        removeScriptTypeAttributes: true,//删除<script>的type="text/javascript"
+        removeStyleLinkTypeAttributes: true,//删除<style>和<link>的type="text/css"
+        minifyJS: true,//压缩页面JS
+        minifyCSS: true//压缩页面CSS
+    };
+    return gulp.src(['lib/**/*.html','lib/index.html'])
+        .pipe(htmlmin(options))
+        .on('error', function(err) {
+            gutil.log(gutil.colors.red('[Error]'), err.toString());
+        })
+        .pipe(gulp.dest('lib/'));
+});
+gulp.task('offHtmlmin', function () {
+    var options = {
+        removeComments: true,//清除HTML注释
+        collapseWhitespace: true,//压缩HTML
+        collapseBooleanAttributes: true,//省略布尔属性的值 <input checked="true"/> ==> <input />
+        removeEmptyAttributes: true,//删除所有空格作属性值 <input id="" /> ==> <input />
+        removeScriptTypeAttributes: true,//删除<script>的type="text/javascript"
+        removeStyleLinkTypeAttributes: true,//删除<style>和<link>的type="text/css"
+        minifyJS: true,//压缩页面JS
+        minifyCSS: true//压缩页面CSS
+    };
+    return gulp.src(['lib/**/*.html'])
+        .pipe(htmlmin(options))
+        .on('error', function(err) {
+            gutil.log(gutil.colors.red('[Error]'), err.toString());
+        })
+        .pipe(gulp.dest('lib/'));
+});
+//复制文件
+gulp.task('copyFile', function () {
+    return gulp.src([`${__dirname}/dist/**`])
+        .pipe(gulp.dest('lib/'))
+});
+//图片压缩
+gulp.task('tinyPng', ['copyFile'], function () {
+    return gulp.src(['src/static/images/*.{jpg,png,jpeg}'])
+        .pipe(tiny())
+        .pipe(gulp.dest('src/static1/images'))
+});
+//测试环境apiUrl替换
+gulp.task('tsApiUrlReplace', function () {
+    return gulp.src(['lib/static/js/vendors.js'])
+        .pipe(gulpReplace(/(https?:\/\/devipapi.*?com)/g, "http://tsvipapi.xiaoyaozhan.com"))
+        .pipe(gulpReplace(/(https?:\/\/demall.*?com)/g, "http://tsmall.xiaoyaozhan.com"))
+        .pipe(gulpReplace(/(https?:\/\/dexcximg.*?com)/g, "http://tsxcximg.xiaoyaozhan.com"))
+        .pipe(gulpReplace(/(https?:\/\/devip.*?com)/g, "http://tsvip.xiaoyaozhan.com"))
+        .pipe(gulpReplace(/(https?:\/\/dedingdan.*?com)/g, "http://tsdingdan.xiaoyaozhan.com"))
+        .pipe(gulpReplace(/(https?:\/\/decart.*?com)/g, "http://tscart.xiaoyaozhan.com"))
+        .pipe(gulp.dest('lib/static/js/'));
+});
+//pages文件夹js css文件加时间戳
+gulp.task('filesAddVersion1', function () {
+    var time = new Date().getTime();
+    return gulp.src(['lib/pages/**/*.html'])
+        .pipe(gulpReplace(/(\.css">)/g, '.css?v='+time+'">'))
+        .pipe(gulpReplace(/(\.js">)/g, '.js?v='+time+'">'))
+        .pipe(gulp.dest('lib/pages/'));
+});
+//index.html js css文件加时间戳
+gulp.task('filesAddVersion2', function () {
+    var time = new Date().getTime();
+    return gulp.src(['lib/index.html'])
+        .pipe(gulpReplace(/(\.css">)/g, '.css?v='+time+'">'))
+        .pipe(gulpReplace(/(\.js">)/g, '.js?v='+time+'">'))
+        .pipe(gulp.dest('lib/'));
+});
+//正式环境apiUrl替换
+gulp.task('offApiUrlReplace', function () {
+    return gulp.src(['lib/static/js/vendors.js'])
+        .pipe(gulpReplace(/(https?:\/\/devipapi.*?com)/g, "https://vipapi.xiaoyaozhan.com"))
+        .pipe(gulpReplace(/(https?:\/\/demall.*?com)/g, "https://www.xiaoyaozhan.com"))
+        .pipe(gulpReplace(/(https?:\/\/dexcximg.*?com)/g, "https://xcximg.xiaoyaozhan.com"))
+        .pipe(gulpReplace(/(https?:\/\/devip.*?com)/g, "https://po.xiaoyaozhan.com"))
+        .pipe(gulpReplace(/(https?:\/\/dedingdan.*?com)/g, "https://dingdan.xiaoyaozhan.com"))
+        .pipe(gulpReplace(/(https?:\/\/decart.*?com)/g, "https://cart.xiaoyaozhan.com"))
+        .pipe(gulp.dest('lib/static/js/'));
 });
 //统计模块的添加
-const jsStr = `<script>
-  	var _mtac = {};
+var jsStr = `<script>
+  	var _mtac = {"senseQuery":1};
   	(function() {
   		var mta = document.createElement("script");
-  		mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.4";
+  		mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
   		mta.setAttribute("name", "MTAH5");
-  		mta.setAttribute("sid", "500528344");
-  		mta.setAttribute("cid", "500528347");
+  		mta.setAttribute("sid", "500628964");
+  		mta.setAttribute("cid", "500628965");
   		var s = document.getElementsByTagName("script")[0];
   		s.parentNode.insertBefore(mta, s);
   	})();
 </script></body>`;
 gulp.task('offAppendJs', function () {
-    return gulp.src(['dist/index.html'])
+    return gulp.src(['lib/index.html'])
         .pipe(gulpReplace(/<\/body>/,jsStr))
-        .pipe(gulp.dest('dist/'));
+        .pipe(gulp.dest('lib/'));
 });
-//正式环境
-gulp.task('offReplace', function () {
-    return gulp.src(['dist/**/*.js'])
-        .pipe(gulpReplace(/appid.{1,}&redirect_uri=?/, 'appid=wxd2e9f3d4d74d0036&redirect_uri='))//替换测试环境微信端appid
-        .pipe(gulpReplace(/(Auth:"http:\/\/.*?")/, 'Auth:"http://oauth2.123yyf.com/OAuth/Token"'))//替换正式环境api url
-        .pipe(gulpReplace(/(yyfApiUrl:"http:\/\/.*?")/, 'yyfApiUrl:"http://yaojili.123yyf.com/api/"'))//替换正式环境api url
-        .pipe(gulpReplace(/(downloadFileUrl:"http:\/\/.*?")/, 'yyfApiUrl:"http://yaojili.123yyf.com/"'))//替换测试环境api url
-        .pipe(gulpReplace(/(wxApiUrl:"http:\/\/.*?")/, 'wxApiUrl:"http://wx.123yyf.com/api/"'))//替换开发环境api url
-        .pipe(gulp.dest('dist/'));
+//删除多余css文件
+gulp.task('cleanCss', function () {
+    return gulp.src(['lib/**/*.less','lib/static/style/config.css','lib/static/style/config.less'])
+        .pipe(clean());
 });
-
-//编译文件打包模块
-//开发环境打包文件zip
-gulp.task('depackage', function () {
-        gulp.src(['dist/**', '!dist/test.bat'])
-            .pipe(zip('deyyy.123yyf.com.zip'))
-            .pipe(gulp.dest('release'));
-    }
-);
+//删除临时文件夹
+gulp.task('tsCleanFiles', ['tsReleasePackage'], function () {
+    return gulp.src(['lib'])
+        .pipe(clean());
+});
+//删除临时文件夹
+gulp.task('offCleanFiles', ['offReleasePackage'], function () {
+    return gulp.src(['lib'])
+        .pipe(clean());
+});
+//js压缩
+gulp.task('jsMin', function () {
+    return gulp.src(['lib/**/*.js'])
+        .pipe(Uglify())
+        .on('error', function(err) {
+            gutil.log(gutil.colors.red('[Error]'), err.toString());
+        })
+        .pipe(gulp.dest('lib/'))
+});
 //测试环境打包文件zip
-gulp.task('tspackage', function () {
-        gulp.src(['dist/**', '!dist/test.bat'])
-            .pipe(zip('tsyyy.123yyf.com.zip'))
-            .pipe(gulp.dest('release'));
+gulp.task('tsReleasePackage', function () {
+        return gulp.src(['lib/**'])
+            .pipe(zip(`${dirName}-tsRelease.zip`))
+            .pipe(gulp.dest('releaseZip'));
     }
 );
 //正式环境打包文件zip
-gulp.task('offpackage', function () {
-        gulp.src(['dist/**', '!dist/test.bat'])
-            .pipe(zip('yyy.123yyf.com.zip'))
-            .pipe(gulp.dest('release'));
+gulp.task('offReleasePackage', function () {
+        return gulp.src(['lib/**'])
+            .pipe(zip(`${dirName}-offRelease.zip`))
+            .pipe(gulp.dest('releaseZip'));
     }
 );
-
-//图片压缩
-gulp.task('tinypng', function () {
-    gulp.src(['static/*','!static/*.json'])
-        .pipe(tiny())
-        .pipe(gulp.dest('static'));
+//打包结束
+gulp.task('end', function () {
+    console.log('--------打包end！----------');
 });
+//测试环境打包任务执行,PS:先运行 wepy build --watch 再执行此命令 gulp tsRun
+gulp.task('tsRun', gulpSequence('tsStart', [
+    'copyFile',
+    /*'tinyPng'*/
+    ], 'cssAuto', 'tsHtmlmin', 'cleanCss', 'jsMin', ['tsReleasePackage', 'tsCleanFiles'], 'end')
+);
+//正式环境打包任务执行,PS:先运行 wepy build --watch 再执行此命令 gulp offRun
+gulp.task('offRun', gulpSequence('offStart', [
+        'copyFile'
+        /*, 'tinyPng'*/
+    ], 'cssAuto', 'offHtmlmin', 'offApiUrlReplace', 'offAppendJs','filesAddVersion1', 'filesAddVersion2','cleanCss', 'jsMin', ['offReleasePackage', 'offCleanFiles'], 'end')
+);
 
-gulp.task('jsonReplace',function(){
-   gulp.src('static/lotus-address2.json')
-       .pipe(gulpReplace(/\s/g,''))
-       .pipe(gulp.dest('static'));
-});
-//开发环境打包任务执行,PS:先运行yarn run build 再执行此命令
-gulp.task('deRun', gulpSequence(['deReplace'],'depackage'));
-//测试环境打包任务执行
-gulp.task('tsRun', gulpSequence(['tsReplace'], 'tspackage'));
-//正式环境打包任务执行
-gulp.task('offRun', gulpSequence(['offReplace','offAppendJs'],'offpackage'));
+
+
+
 
