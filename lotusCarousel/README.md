@@ -23,7 +23,7 @@
 ```$xslt
     data () {
          return {
-            imageList:['https://img1.360buyimg.com/da/jfs/t18547/198/647803212/149303/924ff4da/5a9cf105N2f3a0824.jpg','https://img1.360buyimg.com/da/jfs/t19585/35/610845581/51050/93e595a7/5a991a0bN22dcc619.jpg','https://img14.360buyimg.com/da/s750x366_jfs/t18937/201/636859513/203851/71ed12bb/5a9d419fNc65b2edd.jpg']
+            imageList:[{pic:'https://img1.360buyimg.com/da/jfs/t18547/198/647803212/149303/924ff4da/5a9cf105N2f3a0824.jpg',url:'/index'},{pic:'https://img14.360buyimg.com/da/s750x366_jfs/t18937/201/636859513/203851/71ed12bb/5a9d419fNc65b2edd.jpg',url:'/index2'}]
          }
     }
 ```
