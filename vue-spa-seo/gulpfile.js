@@ -86,15 +86,10 @@ gulp.task('tinyPng', ['copyFile'], function () {
         .pipe(gulp.dest('src/static1/images'))
 });
 //测试环境apiUrl替换
-gulp.task('tsApiUrlReplace', function () {
-    return gulp.src(['lib/static/js/vendors.js'])
-        .pipe(gulpReplace(/(https?:\/\/devipapi.*?com)/g, "http://tsvipapi.xiaoyaozhan.com"))
-        .pipe(gulpReplace(/(https?:\/\/demall.*?com)/g, "http://tsmall.xiaoyaozhan.com"))
-        .pipe(gulpReplace(/(https?:\/\/dexcximg.*?com)/g, "http://tsxcximg.xiaoyaozhan.com"))
-        .pipe(gulpReplace(/(https?:\/\/devip.*?com)/g, "http://tsvip.xiaoyaozhan.com"))
-        .pipe(gulpReplace(/(https?:\/\/dedingdan.*?com)/g, "http://tsdingdan.xiaoyaozhan.com"))
-        .pipe(gulpReplace(/(https?:\/\/decart.*?com)/g, "http://tscart.xiaoyaozhan.com"))
-        .pipe(gulp.dest('lib/static/js/'));
+gulp.task('tsReplaceDom', function () {
+    return gulp.src(['lib/index.html','lib/**/index.html'])
+        .pipe(gulpReplace(/<div class="lotus-loading-wrap">.*<\/body>/, "</body>"))
+        .pipe(gulp.dest('lib/'));
 });
 //pages文件夹js css文件加时间戳
 gulp.task('filesAddVersion1', function () {
@@ -187,7 +182,7 @@ gulp.task('end', function () {
 gulp.task('tsRun', gulpSequence('tsStart', [
     'copyFile',
     /*'tinyPng'*/
-    ], 'cssAuto', 'tsHtmlmin', 'cleanCss', 'jsMin', ['tsReleasePackage', 'tsCleanFiles'], 'end')
+    ], 'cssAuto', 'tsHtmlmin', 'tsReplaceDom','cleanCss', 'jsMin', ['tsReleasePackage', 'tsCleanFiles'], 'end')
 );
 //正式环境打包任务执行,PS:先运行 wepy build --watch 再执行此命令 gulp offRun
 gulp.task('offRun', gulpSequence('offStart', [
