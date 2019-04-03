@@ -2,6 +2,9 @@
 	<div class="manga-search">
 		<div class="manga-search-module">
 			<div class="manga-search-form">
+				<h1 class="manga-search-logo">
+					<router-link to="/">爱动漫</router-link>
+				</h1>
 				<div class="manga-search-left">
 					<img style="width:0.533rem;height:0.533rem;display: block;" src="../../../static/images/search-icon.png">
 					<input @input="inputFn" class="manga-search-input" type="text" v-model="keyWord" placeholder="请输入漫画名|作者" value="" />
@@ -80,8 +83,7 @@
             tabBar
 		},
         mounted(){
-            const _this = this;
-            _this.$lotusChangeTitle("爱动漫");
+            this.$lotusChangeTitle('动画片,动画片大全,动漫,动漫网,日本动漫,好看的动漫,新番动漫,爱漫画 - 爱动漫');
             if(typeof document !== "undefined"){
                 document.documentElement.scrollTop = 0;
             }
@@ -140,11 +142,7 @@
 									_this.searchArr = _this.searchArr.concat(res);
 									_this.pageIndex+=1;
 									_this.flag = true;
-									if(type){
-										_this.lotusLoadMData.isShow = false;
-									}else{
-										_this.lotusLoadMData.isShow = true;
-									}
+                                    type?_this.lotusLoadMData.isShow = false:_this.lotusLoadMData.isShow = true;
 									_this.noDataFlag = false;	
 								}else{
 									_this.lotusLoadMData.isShow = false;

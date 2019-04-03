@@ -37,9 +37,18 @@
     }
   }
   &-search{
+    &-logo{
+      .fontSize(16);
+      font-style: italic;
+      .paddingRight(10);
+      white-space: nowrap;
+      a{
+        color:#ff9a6a;
+      }
+    }
     &-module{
       background: #fbfbfb;
-      .padding(10);
+      .padding(6);
       position: fixed;
       left:0;
       width:100%;
@@ -49,10 +58,11 @@
     &-left{
       .flex();
       .flex-hvc();
-      background: #ffff;
+      background: #fff;
       .borderRadius(4);
       .padding2(0,10);
-      .marginRight(15);
+      .marginRight(10);
+      .widthSingle(230);
     }
    &-form{
     .flex();
@@ -60,6 +70,7 @@
     &-btn{
       .fontSize(15);
       color:#969696;
+      white-space: nowrap;
     }
    }
    &-input{

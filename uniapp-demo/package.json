@@ -12,5 +12,9 @@
     "imgfile2base64": "^0.1.4",
     "lrz": "^4.9.40",
     "moment": "^2.24.0"
+  },
+  "devDependencies": {
+    "commands": "^0.0.7",
+    "text-encoding": "^0.7.0"
   }
 }

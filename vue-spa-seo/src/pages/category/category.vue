@@ -85,6 +85,9 @@
 		},
         components:{
             tabBar
+		},
+		created(){
+            this.$lotusChangeTitle('动画片,动画片大全,动漫,动漫网,日本动漫,好看的动漫,新番动漫,爱漫画 - 爱动漫');
 		}
 	}
 </script>

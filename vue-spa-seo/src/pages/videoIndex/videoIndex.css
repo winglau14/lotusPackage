@@ -37,9 +37,18 @@
   line-height: normal;
   color: #ff9a6a;
 }
+.manga-video-search-logo {
+  font-size: 0.42666667rem;
+  font-style: italic;
+  padding-right: 0.26666667rem;
+  white-space: nowrap;
+}
+.manga-video-search-logo a {
+  color: #ff9a6a;
+}
 .manga-video-search-module {
   background: #fbfbfb;
-  padding: 0.26666667rem;
+  padding: 0.16rem;
   position: fixed;
   left: 0;
   width: 100%;
@@ -52,10 +61,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #ffff;
+  background: #fff;
   border-radius: 0.10666667rem;
   padding: 0rem 0.26666667rem;
-  margin-right: 0.4rem;
+  margin-right: 0.26666667rem;
+  width: 6.13333333rem;
 }
 .manga-video-search-form {
   /*display: -webkit-box;
@@ -67,6 +77,7 @@
 .manga-video-search-form-btn {
   font-size: 0.4rem;
   color: #969696;
+  white-space: nowrap;
 }
 .manga-video-search-input {
   width: 6.13333333rem;
@@ -83,7 +94,7 @@
 }
 .manga-video-table {
   width: 100%;
-  margin-top: 0.26666667rem;
+  margin-top: 0.4rem;
   line-height: 1.06666667rem;
 }
 .manga-video-table-thead {

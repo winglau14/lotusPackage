@@ -22,7 +22,9 @@ import VueLazyload from 'vue-lazyload'
 import lotusLoading from './lotusPlugins/lotusLoading'
 //toast 组件
 import lotusToast from './lotusPlugins/lotusToast'
-
+import Mui from 'vue-awesome-mui'
+//import 'vue-awesome-mui/mui/dist/css/mui.css'
+Vue.use(Mui);
 es6Promise.polyfill();
 Vue.use(VueRouter);
 Vue.use(lotusAjax);

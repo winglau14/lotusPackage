@@ -1,10 +1,13 @@
 {
   "pages": [
+    "pages/lyTest/lyTest",
+    "pages/tempPage/tempPage",
+    "pages/formDetail/formDetail",
+    "pages/form/form",
     "pages/list/list",
+    "pages/success/success",
     "pages/userCenter/userCenter",
     "pages/login/login",
-    "pages/form/form",
-    "pages/tempPage/tempPage",
     "pages/light/light",
     "pages/index/index",
     "pages/detail/detail"
@@ -16,6 +19,7 @@
     "navigationBarBackgroundColor": "#13a3ff",
     "backgroundColor": "#f0f0f6"
   },
+  "usingComponents": {},
   "tabBar": {
     "color": "#666",
     "selectedColor": "#13A3FF",
@@ -30,14 +34,15 @@
       },
       {
         "pagePath": "pages/userCenter/userCenter",
-        "text": "我",
+        "text": "我的",
         "iconPath": "static/images/user-default.png",
         "selectedIconPath": "static/images/user-default2.png"
       }
     ]
   },
   "splashscreen": {
-    "autoclose": true
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
   },
   "appname": "帮您购"
 }

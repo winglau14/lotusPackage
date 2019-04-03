@@ -2,6 +2,11 @@
     "pages" : [
         //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
         {
+            "path" : "pages/lyTest/lyTest",
+            "style" : {
+        		"navigationBarTitleText" : "蓝牙测试"
+        	}
+        },{
             //落地页
             "path" : "pages/tempPage/tempPage",
             "style" : {
@@ -10,23 +15,27 @@
                     "titleNView" : false //禁用原生导航栏
                 }
             }
-        },{
+        },
+        {
             //表单详情页
             "path" : "pages/formDetail/formDetail",
             "style" : {
                 "navigationBarTitleText" : ""
             }
-        },{
+        },
+        {
             "path" : "pages/form/form",
             "style" : {
                 "navigationBarTitleText" : "^_^填您想要的^_^"
             }
-        },{
+        },
+        {
             "path" : "pages/list/list",
             "style" : {
                 "navigationBarTitleText" : "^_^记录^_^"
             }
-        },{
+        },
+        {
             "path" : "pages/success/success",
             "style" : {
                 "navigationBarTitleText" : "提交成功"
@@ -62,7 +71,6 @@
                 "navigationBarTitleText" : "物流详情"
             }
         }
-        
     ],
     "globalStyle" : {
         "navigationBarTextStyle" : "white",
@@ -87,6 +95,17 @@
                 "text" : "我的",
                 "iconPath" : "static/images/user-default.png",
                 "selectedIconPath" : "static/images/user-default2.png"
+            }
+        ]
+    },
+    "condition" : {
+        //模式配置，仅开发期间生效
+        "current" : 0, //当前激活的模式(list 的索引项)
+        "list" : [
+            {
+                "name" : "蓝牙测试", //模式名称
+                "path" : "pages/lyTest/lyTest", //启动页面，必选
+                "query" : "" //启动参数，在页面的onLoad函数里面得到
             }
         ]
     }

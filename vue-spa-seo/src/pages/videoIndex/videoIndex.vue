@@ -1,9 +1,11 @@
 <template>
     <div ref="videoIndex" class="manga-video-index">
-        <div v-if="pageShowVal>0">
-            <div style="height:1.12rem;">
-                <div class="manga-video-search-module">
+        <div v-if="pageShowVal>0" style="height:1.12rem;">
+            <div class="manga-video-search-module">
                 <div class="manga-video-search-form">
+                    <h1 class="manga-video-search-logo">
+                        <router-link to="/">爱动漫</router-link>
+                    </h1>
                     <div class="manga-video-search-left">
                         <img style="width:0.533rem;height:0.533rem;display: block;" src="../../../static/images/search-icon.png">
                         <input @input="inputFn" class="manga-video-search-input" type="text" v-model="keyWord" placeholder="请输入动漫名称" value=""/>
@@ -12,7 +14,8 @@
                     <span @click="initSearch();searchFn();" class="manga-video-search-form-btn">搜索</span>
                 </div>
             </div>
-            </div>
+        </div>
+        <div v-if="pageShowVal>0">
             <div class="manga-video-index-list">
                 <router-link class="manga-video-index-link" to="/videoDetail?name=海贼王&url=/?m=vod-detail-id-2320.html">
                     <img src="/static/images/hzw-pic.jpg" alt="">
@@ -98,13 +101,13 @@
                     text: '暂未搜索到相关动漫数据^_^!',
                     textStyle: 'color:#969696;font-size:0.35rem;',
                     imgStyle: 'width:4.96rem;margin-top:2rem;',
-                    wrapStyle:'padding-top:0;'
+                    wrapStyle: 'padding-top:0;'
                 },
                 noDataFlag: false,
                 pageIndex: 1,
                 pageSize: 50,
-                flag:true,
-                pageShowVal:0
+                flag: true,
+                pageShowVal: 0
             }
         },
         components: {
@@ -131,11 +134,11 @@
                 //type === search搜索翻页
                 if (_this.keyWord) {
                     url = `?m=vod-index-pg-${_this.pageIndex}.html`;
-                } else{
+                } else {
                     url = `?m=vod-type-id-4-pg-${_this.pageIndex}.html`;
                 }
                 //阻止滑动加载更多2次触发
-                if(_this.keyWord&&_this.tableArr.length < _this.pageSize){
+                if (_this.keyWord && _this.tableArr.length < _this.pageSize) {
                     return false;
                 }
 
@@ -154,12 +157,12 @@
                                 _this.flag = true;
                             }
                             //点击搜索第一次不用显示加载更多
-                            _this.keyWord?_this.lotusLoadMData.isShow = false:_this.lotusLoadMData.isShow = true;
+                            _this.keyWord ? _this.lotusLoadMData.isShow = false : _this.lotusLoadMData.isShow = true;
                             //数据为空
-                            if(!res.data.list.length||res.data.list.length<_this.pageSize){
+                            if (!res.data.list.length || res.data.list.length < _this.pageSize) {
                                 _this.lotusLoadMData.isShow = false;
                                 _this.noDataFlag = true;
-                            }else{
+                            } else {
                                 _this.noDataFlag = false;
                             }
                             _this.pageShowVal = 1;
@@ -181,10 +184,10 @@
                 const _this = this;
                 let url = '';
                 let data = {};
-                if(_this.keyWord){
+                if (_this.keyWord) {
                     url = `${_this.$lotusUtils.webUrl.api}movieSearch/`;
                     data.wd = _this.keyWord;
-                }else{
+                } else {
                     url = `${this.$lotusUtils.webUrl.api}movie/`;
                     data.url = `?m=vod-type-id-4-pg-${_this.pageIndex}.html`;
                 }
@@ -193,12 +196,12 @@
                     if (res.code === 1) {
                         _this.tableArr = res.data.list;
                         _this.pageIndex += 1;
-                        res.data.list.length === _this.pageSize ? _this.flag = true :_this.flag = false;
+                        res.data.list.length === _this.pageSize ? _this.flag = true : _this.flag = false;
                         //数据为空
-                        if(!res.data.list.length){
+                        if (!res.data.list.length) {
                             _this.lotusNoData.isShow = true;
                         }
-                        if(res.data.list.length<_this.pageSize){
+                        if (res.data.list.length < _this.pageSize) {
                             _this.noDataFlag = true;
                         }
                     }
@@ -217,7 +220,7 @@
                 }
             };
             if (typeof window !== "undefined") {
-                loadMore(upLoadMore, window.innerHeight * (2/ 3), 'up', true);
+                loadMore(upLoadMore, window.innerHeight * (2 / 3), 'up', true);
             }
         }
     }

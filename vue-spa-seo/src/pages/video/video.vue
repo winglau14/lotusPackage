@@ -1,6 +1,6 @@
 <template>
     <div class="manga-video">
-        <iframe id="load-resource" class="manga-video-iframe" :src="url" frameborder="0"></iframe>
+        <iframe id="load-resource" width="100%" height="100%" class="manga-video-iframe" :src="url" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"></iframe>
     </div>
 </template>
 <style lang="less">
