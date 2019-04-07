@@ -1,5 +1,7 @@
 <template>
     <div v-if="pageShow" class="manga-video-detail">
+        <!--提示组件 lotusTipsData-->
+        <lotusTips></lotusTips>
         <div class="manga-video-detail-intor">
             <img v-lazy="videoDetail.pic" alt="">
             <div class="manga-video-detail-msg">
@@ -26,6 +28,7 @@
 </style>
 <script>
 import LotusToTop from "../../components/lotusToTop/lotusToTop.vue";
+import lotusTips from "../../components/tips/LotusTips.vue";
     export default {
         data() {
             return {
@@ -36,7 +39,8 @@ import LotusToTop from "../../components/lotusToTop/lotusToTop.vue";
             }
         },
         components:{
-            LotusToTop
+            LotusToTop,
+            lotusTips
         },
         mounted() {
             const title = this.$route.query.name;

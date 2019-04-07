@@ -1,0 +1,39 @@
+@import (reference) '../../../static/style/config.less';
+@import (reference) '../../../static/style/set1Px.less';
+@lotus: lotus-tips;
+.@{lotus}{
+	background: #fbfbfb;
+	.padding2(10,20);
+	.fontSize(14);
+	color:#ff9a6a;
+	.lineHeight(24);
+	.marginTop(10);
+	text-align: center;
+	.flex();
+	.flex-hvc();
+	justify-content: space-between;
+	position: relative;
+	&:before{
+		.setTopLine(#eee);
+	}
+	&:after{
+		.setBottomLine(#eee);
+	}
+	&-delete{
+		cursor: pointer;
+		position: relative;
+		display: block;
+		&:after{
+			content: "";
+			.width(18);
+			background:#fff url('/static/images/delete-icon.png') no-repeat;
+			background-size: 100% 100%;
+			position: absolute;
+			right:0;
+			top:50%;
+			transform: translateY(-50%);
+			z-index: 2;
+		}
+
+	}
+}

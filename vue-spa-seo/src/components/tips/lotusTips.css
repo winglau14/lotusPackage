@@ -1,0 +1,57 @@
+.lotus-tips {
+  background: #fbfbfb;
+  padding: 0.26666667rem 0.53333333rem;
+  font-size: 0.37333333rem;
+  color: #ff9a6a;
+  line-height: 0.64rem;
+  margin-top: 0.26666667rem;
+  text-align: center;
+  /*display: -webkit-box;
+  display: -webkit-flex;*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  justify-content: space-between;
+  position: relative;
+}
+.lotus-tips:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1px solid #eee;
+  color: #eee;
+  transform-origin: 0 0;
+  transform: scaleY(0.5);
+}
+.lotus-tips:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 1px;
+  border-bottom: 1px solid #eee;
+  color: #eee;
+  transform-origin: 0 100%;
+  transform: scaleY(0.5);
+}
+.lotus-tips-delete {
+  cursor: pointer;
+  position: relative;
+  display: block;
+}
+.lotus-tips-delete:after {
+  content: "";
+  width: 0.48rem;
+  height: 0.48rem;
+  background: #fff url('/static/images/delete-icon.png') no-repeat;
+  background-size: 100% 100%;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}

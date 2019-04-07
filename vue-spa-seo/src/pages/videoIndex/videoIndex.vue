@@ -16,6 +16,8 @@
             </div>
         </div>
         <div v-if="pageShowVal>0">
+            <!--提示组件 lotusTipsData-->
+            <lotusTips></lotusTips>
             <div class="manga-video-index-list">
                 <router-link class="manga-video-index-link" to="/videoDetail?name=海贼王&url=/?m=vod-detail-id-2320.html">
                     <img src="/static/images/hzw-pic.jpg" alt="">
@@ -79,6 +81,7 @@
     import LotusNoData from "../../components/lotusNodata/LotusNoData.vue";
     import tabBar from "../../components/lotusTabBar/LotusTabBar.vue";
     import skeletonIndex from "../../components/skeleton/SkeletonIndex.vue";
+    import lotusTips from "../../components/tips/LotusTips.vue";
     import loadMore from "../../Utils/loadMore";
 
     export default {
@@ -115,7 +118,8 @@
             LotusLoadMoreText,
             LotusNoData,
             tabBar,
-            skeletonIndex
+            skeletonIndex,
+            lotusTips
         },
         methods: {
             inputFn() {

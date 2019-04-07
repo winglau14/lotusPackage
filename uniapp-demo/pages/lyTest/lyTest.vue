@@ -75,7 +75,8 @@ const printerUtil = require('../../printer/printerutil')
 				chs: [],
 				canWrite:false,
 				name:'',
-				services:[]
+				services:[],
+				targetDevice:'QR-386A-232B-LE'
 			};
 		},
 		methods:{
@@ -95,7 +96,7 @@ const printerUtil = require('../../printer/printerutil')
 					showCancel: false
 				  })
 				  uni.onBluetoothAdapterStateChange(function (res) {
-					console.log('onBluetoothAdapterStateChange', res)
+					console.log('onBluetoothAdapterStateChange'+JSON.stringify(res))
 					if (res.available) {
 					  this.startBluetoothDevicesDiscovery()
 					}
@@ -125,7 +126,7 @@ const printerUtil = require('../../printer/printerutil')
 			uni.startBluetoothDevicesDiscovery({
 			  allowDuplicatesKey: true,
 			  success: (res) => {
-				console.log('startBluetoothDevicesDiscovery success', res)
+				console.log('startBluetoothDevicesDiscovery success'+JSON.stringify(res))
 				this.onBluetoothDeviceFound()
 			  },
 			})
@@ -139,18 +140,33 @@ const printerUtil = require('../../printer/printerutil')
 		  },
 		  onBluetoothDeviceFound() {
 			  let flag = true;
+			  const _this = this;
+			  uni.showLoading({
+			  	title:'设备扫描中...',
+			  	mask:true
+			  });
 			uni.onBluetoothDeviceFound((res) => {
 			  res.devices.forEach(device => {
 				if (!device.name && !device.localName) {
 				  return
 				}
-				if(device.name === "QR-386A-232B-LE" && flag){
-					this.name = device.name;
-					this.devices.push(device);
+				if(device.name === _this.targetDevice && flag){
+					_this.name = device.name;
+					_this.devices.push(device);
 					flag = false;
 					return;
 				}
 			  })
+			  //未搜索到指定设备提示
+			  if(!_this.devices.length&& flag){
+				  flag = false; 
+				  uni.showToast({
+				  	title:`未搜索到设备${_this.targetDevice}，请开启蓝牙鸭，小老弟`,
+					icon:'none',
+					duration:3000
+				  })
+			  }
+			  uni.hideLoading();
 			})
 		  },
 		  createBLEConnection(e) {
@@ -208,7 +224,7 @@ const printerUtil = require('../../printer/printerutil')
 				  uni.hideLoading();
 				  this.stopBluetoothDevicesDiscovery();
 				for (let i = 0; i < res.services.length; i++) {
-				  if (res.services[i].isPrimary&&res.services[i].uuid.toUpperCase().indexOf("FEE7") != -1/* res.services[i].isPrimary&& i === 3 */) {
+				  if (res.services[i].isPrimary&&res.services[i].uuid.toUpperCase().indexOf("FEE7") != -1) {
 					this.getBLEDeviceCharacteristics(deviceId, res.services[i].uuid)
 					return
 				  }
@@ -241,43 +257,11 @@ const printerUtil = require('../../printer/printerutil')
 					console.log((item.uuid));
 					//this.writeBLECharacteristicValue(item.uuid)
 				  }
-				  if (item.properties.notify || item.properties.indicate) {
-					/* uni.notifyBLECharacteristicValueChange({
-					  deviceId,
-					  serviceId,
-					  characteristicId: item.uuid,
-					  state: true,
-					  success(res) {
-					  	    // 操作之前先监听，保证第一时间获取数据
-					  	    uni.onBLECharacteristicValueChange((characteristic) => {
-					  	      const idx = inArray(_this.chs, 'uuid', characteristic.characteristicId)
-					  	      const data = {}
-					  	      if (idx === -1) {
-					  	    	data[`chs[${_this.chs.length}]`] = {
-					  	    	  uuid: characteristic.characteristicId,
-					  	    	  value: ab2hex(characteristic.value)
-					  	    	}
-					  	      } else {
-					  	    	data[`chs[${idx}]`] = {
-					  	    	  uuid: characteristic.characteristicId,
-					  	    	  value: ab2hex(characteristic.value)
-					  	    	}
-					  	      }
-					  	      // data[`chs[${this.data.chs.length}]`] = {
-					  	      //   uuid: characteristic.characteristicId,
-					  	      //   value: ab2hex(characteristic.value)
-					  	      // }
-					  	      console.log(JSON.stringify(data));
-					  	      _this.data = data;
-					  	    })
-					  }
-					}) */
-				  }
-				  
+				   
 				}
 			  },
 			  fail(res) {
-				console.error('getBLEDeviceCharacteristics', res)
+				console.error('getBLEDeviceCharacteristics'+JSON.stringify(res))
 			  }
 			})
 			
