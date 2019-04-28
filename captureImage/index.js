@@ -59,7 +59,7 @@ function requestType(url,type,res1,dirName1,imgSize){
         request(url,function(err,res,body){
             const t = url.split('/');
             const dirName = dirName1||t[t.length-1].replace('.html','');
-            //console.log(url);
+            console.log(url);
             if(!err && res.statusCode === 200){
                 const $ = cheerio.load(body);
                 //健客网图片下载
@@ -409,6 +409,44 @@ app.post('/movieDetail',function(req,res){
     requestDetail(url,res);
 });
 
+//京东cps链接转换
+app.post('/jd',function(req,pRes){
+    const url = req.body.url;
+    const type = req.body.type;
+    const timestamp = req.body.timestamp;
+    const sign = req.body.sign;
+    const param_json = req.body.param_json;
+    const reg = /\d{1,}/g;
+    const id = url.match(reg);
+    let method = '';
+    let requestUrl = '';
+    //获取推广商品信息接口
+    if(type === "detail"){
+        method = "jd.union.open.goods.promotiongoodsinfo.query";
+    }else{
+        // 获取通用推广链接
+        method = "jd.union.open.promotion.common.get";
+    }
+    requestUrl = 'http://router.jd.com/api?v=1.0&method='+method+'&app_key=d5a7072c08a24cc2858c9f79ed37b5c7&sign_method=md5&format=json&timestamp='+timestamp+'&sign='+sign+'&param_json='+param_json;
+    console.log(requestUrl);
+    request(requestUrl,function(err,res,body){
+        const result = JSON.parse(body);
+        //没有返回结果
+        if(result.errorResponse){
+            pRes.json({
+                code:0,
+                data:result
+            });
+        }else{
+            //有数据返回
+            pRes.json({
+                code:1,
+                data:result
+            });
+        }
+
+    })
+});
 
 
 //健客下载
