@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 //app.use(cors());
 //静态资源访问路由
 app.use('/static', express.static('static'));
+
 function getCompany(text){
     var options = {
         uri: 'https://www.kuaidi100.com/autonumber/autoComNum',
@@ -19,7 +20,6 @@ function getCompany(text){
     };
     return rp(options);
 }
-
 //物流信息请求api
 app.get('/express/', function (req, res) {
     console.log(req.query.text);
@@ -76,7 +76,6 @@ app.get('/express/', function (req, res) {
             }
         });
 });
-
 //根据经纬度获取地址明细
 app.get('/express/map',function(req,res){
     var lat = req.query.lat;
@@ -121,7 +120,7 @@ app.post('/mApi',function(req,res){
     if(!uri||!options){
         res.status(404);
         res.json({
-            errorMessage:"参数错误辣，小老弟"
+           errorMessage:"参数错误辣，小老弟"
         });
         return false;
     }
@@ -396,15 +395,14 @@ app.post('/movieDetail',function(req,res){
 
 //京东cps链接转换
 app.post('/jd',function(req,pRes){
-    const url = req.body.url;
+    //const url = req.body.url;
     const type = req.body.type;
     const timestamp = req.body.timestamp;
     const sign = req.body.sign;
     const param_json = req.body.param_json;
-    const reg = /\d{1,}/g;
-    const id = url.match(reg);
+    //const reg = /\d{1,}/g;
+    //const id = url.match(reg);
     let method = '';
-    let requestUrl = '';
     //获取推广商品信息接口
     if(type === "detail"){
         method = "jd.union.open.goods.promotiongoodsinfo.query";
@@ -412,7 +410,7 @@ app.post('/jd',function(req,pRes){
         // 获取通用推广链接
         method = "jd.union.open.promotion.common.get";
     }
-    requestUrl = 'http://router.jd.com/api?v=1.0&method='+method+'&app_key=d5a7072c08a24cc2858c9f79ed37b5c7&sign_method=md5&format=json&timestamp='+timestamp+'&sign='+sign+'&param_json='+param_json;
+    let requestUrl = 'http://router.jd.com/api?v=1.0&method='+method+'&app_key=d5a7072c08a24cc2858c9f79ed37b5c7&sign_method=md5&format=json&timestamp='+timestamp+'&sign='+sign+'&param_json='+param_json;
     console.log(requestUrl);
     request(requestUrl,function(err,res,body){
         const result = JSON.parse(body);
@@ -436,17 +434,17 @@ app.post('/jd',function(req,pRes){
 
 
 
-app.use('*', function(req, res){
+/*app.use('*', function(req, res){
     res.sendFile(__dirname+'/index.html');
+});*/
+
+app.listen(process.env.PORT||3000,function(){
+	console.log('listen 3000');
 });
 
-app.listen(process.env.PORT||3100,function(){
-    console.log("listen 3100");
-});
 
-
-function getMapData(lat,lng,ak){
-    var ak = ak || '50KTD4E6eiE1MkTqKHKoxGbu0rZdwfhO';
+function getMapData(lat,lng,ak1){
+    var ak = ak1 || '50KTD4E6eiE1MkTqKHKoxGbu0rZdwfhO';
     var option = {
         uri:'http://api.map.baidu.com/geocoder/v2/?callback=renderReverse&location='+lat+','+lng+'&output=json&pois=1&ak='+ak,
         json:true
@@ -455,8 +453,8 @@ function getMapData(lat,lng,ak){
 }
 
 //根据地址获取坐标
-function getAddressLat(name,ak){
-    var ak = ak || '50KTD4E6eiE1MkTqKHKoxGbu0rZdwfhO';
+function getAddressLat(name,ak1){
+    var ak = ak1 || '50KTD4E6eiE1MkTqKHKoxGbu0rZdwfhO';
     var option = {
         uri:'http://api.map.baidu.com/geocoder/v2/?address='+name+'&output=json&ak='+ak+'&callback=showLocation',
         json:true
@@ -476,5 +474,6 @@ app.get('/express/coordinate',function(req,res){
 
     });
 });
+
 
 
