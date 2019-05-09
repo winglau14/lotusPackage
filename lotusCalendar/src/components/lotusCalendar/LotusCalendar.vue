@@ -1,6 +1,6 @@
 <template>
     <div v-if="calendarData.isShow" class="lotus-calendar-wrap">
-        <div class="lotus-calendar">
+        <div :class="showFlag?'lotus-calendar':'lotus-calendar lotus-calendar-out'">
             <div class="lotus-calendar-cur-date">
                 <div class="lotus-calendar-center">
                     <div class="lotus-calendar-month">
@@ -34,7 +34,7 @@
     </div>
 </template>
 <style lang="less">
-    @import '../../style/lotusComponents/lotusCalendar.less';
+    @import './lotusCalendar.less';
 </style>
 <script>
     export default {
@@ -134,13 +134,18 @@
                 }
 
                 this.choseCurTime = tempObj;
-                this.showFlag = false;
+
                 //判断选择时间跨入了下一年换算当前月份
                 if (this.choseCurTime.month > 12) {
                     this.choseCurTime.month = this.choseCurTime.month - 12 < 10 ? `0${this.choseCurTime.month - 12}` : this.choseCurTime.month - 12;
                 }
-                //关闭日历弹层
-                this._props.calendarData.isShow = false;
+                this.showFlag = false;
+                setTimeout(()=>{
+                    this.showFlag = true;
+                    //关闭日历弹层
+                    this._props.calendarData.isShow = false;
+                },400);
+
                 //传值给父组件
                 this.$emit('returnDate', `${this.choseCurTime.year}-${this.choseCurTime.month}-${this.choseCurTime.day}`, this._props.calendarData.type);
             },
@@ -173,6 +178,7 @@
             },
             //获取当前月份天数
             getCurMonthDays(year, month) {
+                console.log(year, month);
                 if (this.isLeapYear(year)) {
                     //判断当前月份是2月
                     if (this.curMonth === 1) {

@@ -6,6 +6,9 @@
   transform: translateY(100%);
   animation: calendarMove 0.4s ease-in-out forwards;
 }
+.lotus-calendar-out {
+  animation: calendarOut 0.4s ease-in-out forwards;
+}
 .lotus-calendar-wrap {
   position: fixed;
   left: 0;
