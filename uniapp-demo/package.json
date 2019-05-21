@@ -14,7 +14,16 @@
     "moment": "^2.24.0"
   },
   "devDependencies": {
+    "buffer": "^5.2.1",
+    "bufferhelper": "^0.2.1",
     "commands": "^0.0.7",
-    "text-encoding": "^0.7.0"
+    "crypto-js": "^3.1.9-1",
+    "events": "^3.0.0",
+    "get-pixels": "^3.3.2",
+    "iconv-lite": "^0.4.24",
+    "mutable-buffer": "^2.1.1",
+    "qr-image": "^3.2.0",
+    "text-encoding": "^0.7.0",
+    "to-arraybuffer": "^1.0.1"
   }
 }

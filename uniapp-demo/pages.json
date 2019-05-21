@@ -71,6 +71,10 @@
                 "navigationBarTitleText" : "物流详情"
             }
         }
+        ,{
+            "path" : "F:/Project/merchandiser/merchandiser/merchandiser",
+            "style" : {}
+        }
     ],
     "globalStyle" : {
         "navigationBarTextStyle" : "white",

@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/lyTest/lyTest",
     "pages/tempPage/tempPage",
     "pages/formDetail/formDetail",
     "pages/form/form",
@@ -18,6 +19,7 @@
     "navigationBarBackgroundColor": "#13a3ff",
     "backgroundColor": "#f0f0f6"
   },
+  "usingComponents": {},
   "tabBar": {
     "color": "#666",
     "selectedColor": "#13A3FF",
@@ -39,7 +41,9 @@
     ]
   },
   "splashscreen": {
-    "autoclose": true
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
   },
-  "appname": "帮您购"
+  "appname": "帮您购",
+  "compilerVersion": "1.8.2"
 }

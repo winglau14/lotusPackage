@@ -1,8 +1,7 @@
 <template>
 	<view>
+		<canvas style="width:100%;height:60upx;" canvas-id="barcode" />
 		<view class="find-list">
-			<button style="margin-top: 20upx;" @tap="test">test</button>
-			<button style="margin-top: 20upx;" @tap="writeFn">writeFn</button>
 			<view>已发现 {{devices.length}} 个外围设备：</view>
 			<view v-for="(item,index) in devices" :key="index" @tap="createBLEConnection" :data-device-id="item.deviceId" :data-name="item.name">
 				<view>{{item.name}}</view>
@@ -35,16 +34,31 @@
 </template>
 
 <script>
+	function inArray(arr, key, val) {
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i][key] === val) {
+      return i
+    }
+  }
+  return -1
+}
 function str2ab(str) {
   // Convert str to ArrayBuff and write to printer
-  let buffer = new ArrayBuffer(str.length)
+  /* let buffer = new ArrayBuffer(str.length)
   let dataView = new DataView(buffer)
   for (let i = 0; i < str.length; i++) {
     dataView.setUint8(i, str.charAt(i).charCodeAt(0))
   }
-  return buffer;
+  return buffer; */
+	var buf = new ArrayBuffer(str.length*2); // 每个字符占用2个字节
+var bufView = new Uint16Array(buf);
+for (var i=0, strLen=str.length; i<strLen; i++) {
+bufView[i] = str.charCodeAt(i);
 }
-
+return buf;
+}
+let tarArr = [];
+let dataArr = [];
 // ArrayBuffer转16进度字符串示例
 function ab2hex(buffer) {
   const hexArr = Array.prototype.map.call(
@@ -55,12 +69,55 @@ function ab2hex(buffer) {
   )
   return hexArr.join('')
 }
-var _service = require('./blueservice.js');
-var _ble = new _service.Xtbluservice();
+function getImageData(){
+	uni.canvasGetImageData({
+  canvasId: 'barcode',
+  x: 0,
+  y: 0,
+  width: 100,
+  height: 30,
+  success(res) {
+    //console.log(JSON.stringify(res.data))
+		//4合1
+			for (let i = 0; i < res.data.length; i++) {
+				if (i % 4 == 0) {
+					let rule = 0.29900 * res.data[i] + 0.58700 * res.data[i + 1] + 0.11400 * res.data[i + 2];
+						if (rule > 200) {
+							res.data[i] = 0;
+						} else {
+							res.data[i] = 1;
+						}
+						tarArr.push(res.data[i]);
+				}	
+			}
+			//8合1
+			for (let k = 0; k < tarArr.length; k += 8) {
+				let temp = tarArr[k] * 128 + tarArr[k + 1] * 64 + tarArr[k + 2] * 32 + tarArr[k + 3] * 16 + tarArr[k + 4] * 8 + tarArr[k + 5] * 4 + tarArr[k + 6] * 2 + tarArr[k + 7] * 1
+				dataArr.push(temp);
+			}
+			console.log(dataArr);
+			
+			
+  }
+})
+}
+
+
+function Hex2Arry(str) {
+    var sa = str.split("%");
+    var b = new Uint8Array(sa.length - 1);
+    for (var i = 1; i < sa.length; i++) {
+        b[i - 1] = parseInt(sa[i], 16);
+    }
+    return b;
+}
+
 const PrinterJobs = require('../../printer/printerjobs')
 const printerUtil = require('../../printer/printerutil')
-
-
+const barcode = require('./barcode')
+var Buffer = require('buffer').Buffer;
+var toArrayBuffer = require('to-arraybuffer')
+const encodeToGb2312 = require('./encodeToGb2312.js');
 	export default {
 		data() {
 			return {
@@ -69,12 +126,15 @@ const printerUtil = require('../../printer/printerutil')
 				chs: [],
 				canWrite:false,
 				name:'',
-				services:[]
+				services:[],
+				targetDevice:'QR-386A-232B-LE',
+				code: 'AQ4201000878876'
 			};
 		},
 		methods:{
 		//初始化蓝牙适配器
 		openBluetoothAdapter() {
+			getImageData();
 			this.devices = [];
 			uni.openBluetoothAdapter({
 			  success: (res) => {
@@ -89,7 +149,7 @@ const printerUtil = require('../../printer/printerutil')
 					showCancel: false
 				  })
 				  uni.onBluetoothAdapterStateChange(function (res) {
-					console.log('onBluetoothAdapterStateChange', res)
+					console.log('onBluetoothAdapterStateChange'+JSON.stringify(res))
 					if (res.available) {
 					  this.startBluetoothDevicesDiscovery()
 					}
@@ -97,11 +157,12 @@ const printerUtil = require('../../printer/printerutil')
 				}
 			  }
 			})
+			
 		  },
 		  getBluetoothAdapterState() {
 			uni.getBluetoothAdapterState({
 			  success: (res) => {
-				console.log('getBluetoothAdapterState', res)
+				console.log('getBluetoothAdapterState'+JSON.stringify(res))
 				if (res.discovering) {
 				  this.onBluetoothDeviceFound()
 				} else if (res.available) {
@@ -111,14 +172,14 @@ const printerUtil = require('../../printer/printerutil')
 			})
 		  },
 		  startBluetoothDevicesDiscovery() {
-			if (this._discoveryStarted) {
+			/* if (this._discoveryStarted) {
 			  return
 			}
-			this._discoveryStarted = true
+			this._discoveryStarted = true */
 			uni.startBluetoothDevicesDiscovery({
 			  allowDuplicatesKey: true,
 			  success: (res) => {
-				console.log('startBluetoothDevicesDiscovery success', res)
+				console.log('startBluetoothDevicesDiscovery success'+JSON.stringify(res))
 				this.onBluetoothDeviceFound()
 			  },
 			})
@@ -132,54 +193,60 @@ const printerUtil = require('../../printer/printerutil')
 		  },
 		  onBluetoothDeviceFound() {
 			  let flag = true;
+			  const _this = this;
+			  uni.showLoading({
+			  	title:'设备扫描中...',
+			  	mask:true
+			  });
 			uni.onBluetoothDeviceFound((res) => {
 			  res.devices.forEach(device => {
 				if (!device.name && !device.localName) {
 				  return
 				}
-				if(device.name === "QR-386A-232B-LE" && flag){
-					this.name = device.name;
-					this.devices.push(device);
+				if(device.name === _this.targetDevice && flag){
+					_this.name = device.name;
+					_this.devices.push(device);
 					flag = false;
 					return;
 				}
-				
-				/*const foundDevices = this.devices
-				 const idx = inArray(foundDevices, 'deviceId', device.deviceId)
-				const data = {}
-				if (idx === -1) {
-				  data[`devices[${foundDevices.length}]`] = device
-				} else {
-				  data[`devices[${idx}]`] = device
-				}
-				this.data = data; */
 			  })
+			  //未搜索到指定设备提示
+			  /* if(!_this.devices.length&& flag){
+				  flag = false; 
+				  uni.showToast({
+				  	title:`未搜索到设备${_this.targetDevice}，请开启蓝牙鸭，小老弟`,
+					icon:'none',
+					duration:3000
+				  })
+			  } */
+			  uni.hideLoading();
 			})
 		  },
 		  createBLEConnection(e) {
 			const ds = e.currentTarget.dataset
 			const deviceId = ds.deviceId
 			const name = ds.name
-			uni.showLoading();
-			setTimeout(()=>{
-				uni.createBLEConnection({
-				  deviceId,
-				  success: () => {
-					this.connected = true;
-					this.name = name;
-					this.deviceId = deviceId;
-					uni.showLoading()
-					//setTimeout(()=>{
-						this.getBLEDeviceServices(deviceId)
-					//},3000);
-					
-				  },
-				  complete() {
-					uni.hideLoading()
-				  }
+			uni.showLoading({
+				title:'蓝牙服务连接中...',
+				mask:true
+			});
+			uni.createBLEConnection({
+			  deviceId,
+			  success: () => {
+				this.connected = true;
+				this.name = name;
+				this.deviceId = deviceId;
+				uni.showLoading({
+					title:'蓝牙服务连接中...',
+					mask:true
 				})
+				this.getBLEDeviceServices(deviceId)
 				
-			},1000);
+			  },
+			  complete() {
+				uni.hideLoading()
+			  }
+			})
 			
 		  },
 		  closeBLEConnection() {
@@ -191,14 +258,26 @@ const printerUtil = require('../../printer/printerutil')
 			this.canWrite = false;
 		  },
 		  getBLEDeviceServices(deviceId) {
+			  const _this = this;
 			uni.getBLEDeviceServices({
 			  deviceId,
 			  success: (res) => {
 				  console.log(`getBLEDeviceServices:${JSON.stringify(res)}`);
+				  if(!res.services.length){
+					  uni.showLoading({
+						  title:'蓝牙服务连接中...',
+						  mask:true
+					  });
+					  setTimeout(()=>{
+						  _this.getBLEDeviceServices(deviceId);
+					  },2000);
+					  
+					  return false;
+				  }
 				  uni.hideLoading();
 				  this.stopBluetoothDevicesDiscovery();
 				for (let i = 0; i < res.services.length; i++) {
-				  if (res.services[i].isPrimary&& i === 3) {
+				  if (res.services[i].isPrimary&&res.services[i].uuid.toUpperCase().indexOf("FEE7") != -1) {
 					this.getBLEDeviceCharacteristics(deviceId, res.services[i].uuid)
 					return
 				  }
@@ -207,6 +286,7 @@ const printerUtil = require('../../printer/printerutil')
 			})
 		  },
 		  getBLEDeviceCharacteristics(deviceId, serviceId) {
+			  const _this = this;
 			uni.getBLEDeviceCharacteristics({
 			  deviceId,
 			  serviceId,
@@ -220,147 +300,95 @@ const printerUtil = require('../../printer/printerutil')
 					  serviceId,
 					  characteristicId: item.uuid,
 					})
+					_this.characteristicId = item.uuid;
 				  }
 				  if (item.properties.write) {
-					/* this.setData({
-					  canWrite: true
-					}) */
 					this.canWrite = true;
 					this._deviceId = deviceId
 					this._serviceId = serviceId
 					this._characteristicId = item.uuid
-					this.writeBLECharacteristicValue()
+					console.log((item.uuid));
+					//this.writeBLECharacteristicValue(item.uuid)
 				  }
-				  if (item.properties.notify || item.properties.indicate) {
-					uni.notifyBLECharacteristicValueChange({
-					  deviceId,
-					  serviceId,
-					  characteristicId: item.uuid,
-					  state: true,
-					})
-				  }
+				   
 				}
 			  },
 			  fail(res) {
-				console.error('getBLEDeviceCharacteristics', res)
+				console.error('getBLEDeviceCharacteristics'+JSON.stringify(res))
 			  }
 			})
-			// 操作之前先监听，保证第一时间获取数据
-			uni.onBLECharacteristicValueChange((characteristic) => {
-			  const idx = inArray(this.chs, 'uuid', characteristic.characteristicId)
-			  const data = {}
-			  if (idx === -1) {
-				data[`chs[${this.chs.length}]`] = {
-				  uuid: characteristic.characteristicId,
-				  value: ab2hex(characteristic.value)
-				}
-			  } else {
-				data[`chs[${idx}]`] = {
-				  uuid: characteristic.characteristicId,
-				  value: ab2hex(characteristic.value)
-				}
-			  }
-			  // data[`chs[${this.data.chs.length}]`] = {
-			  //   uuid: characteristic.characteristicId,
-			  //   value: ab2hex(characteristic.value)
-			  // }
-			  console.log(JSON.stringify(data));
-			  this.data = data;
-			})
+			
 		  },
 		  writeBLECharacteristicValue() {
-			// 向蓝牙设备发送一个0x00的16进制数据
-			const buffer = new ArrayBuffer(1)
-			const dataView = new DataView(buffer)
 			// eslint-disable-next-line
-			dataView.setUint8(0, Math.random() * 255 | 0)
-			console.log(JSON.stringify(buffer));
-			uni.writeBLECharacteristicValue({
-			  deviceId: this._deviceId,
-			  serviceId: this._deviceId,
-			  characteristicId: this._characteristicId,
-			  value: buffer,
-			  success(res) {
-				  console.log(`writeBLECharacteristicValue success:${JSON.stringify(res.errMsg)}`);
-				},
-				fail(error){
-					console.log(`writeBLECharacteristicValue fail:${JSON.stringify(error)}`);
-				}
-			})
+			console.log(this._deviceId+':'+this._characteristicId);
+			let printerJobs = new PrinterJobs();
+				printerJobs
+				//.model('qsprinter')
+				.setAlign('rt')
+				//.print('XXX药业有限公司1')
+				.setColor(1)
+				.print('测试123456','rt')
+				
+				//.barcode('123456789012')
+				//.print(printerUtil.fillLine())
+				
+				//.barcode('6789452','EAN8',{width:2,height:30})
+				  /* .print('XXX药业有限公司')
+				  .setAlign('ct')
+				  .setSize(2, 2)
+				  .print(printerUtil.fillLine())
+				  .print(printerUtil.inline('收货人：辣鸡老王', '手机：18999886688'))
+				  .setSize(3, 3)
+				  .print('地址：广州市白云区石马村88号602房')
+				  .print(printerUtil.fillLine())
+				  .setSize(1, 1)
+				  .print(printerUtil.inline('商品：小儿麻甘颗粒','规格：6g*18袋*100袋'))
+				  .print('批号：2019032807')
+				  .print('厂家：北京同仁堂')
+				  .setAlign('lt') */
+				  /* .print(printerUtil.fillLine())
+				  .print(printerUtil.fillAround('一号口袋'))
+				  .print(printerUtil.inline('意大利茄汁一面 * 1', '15'))
+				  .print(printerUtil.fillAround('其他'))
+				  .print('餐盒费：1')
+				  .print('[赠送康师傅冰红茶] * 1')
+				  .print(printerUtil.fillLine())
+				  .setAlign('rt')
+				  .print('原价：￥16')
+				  .print('总价：￥16')
+				  .setAlign('lt')
+				  .print(printerUtil.fillLine())
+				  .print('备注')
+				  .print("无")
+				  .print(printerUtil.fillLine()) */
+				  .println();
+			
+				let buffer = printerJobs.buffer();
+				//let t = str2ab('! 0 200 200 210 1 TEXT 4 0 30 40 Hello World FORM PRINT');
+					
+				uni.writeBLECharacteristicValue({
+				  deviceId: this._deviceId,
+				  serviceId: this._serviceId,
+				  characteristicId: this._characteristicId,
+				  value: buffer,
+				  success(res) {
+					  console.log(`writeBLECharacteristicValue success:${JSON.stringify(res.errMsg)}`);
+					},
+					fail(error){
+						console.log(`writeBLECharacteristicValue fail:${JSON.stringify(error)}`);
+					}
+				})
 		  },
+		  //断开连接
 		  closeBluetoothAdapter() {
 			uni.closeBluetoothAdapter()
 			this._discoveryStarted = false
-		  },
-		  test(){
-			  const _this = this;
-			  _ble.Connect('DC:0D:30:45:23:2B',function(result){
-			  	console.log(JSON.stringify(result));
-				_this.services = result.res.services;
-				
-			  })
-		  },
-		  writeFn(){
-			  const _this = this;
-			  _ble.InSerAnch(_this.services,2,(obj)=>{
-			  	console.log(JSON.stringify(obj));
-				let printerJobs = new PrinterJobs();
-					printerJobs
-					  .print('2018年12月5日17:34')
-					  /* .print(printerUtil.fillLine())
-					  .setAlign('ct')
-					  .setSize(2, 2)
-					  .print('#20饿了么外卖')
-					  .setSize(1, 1)
-					  .print('切尔西Chelsea')
-					  .setSize(2, 2)
-					  .print('在线支付(已支付)')
-					  .setSize(1, 1)
-					  .print('订单号：5415221202244734')
-					  .print('下单时间：2017-07-07 18:08:08')
-					  .setAlign('lt')
-					  .print(printerUtil.fillAround('一号口袋'))
-					  .print(printerUtil.inline('意大利茄汁一面 * 1', '15'))
-					  .print(printerUtil.fillAround('其他'))
-					  .print('餐盒费：1')
-					  .print('[赠送康师傅冰红茶] * 1')
-					  .print(printerUtil.fillLine())
-					  .setAlign('rt')
-					  .print('原价：￥16')
-					  .print('总价：￥16')
-					  .setAlign('lt')
-					  .print(printerUtil.fillLine())
-					  .print('备注')
-					  .print("无")
-					  .print(printerUtil.fillLine()) */
-					  .println();
-
-					let buffer = printerJobs.buffer();
-				
-					_ble.Send(buffer, (res)=>{
-						console.log(JSON.stringify(res));
-						//uni.closeBluetoothAdapter();
-						_ble.closeConnect('DC:0D:30:45:23:2B');
-					})
-				
-				
-			  });
-			  
 		  }
 		},
 		onLoad() {
-			_ble.initBle(function(obj){
-				//0蓝牙不可用,1可用,2打开蓝牙适配成功,3打开蓝牙适配失败,4连接成功,5断开连接,6监听到蓝牙列表数据 ,
-      //数据不同的类型数据都在obj.res,根据不同的BleType 获取指定的数据
-       console.log(`有数据${JSON.stringify(obj.res)}`); //数据都在这里
-      if (obj.BleType == 0 || obj.BleType == 3) {  
-         
-      } else if (obj.BleType == 1 || obj.BleType == 2) { 
-        
-      } else if (obj.BleType == 6) {
-         //搜索到的蓝牙都在这
-      }
-			})
+			//条形码
+      barcode.code128(uni.createCanvasContext('barcode'), this.code, 680, 200);
 		}	
 	}
 </script>

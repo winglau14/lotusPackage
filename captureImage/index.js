@@ -410,7 +410,7 @@ app.post('/movieDetail',function(req,res){
 });
 
 //京东cps链接转换
-app.post('/jd',function(req,pRes){
+app.post('/jdcps',function(req,pRes){
     const url = req.body.url;
     const type = req.body.type;
     const timestamp = req.body.timestamp;

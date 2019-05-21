@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<title>打开闪光灯</title>
+		<style>
+			html,
+        body,
+        .container {
+            margin: 0;
+            padding: 0;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            background: #000000;
+        }
+		.open-light{
+			width:100px;
+			height:50px;
+			line-height: 50px;
+			color:#fff;
+			position: absolute;
+			left:50%;
+			top:50%;
+			margin-top:-25px;
+			margin-left:-50px;
+			z-index: 10;
+			background-color: #13a3ff !important;
+			text-align: center;
+		}
+html,body{
+	margin: 0px;
+	padding: 0px;
+	height: 100%;
+}
+#bcid {
+	background:#0F0;
+	height:480px;
+	width:360px;
+}
+    </style>
+	</head>
+
+	<body>
+		<input type='button' onclick='startRecognize()' value='创建扫码控件' />
+		<input type='button' onclick='startScan()' value='开始扫码' />
+		<input type='button' onclick='cancelScan()' value='取消扫码' />
+		<input type='button' onclick='setFlash()' value='开启闪光灯' />
+		<div id="bcid"></div>
+		<input type='text' id='text' />
+		<script>
+			var scan = null;
+			// 扩展API加载完毕，现在可以正常调用扩展API
+			function onPlusReady() {
+				startRecognize();
+				setTimeout(function(){
+						setFlash();
+				},500);
+			}
+			
+
+			function onmarked(type, result) {
+				var text = '未知: ';
+				switch (type) {
+					case plus.barcode.QR:
+						text = 'QR: ';
+						break;
+					case plus.barcode.EAN13:
+						text = 'EAN13: ';
+						break;
+					case plus.barcode.EAN8:
+						text = 'EAN8: ';
+						break;
+				}
+				alert(text + result);
+			}
+
+			function startRecognize() {
+				scan = new plus.barcode.Barcode('bcid');
+				scan.onmarked = onmarked;
+			}
+
+			function startScan() {
+				scan.start();
+			}
+
+			function cancelScan() {
+				scan.cancel();
+			}
+
+			function setFlash() {
+				
+				scan.setFlash(true);
+			}
+			// 扩展API加载完毕后调用onPlusReady回调函数 
+			document.addEventListener("plusready", onPlusReady, false);
+		</script>
+	</body>
+
+</html>

@@ -1,8 +1,0 @@
-.idea/
-.idea
-node_modules
-bower_components
-test
-src
-gulpfile.js
-webpack.config.js

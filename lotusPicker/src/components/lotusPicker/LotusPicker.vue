@@ -244,6 +244,9 @@
             },
             //设置已选中的值
             setSelectedVal() {
+			if(!this._props.selectValue){
+				return false;
+			}
                 if (this._props.selectValue.length) {
                     this._props.lotusPickerData.map((cItemList, cIndex) => {
                         cItemList.values.map((cItem, index) => {

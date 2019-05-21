@@ -103,6 +103,56 @@ _.TEXT_FORMAT = {
   TXT_ALIGN_CT: [0x1b, 0x61, 0x01], // Centering
   TXT_ALIGN_RT: [0x1b, 0x61, 0x02], // Right justification
 };
+/**
+ * Qsprinter-compatible
+ * Added by Attawit Kittikrairit
+ * [MODEL Model-specific commands]
+ * @type {Object}
+ */
+_.MODEL = {
+  QSPRINTER: {
+    BARCODE_MODE: {
+      ON: [0x1d,0x45,0x43,0x01], // Barcode mode on
+      OFF: [0x1d,0x45,0x43,0x00], // Barcode mode off
+    },
+    BARCODE_HEIGHT_DEFAULT: [0x1d,0x68,0xA2], // Barcode height default:162
+    CODE2D_FORMAT: {
+      PIXEL_SIZE: {
+        CMD: [0x1b,0x23,0x23,0x51,0x50,0x49,0x58],
+        MIN: 1,
+        MAX: 24,
+        DEFAULT: 12,
+      },
+      VERSION: {
+        CMD: [0x1d,0x28,0x6b,0x03,0x00,0x31,0x43],
+        MIN: 1,
+        MAX: 16,
+        DEFAULT: 3,
+      },
+      LEVEL: {
+        CMD: [0x1d,0x28,0x6b,0x03,0x00,0x31,0x45],
+        OPTIONS: {
+          L: 48,
+          M: 49,
+          Q: 50,
+          H: 51,
+        }
+      },
+      LEN_OFFSET: 3,
+      SAVEBUF: {
+        // Format: CMD_P1{LEN_2BYTE}CMD_P2{DATA}
+        // DATA Max Length: 256*256 - 3 (65533)
+        CMD_P1: [0x1d,0x28,0x6b],
+        CMD_P2: [0x31,0x50,0x30],
+      },
+      PRINTBUF: {
+        // Format: CMD_P1{LEN_2BYTE}CMD_P2
+        CMD_P1: [0x1d,0x28,0x6b],
+        CMD_P2: [0x31,0x51,0x30],
+      }
+    },
+  },
+};
 
 /**
  * [BARCODE_FORMAT Barcode format]

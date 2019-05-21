@@ -44,5 +44,6 @@
     "alwaysShowBeforeRender": true,
     "autoclose": false
   },
-  "appname": "帮您购"
+  "appname": "帮您购",
+  "compilerVersion": "1.9.1"
 }
