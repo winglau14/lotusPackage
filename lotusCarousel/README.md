@@ -1,6 +1,6 @@
 # lotus-carousel
 
-> vue 滑动轮播、无缝轮播组件
+> vue 滑动轮播、无缝轮播组件,支持PC/H5端
 
 ## how to use 
 
@@ -14,7 +14,7 @@
 ```
 2.页面使用
 ```$xslt
-    <lotus-carousel :imageList="imageList" :_isAuto="false" :_autoTime="2000"></lotus-carousel>
+    <lotus-carousel :imageList="imageList" :_isAuto="false" :_autoTime="2000" :_dotClickFlag="true"></lotus-carousel>
 ```
 
 3.参数说明 <br/>
@@ -28,7 +28,7 @@
     }
 ```
 
-(3)_isAuto，可选，不传也可以，默认是_isAuto=true开启自动轮播，_isAuto= false不开启自动轮播;，_autoTime，可选，不传默认轮播间隔3000，自定义则_autoTime=2000 <br/>
+(3)_isAuto，可选，不传也可以，默认是_isAuto=true开启自动轮播，_isAuto= false不开启自动轮播;，_autoTime，可选，不传默认轮播间隔3000，自定义则_autoTime=2000，_dotClickFlag，可选，不传默认不支持点击圆点轮播切换，自定义则_dotClickFlag=true，支持点击圆点轮播切换<br/>
 4.演示 <br/>
 ![lotusCarousel](https://raw.githubusercontent.com/winglau14/lotusPackage/master/lotusCarousel/1.gif)
 

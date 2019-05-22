@@ -1,15 +1,19 @@
 <!--
 imageList:图片列表类型为数组
 _isAuto:是否需要开始自动轮播?_isAuto= true开启，_isAuto= false不开启自动轮播
+_autoTime:轮播时间默认3000
+_dotClickFlag:是否支持圆点点击切换轮播，默认false
 -->
 <template>
     <div class="lotus-slider-wrap">
-        <ul class="lotus-slider-wrap-list" id="lotus-slider-wrap-list">
-            <li v-for="(item,index) in imageList.concat(imageList)" :key="index" @touchstart="touchStart" @touchmove="touchMove" @touchend="touchEnd" @transitionend="transitionEnd">
-                <router-link :to="item.url"><img @load="load" :src="item.pic" alt=""></router-link>
+        <ul @mouseout="mouseOutFn" @mouseover="mouseOverFn" class="lotus-slider-wrap-list" id="lotus-slider-wrap-list">
+            <li v-for="(item,index) in imageList.concat(imageList)" :key="index" @click="clickLink(item.url)"  @touchstart="touchStart" @mousedown="touchStart" @touchmove="touchMove" @touchend="touchEnd" @transitionend="transitionEnd">
+                <!--<router-link :to="item.url"><img @load="load" :src="item.pic" alt=""></router-link>-->
+                <img  @load="load" :src="item.pic" alt="">
             </li>
         </ul>
-        <p v-if="imageList.length>=4" class="lotus-slider-wrap-dot">
+        <!---->
+        <p v-if="imageList.length>1" class="lotus-slider-wrap-dot">
             <span @click="clickChangeBenner(index);" v-for="(item,index) in imageList" :class="index === 0&&'active'" :key="index"></span>
         </p>
     </div>
@@ -35,11 +39,16 @@ _isAuto:是否需要开始自动轮播?_isAuto= true开启，_isAuto= false不�
             _autoTime: {
                 type: Number,
                 default: 3000
+            },
+            //支持点击按钮切换
+            _dotClickFlag:{
+                type:Boolean,
+                default:false
             }
         },
         data () {
             return {
-                windowWidth:typeof window !== "undefined"&&Math.min(window.innerWidth, document.documentElement.clientWidth),
+                windowWidth:typeof window !== "undefined"&&Math.min((window.innerWidth?window.innerWidth:375), (document.documentElement.clientWidth?document.documentElement.clientWidth:375)),
                 liLength: 0,
                 listWidth: 0,
                 imgNaturalHeight: 0,
@@ -51,7 +60,8 @@ _isAuto:是否需要开始自动轮播?_isAuto= true开启，_isAuto= false不�
                 distance: 0,
                 time: null,
                 isAuto: this._props._isAuto,
-                imageUrls:[]
+                imageUrls:[],
+                clickFlag:true
             }
         },
         components: {},
@@ -80,7 +90,6 @@ _isAuto:是否需要开始自动轮播?_isAuto= true开启，_isAuto= false不�
                     for (let i = 0; i <=span.length-1; i++) {
                         span[i].className = '';
                     }
-
                     span[Math.abs(index)%span.length].className = 'active';
                 }
                 this.setTransition(list, (index * windowWidth), 300);
@@ -92,6 +101,7 @@ _isAuto:是否需要开始自动轮播?_isAuto= true开启，_isAuto= false不�
             },
             //自动轮播
             autoCarousel() {
+                clearInterval(this.time);
                 //轮播间隔时间
                 const autoTime = ~~this._props._autoTime;
                 this.time = setInterval(() => {
@@ -113,8 +123,6 @@ _isAuto:是否需要开始自动轮播?_isAuto= true开启，_isAuto= false不�
                 }, autoTime);
             },
             touchStart(e){
-                //图片小于两张禁止滑动与轮播
-                this.stop();
                 this.startX = this.getFinger(e);
                 if(this.index === 0){
                     this.index = -this.liLength/2;
@@ -135,9 +143,6 @@ _isAuto:是否需要开始自动轮播?_isAuto= true开启，_isAuto= false不�
                 }
             },
             touchMove(e){
-                //图片小于两张禁止滑动与轮播
-                this.stop();
-                e.preventDefault();
                 clearInterval(this.time);
                 if(typeof document === "undefined"){
                     return false;
@@ -145,6 +150,14 @@ _isAuto:是否需要开始自动轮播?_isAuto= true开启，_isAuto= false不�
                 const list = document.querySelector('.lotus-slider-wrap-list');
                 this.endX = this.getFinger(e);
                 this.distance = this.endX - this.startX;
+                //console.log(this.distance);
+                if(Math.abs(this.distance)>=30){
+                    this.clickFlag = false;
+                    e.preventDefault();
+                }else{
+                    this.clickFlag = true;
+                }
+
                 let ss = 0;
                 //判断滑动到最左边加回弹效果
                 if (this.index === 0 && this.distance > 0) {
@@ -161,18 +174,12 @@ _isAuto:是否需要开始自动轮播?_isAuto= true开启，_isAuto= false不�
                 }
                 this.setTransition(list, (this.index * this.windowWidth + this.distance), 0);
             },
-            touchEnd(e){
-                //图片小于两张禁止滑动与轮播
-                this.stop();
+            touchEnd(){
                 if(typeof document === "undefined"){
                     return false;
                 }
                 const list = document.querySelector('.lotus-slider-wrap-list');
                 clearInterval(this.time);
-                //假如两指按下
-                if (e.touches&&e.touches.length > 1) {
-                    return false;
-                }
                 //重新开启自动轮播
                 if (this._props.imageList.length >= 2 && this.isAuto) {
                     this.autoCarousel();
@@ -202,12 +209,30 @@ _isAuto:是否需要开始自动轮播?_isAuto= true开启，_isAuto= false不�
                     //设置切换位置
                     this.setTranslate(this.index, this.windowWidth);
                 }
+                /*this.distance = 0;
+                this.clickFlag = true;*/
+                setTimeout(()=>{
+                    this.distance = 0;
+                    this.clickFlag = true;
+                },100);
+                console.log('end:'+this.distance);
+
             },
             transitionEnd(){
                 //判断滑动到最后一个
                 if(Math.abs(this.index) === this.liLength-1){
                     this.index = -((this.liLength/2)-1);
                 }
+            },
+            //鼠标移入调用函数
+            mouseOverFn(){
+                clearInterval(this.time);
+            },
+            //鼠标移开调用函数
+            mouseOutFn() {
+                document.getElementById(`lotus-slider-wrap-list`).onmousemove = null;
+                document.getElementById(`lotus-slider-wrap-list`).onmouseup = null;
+                this.autoCarousel();
             },
             //加载数据
             load(){
@@ -216,8 +241,6 @@ _isAuto:是否需要开始自动轮播?_isAuto= true开启，_isAuto= false不�
                 }
                 let list = document.querySelector('.lotus-slider-wrap-list');
                 let li = list.querySelectorAll('li');
-                //let wrap = document.querySelector('.lotus-slider-wrap');
-                //const dot = document.querySelector('.lotus-slider-wrap-dot');
                 this.liLength = li.length;
                 this.listWidth = ~~this.windowWidth * this.liLength;
                 const img = list.getElementsByTagName('img');
@@ -226,40 +249,45 @@ _isAuto:是否需要开始自动轮播?_isAuto= true开启，_isAuto= false不�
                 this.imgHeight = ~~((imgNaturalHeight * this.windowWidth) / imgNaturalWidth);
                 //给list设置width height
                 list.style.width = this.listWidth + 'px';
-                //list.style.height = this.imgHeight>imgNaturalHeight?imgNaturalHeight+'px': this.imgHeight + 'px';
                 list.style.webkitTransform = 'translate3D(0px,0px,0px)';
-                //wrap.style.height = this.imgHeight + 'px';
                 //给li设置width height
                 for (let i = 0; i < this.liLength; i++) {
                     li[i].style.width = this.windowWidth + 'px';
                     li[i].style.height = this.imgHeight>imgNaturalHeight?imgNaturalHeight+'px': this.imgHeight+ 'px';
                     img[i].style.width = this.windowWidth>750?750+'px':this.windowWidth + 'px';
-                    //img[i].style.height = this.imgHeight + 'px';
                     img[i].style.display = 'block';
                 }
-            },
-            //图片小于两张禁止滑动与轮播
-            stop(){
-                if(this._props.imageList.length < 2){
-                    return false;
-                }
+
             },
             //支持点击按钮切换
             clickChangeBenner(index){
-                this.index = -index;
-                clearInterval(this.time);
-                //设置切换位置
-                this.setTranslate(this.index, this.windowWidth);
-                this.autoCarousel();
+                if(this._props._dotClickFlag){
+                    this.index = -index;
+                    clearInterval(this.time);
+                    //设置切换位置
+                    this.setTranslate(this.index, this.windowWidth);
+                    this.autoCarousel();
+                }
+
+            },
+            //图片链接跳转
+            clickLink(url){
+                console.log(this.clickFlag);
+                if(this.clickFlag){
+                    this.$router.push(url);
+                }
+
             }
         },
         mounted(){
+            if(this._props.imageList.length > 1){
+                //图片大于2个开始轮播开启自动轮播
+                this.autoCarousel();
+            }
+
         },
         created(){
-            //图片小于两张禁止滑动与轮播
-            this.stop();
-            //图片大于2个开始轮播开启自动轮播
-            this.autoCarousel();
+
         },
         destroyed(){
             //销毁 关闭定时器
