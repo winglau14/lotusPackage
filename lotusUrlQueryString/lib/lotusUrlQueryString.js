@@ -1,25 +1,29 @@
 //获取url参数值(query string)返回一个obj
-function lotusUrlQueryString (){
-    var href = location.href;
+function lotusUrlQueryString (urlStr){
+    var href = urlStr||location.href;
+    var obj = {};
     if(href.indexOf('?') > -1){
         var a = href.split('?');
-        var b = a[1];
-        //多个参数
-        if(b.indexOf('&') > -1){
-            var c = b.split('&');
-            var obj = {};
-            c.map(function(item) {
+        var tArr = [];
+
+        //参数数据整理
+        a.map(function(item){
+            if(item.indexOf('&')>-1){
+                var b =  item.split('&');
+                tArr = tArr.concat(b);
+            }else if(item.indexOf('=')>-1){
+                var c = item.split('=');
+                obj[c[0]] = c[1];
+            }
+        });
+        //遍历新组装新参数数组
+        if(tArr.length){
+            tArr.map(function(item) {
                 var d = item.split('=');
                 obj[d[0]] = d[1];
             });
-            return obj;
-        }else{
-            //一个参数
-            var obj = {};
-            var c = b.split('=');
-            obj[c[0]] = c[1];
-            return obj;
         }
+        return obj;
     }
-};
+}
 module.exports = lotusUrlQueryString;
