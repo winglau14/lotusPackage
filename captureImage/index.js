@@ -53,8 +53,9 @@ const saveImg = function(dirName,imgUrlList,res){
 };
 //图片下载来源选择
 function requestType(url,type,res1,dirName1,imgSize){
+    console.log(url,type,dirName1,imgSize);
     //获取图片url
-    const imgUrlList = [];
+    let imgUrlList = [];
     if(type === 'jk'){
         request(url,function(err,res,body){
             const t = url.split('/');
@@ -64,11 +65,11 @@ function requestType(url,type,res1,dirName1,imgSize){
                 const $ = cheerio.load(body);
                 //健客网图片下载
                 $(".pro_pic_li li").each(function(){
-                    const imgUrl = 'https:'+$(this).find("img").attr("src").replace('!50x50',`!${imgSize}x${imgSize}`);
+                    const imgUrl = 'https:'+$(this).find("img").attr("src").replace(/!\d{1,}x\d{1,}/i,`!${imgSize}x${imgSize}`);
                     imgUrlList.push(imgUrl);
                 });
                 //console.log(imgUrlList);
-                saveImg('./static/'+dirName,imgUrlList,res1);
+                saveImg('./static/'+dirName,imgUrlList,res1,'jk',imgSize);
             }
         });
     }if(type === 'jd'){
@@ -98,7 +99,26 @@ function requestType(url,type,res1,dirName1,imgSize){
                 const reg = /"\/\/.*\.jpg"/g;
                 const t = html.match(reg);
                 t.map((item)=>{
-                    item = item.replace('"','https:').replace('60x60',`${imgSize}x${imgSize}`).replace('"','');
+                    item = item.replace('"','https:').replace(/\d{1,}x\d{1,}/,`${imgSize}x${imgSize}`).replace('"','');
+                    imgUrlList.push(item);
+                });
+                //console.log(imgUrlList);
+                saveImg('./static/'+dirName1,imgUrlList,res1);
+                await browser.close();
+            },1000);
+        });
+    }else if(type === 'kad'){
+        console.log(type);
+        puppeteer.launch().then(async browser => {
+            const page = await browser.newPage();
+            await page.goto(`${url}`);
+            setTimeout(async ()=>{
+                const html = await page.$eval("#minPicScroll",ele=>ele.innerHTML);
+                console.log(html);
+                const reg = /https?:\/\/.*.?jpg/g;
+                const t = html.match(reg);
+                t.map((item)=>{
+                    //item = item.replace('"','https:').replace(/\d{1,}x\d{1,}/,`${imgSize}x${imgSize}`).replace('"','');
                     imgUrlList.push(item);
                 });
                 //console.log(imgUrlList);
@@ -474,6 +494,15 @@ app.post('/jd',function(req,res){
     //console.log(url);
     //京东下载
     requestType(url,'jd',res,dirName,imgSize);
+});
+//康爱多下载
+app.post('/kad',function(req,res){
+    const url = req.body.url;
+    const dirName = req.body.dirName;
+    const imgSize = req.body.imgSize||'500';
+    //console.log(url);
+    //康爱多下载
+    requestType(url,'kad',res,dirName,imgSize);
 });
 //删除文件
 app.get('/delete',function(req,res){

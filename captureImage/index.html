@@ -83,10 +83,12 @@
         <option value="jk">健客</option>
         <option value="aljk">阿里健康</option>
         <option value="jd">京东大药房</option>
+        <option value="kad">康爱多大药房</option>
     </select>
     </p>
     <p>
-        图片下载大小：<input id="imgSize" class="url" style="width:100px;" placeholder="请输入图片下载大小,如:500" value="500" type="text">
+        图片下载大小：<input id="imgSize" class="url" style="width:100px;" placeholder="请输入图片下载大小,如:800" value="800" type="text">
+        <span style="color: red;">尺寸范围50-800</span>
     </p>
     <p>
         图片文件夹名：
@@ -104,7 +106,7 @@
 </body>
 <script src="http://res2.360kad.com/script/common/jquery-topic-1.7.2.min.js" type="text/javascript"></script>
 <script>
-    var ip = 'http://192.168.1.76:8923';
+    var ip = 'http://localhost:3100';
     //var ip = 'http://dedload.123yyf.com';
     var downloadUrl = '';
     //图片下载
