@@ -119,7 +119,8 @@
 .list-item-pic {
   width: 94rpx;
   height: 94rpx;
-  border-radius: 10rpx;
+  -webkit-border-radius: 10rpx;
+          border-radius: 10rpx;
 }
 .list-item-r {
   padding-left: 30rpx;

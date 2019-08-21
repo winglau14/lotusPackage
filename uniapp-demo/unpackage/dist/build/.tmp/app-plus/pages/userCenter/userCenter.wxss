@@ -16,7 +16,8 @@
       -ms-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   min-width: 580rpx;
-  border-radius: 10rpx;
+  -webkit-border-radius: 10rpx;
+          border-radius: 10rpx;
   overflow: hidden;
   background: #fff;
 }
@@ -139,7 +140,8 @@
   height: 90rpx;
   display: block;
   margin: 0 auto 30rpx;
-  border-radius: 20rpx;
+  -webkit-border-radius: 20rpx;
+          border-radius: 20rpx;
 }
 .user-center-list {
   background: #fff;
@@ -203,7 +205,8 @@
   height: 100%;
   border-color: #ccc;
   background-color: #ccc;
-  border-radius: inherit;
+  -webkit-border-radius: inherit;
+          border-radius: inherit;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
@@ -281,7 +284,8 @@
 .user-center-quit {
   background: #13a3ff;
   margin: 70rpx 100rpx 0;
-  border-radius: 14rpx;
+  -webkit-border-radius: 14rpx;
+          border-radius: 14rpx;
   padding: 24rpx;
   position: relative;
   -webkit-user-select: none;
@@ -305,7 +309,8 @@
   height: 100%;
   border-color: #ccc;
   background-color: #ccc;
-  border-radius: inherit;
+  -webkit-border-radius: inherit;
+          border-radius: inherit;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);

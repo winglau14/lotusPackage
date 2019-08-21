@@ -1,2 +1,0 @@
-setCssToHead([".",[1],"ly-wrap{ padding:0 ",[0,30],"; }\n",],undefined,{path:"./pages/lyTest/lyTest.wxss"})();
-document.dispatchEvent(new CustomEvent("generateFuncReady", { detail: { generateFunc: $gwx('./pages/lyTest/lyTest.wxml') } }));

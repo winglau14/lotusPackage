@@ -47,7 +47,7 @@ function ab2hex(buffer) {
 //条形码生成库
 const barcode = require('./barcode')
 const gb2312ToBase64 = require('./libs/gb2312ToBase64');
-const CryptoJS = require('crypto-js');
+//const CryptoJS = require('crypto-js');
 //const QRPrinter = require('./QRPrinter.js')
 const iconv = require('iconv-lite');
     export default {

@@ -18,7 +18,7 @@
 
 <script>
 	import LotusLoadMoreText from "../../components/lotusLoadMoreText/LotusLoadMoreText.vue";
-	var forMatDate = require("moment"); 
+	//var forMatDate = require("moment"); 
 	export default {
 		data() {
 			return {

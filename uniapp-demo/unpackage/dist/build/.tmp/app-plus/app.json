@@ -1,6 +1,5 @@
 {
   "pages": [
-    "pages/lyTest/lyTest",
     "pages/tempPage/tempPage",
     "pages/formDetail/formDetail",
     "pages/form/form",
@@ -40,10 +39,11 @@
       }
     ]
   },
+  "nvueCompiler": "weex",
   "splashscreen": {
     "alwaysShowBeforeRender": true,
     "autoclose": false
   },
   "appname": "帮您购",
-  "compilerVersion": "1.8.2"
+  "compilerVersion": "2.0.1"
 }

@@ -1,12 +1,12 @@
 {
     "pages" : [
         //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
-        {
+        /* {
             "path" : "pages/lyTest/lyTest",
             "style" : {
         		"navigationBarTitleText" : "蓝牙测试"
         	}
-        },{
+        }, */{
             //落地页
             "path" : "pages/tempPage/tempPage",
             "style" : {
@@ -70,10 +70,6 @@
             "style" : {
                 "navigationBarTitleText" : "物流详情"
             }
-        }
-        ,{
-            "path" : "F:/Project/merchandiser/merchandiser/merchandiser",
-            "style" : {}
         }
     ],
     "globalStyle" : {

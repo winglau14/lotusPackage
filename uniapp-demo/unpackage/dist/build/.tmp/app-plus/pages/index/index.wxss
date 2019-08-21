@@ -103,7 +103,8 @@
   margin: 0 45rpx;
   background: #f9f9f9;
   border: 1px solid #eee;
-  border-radius: 10rpx;
+  -webkit-border-radius: 10rpx;
+          border-radius: 10rpx;
   padding: 20rpx;
   margin-bottom: 30rpx;
 }
@@ -165,7 +166,8 @@
   background: #fff;
   width: 600rpx;
   border: 1px solid #dbdbdb;
-  border-radius: 10rpx;
+  -webkit-border-radius: 10rpx;
+          border-radius: 10rpx;
 }
 .express-jq-title1 {
   padding-top: 40rpx;

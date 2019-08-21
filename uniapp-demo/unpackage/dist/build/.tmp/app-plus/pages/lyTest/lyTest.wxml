@@ -1,2 +1,0 @@
-<import src="./lyTest.vue.wxml" />
-    <template is="4df28a59" data="{{ ...$root['0'], $root }}"/>

@@ -1,1 +1,1 @@
-<template name="3058b05e"><view wx:if="{{lotusLoadMData.isShow}}" class="_view 3058b05e lotus-load-more"><view wx:if="{{lotusLoadMData.showLoadImg}}" class="_view 3058b05e lotus-load-more-img"></view><text class="_text 3058b05e">{{lotusLoadMData.text||text}}</text></view></template>
+<template name="3058b05e"><view wx:if="{{lotusLoadMData.isShow}}" class="_view M3058b05e lotus-load-more"><view wx:if="{{lotusLoadMData.showLoadImg}}" class="_view M3058b05e lotus-load-more-img"></view><text class="_text M3058b05e">{{lotusLoadMData.text||text}}</text></view></template>

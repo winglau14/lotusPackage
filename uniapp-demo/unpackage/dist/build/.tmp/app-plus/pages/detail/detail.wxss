@@ -204,7 +204,8 @@
   z-index: 2;
   width: 40rpx;
   height: 40rpx;
-  border-radius: 50% 50%;
+  -webkit-border-radius: 50% 50%;
+          border-radius: 50% 50%;
   background: #eee;
 }
 .express-detail-status-act::before {

@@ -2,8 +2,8 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-lotus-cli/
 node_modules/
+unpackage/
 # Editor directories and files
 .idea
 .vscode
@@ -11,3 +11,4 @@ node_modules/
 *.ntvs*
 *.njsproj
 *.sln
+

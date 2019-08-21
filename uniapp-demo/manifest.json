@@ -57,10 +57,6 @@
                     "ifly" : {}
                 },
                 "oauth" : {
-                    "weixin" : {
-                        "appid" : "wxee1d7f63e20f9205",
-                        "appsecret" : "eccb375437a6f54eac00ca13e34e1ff5"
-                    },
                     "qq" : {
                         "appid" : "101548262"
                     }

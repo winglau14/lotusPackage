@@ -63,7 +63,8 @@
   font-size: 36rpx;
   color: #fff;
   text-align: center;
-  border-radius: 10rpx;
+  -webkit-border-radius: 10rpx;
+          border-radius: 10rpx;
   display: block;
   line-height: 92rpx;
 }
@@ -71,7 +72,8 @@
   font-size: 36rpx;
   color: #fff;
   text-align: center;
-  border-radius: 10rpx;
+  -webkit-border-radius: 10rpx;
+          border-radius: 10rpx;
   display: block;
   line-height: 92rpx;
   background-color: #f70442 !important;
@@ -94,7 +96,8 @@
   height: 100%;
   border-color: #000;
   background-color: #000;
-  border-radius: inherit;
+  -webkit-border-radius: inherit;
+          border-radius: inherit;
   -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
