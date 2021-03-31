@@ -2594,12 +2594,6 @@ loose-envify@^1.0.0:
   dependencies:
     js-tokens "^3.0.0"
 
-lotus-calendar@^1.0.1:
-  version "1.0.1"
-  resolved "http://registry.npm.taobao.org/lotus-calendar/download/lotus-calendar-1.0.1.tgz#a9aa14ccf342b1f14bab908d29b98f1a7bfea083"
-  dependencies:
-    vue "^2.5.2"
-
 lower-case@^1.1.1:
   version "1.1.4"
   resolved "http://registry.npm.taobao.org/lower-case/download/lower-case-1.1.4.tgz#9a2cabd1b9e8e0ae993a4bf7d5875c39c42e8eac"
@@ -4547,8 +4541,8 @@ xxhashjs@^0.2.1:
     cuint latest
 
 y18n@^3.2.1:
-  version "3.2.1"
-  resolved "http://registry.npm.taobao.org/y18n/download/y18n-3.2.1.tgz#6d15fba884c08679c0d77e88e7759e811e07fa41"
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/y18n/-/y18n-3.2.2.tgz#85c901bd6470ce71fc4bb723ad209b70f7f28696"
 
 yallist@^2.1.2:
   version "2.1.2"
