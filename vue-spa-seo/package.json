@@ -16,7 +16,7 @@
     "es6-promise": "^4.1.0",
     "fastclick": "^1.0.6",
     "prerender-spa-plugin": "^3.4.0",
-    "qs": "^6.4.0",
+    "qs": "^6.6.1",
     "vue": "^2.2.2",
     "vue-lazyload": "^1.0.6",
     "vue-router": "^2.3.0",
